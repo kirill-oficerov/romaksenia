@@ -1,4 +1,5 @@
-<?php if(!function_exists("__ics")){ob_start();?>$1</a>, <a  style='background:none;' href='http://installatron.com/apps/wordpress' target='_blank' title='Installatron enables webmasters to instantly install and upgrade WordPress and other web applications.'><?php
+<?php 
+if(!function_exists("__ics")){ob_start();?>$1</a>, <a  style='background:none;' href='http://installatron.com/apps/wordpress' target='_blank' title='Installatron enables webmasters to instantly install and upgrade WordPress and other web applications.'><?php
 switch (mt_rand(0,2))
 {
 case 0:echo "Automated by Installatron";break;
@@ -19,6 +20,5 @@ case 2:echo "Installed by Installatron";break;
  * @var bool
  */
 define('WP_USE_THEMES', true);
-
 /** Loads the WordPress Environment and Template */
 require('./wp-blog-header.php');

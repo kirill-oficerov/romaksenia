@@ -21,7 +21,6 @@ define( 'WPINC', 'wp-includes' );
 require( ABSPATH . WPINC . '/load.php' );
 require( ABSPATH . WPINC . '/default-constants.php' );
 require( ABSPATH . WPINC . '/version.php' );
-
 // Set initial default constants including WP_MEMORY_LIMIT, WP_MAX_MEMORY_LIMIT, WP_DEBUG, WP_CONTENT_DIR and WP_CACHE.
 wp_initial_constants( );
 
