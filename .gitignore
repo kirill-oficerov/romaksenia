@@ -1,1 +1,5 @@
-wp-condig.php
+wp-config.php
+wp-signup.php
+wp-settings.php
+wp-blog-header.php
+wp-index.php
