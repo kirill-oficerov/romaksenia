@@ -16,7 +16,7 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define('DB_NAME', 'santanam_wp1');
+define('DB_NAME', 'santanam_wp_test');
 
 /** MySQL database username */
 define('DB_USER', 'santanam_wp1');
@@ -42,36 +42,14 @@ define('DB_COLLATE', '');
  *
  * @since 2.6.0
  */
-
-define('MULTISITE', false);
-define('SUBDOMAIN_INSTALL', true);
-$base = '/';
-define('DOMAIN_CURRENT_SITE', 'test.wedigital.by');
-define('PATH_CURRENT_SITE', '/');
-define('SITE_ID_CURRENT_SITE', 2);
-define('BLOG_ID_CURRENT_SITE', 2);
-define('WP_ALLOW_MULTISITE', true);
-
-define('FS_METHOD','direct');
-define('AUTH_KEY',         'v82ucjNsWnmbWLPd62itb3fv0DwowEyNlbN2hqyDFvO1JLb6yt7BNK1YmogOJKY1');
-define('SECURE_AUTH_KEY',  '0X77Y5RzkHyXUa7vaDTQ8iwETOMc2Rtf31bv124nwQlFAI4237vBTafsJ9LkNeI1');
-define('LOGGED_IN_KEY',    'jNCVjKBR3l4ct4EriPvaSUjxahCf56ET7K4hrdPvlFPd6j3ZqmpIFmzEHf2liIL1');
-define('NONCE_KEY',        'u2Ie4XTIHWfC4MNMhJKME0KRL0rLAMVIbdd71JcM2hQexifunwdbenYIo1uGeDR1');
-define('AUTH_SALT',        'YxPeYeEZiPR18TkErfnn3K5RAtZJ63gblYtxiAhRSSWAxQKX1q2WGhT1HxxWPSB1');
-define('SECURE_AUTH_SALT', 'AcNIfAMGoIjiApHCPlxiW33GtkD76LGprHMA1MxKvXZz9BV7Qg8K3Moc5oaSb191');
-define('LOGGED_IN_SALT',   'k0qZFIZCIA2upjE1yzUY7Cc0eRYQnnUgtQeULvGBj9cmoEqOP5v4HQFqfRs4EbH1');
-define('NONCE_SALT',       'DlADuQOeltZOrcXoAGvmKyp6XdTRagZfVgijIIyaX5waiKMMqutYvFPQ4U0jWnb1');
-define('WP_TEMP_DIR',      '/home/santanam/wedigital.by/test/wp-content/uploads');
-
-//define('AUTH_KEY',         'v82ucjNsWnmbWLPd62itb3fv0DwowEyNlbN2hqyDFvO1JLb6yt7BNK1YmogOJKYI');
-//define('SECURE_AUTH_KEY',  '0X77Y5RzkHyXUa7vaDTQ8iwETOMc2Rtf31bv124nwQlFAI4237vBTafsJ9LkNeIZ');
-//define('LOGGED_IN_KEY',    'jNCVjKBR3l4ct4EriPvaSUjxahCf56ET7K4hrdPvlFPd6j3ZqmpIFmzEHf2liIL4');
-//define('NONCE_KEY',        'u2Ie4XTIHWfC4MNMhJKME0KRL0rLAMVIbdd71JcM2hQexifunwdbenYIo1uGeDRt');
-//define('AUTH_SALT',        'YxPeYeEZiPR18TkErfnn3K5RAtZJ63gblYtxiAhRSSWAxQKX1q2WGhT1HxxWPSBV');
-//define('SECURE_AUTH_SALT', 'AcNIfAMGoIjiApHCPlxiW33GtkD76LGprHMA1MxKvXZz9BV7Qg8K3Moc5oaSb194');
-//define('LOGGED_IN_SALT',   'k0qZFIZCIA2upjE1yzUY7Cc0eRYQnnUgtQeULvGBj9cmoEqOP5v4HQFqfRs4EbHp');
-//define('NONCE_SALT',       'DlADuQOeltZOrcXoAGvmKyp6XdTRagZfVgijIIyaX5waiKMMqutYvFPQ4U0jWnbZ');
-
+define('AUTH_KEY',         'cK/)!1BqVR|ni c^`$}9P3s^(Zn9|(<`]|{&yUo0/p+^5vB)[rmC,QurJDz]z;yv');
+define('SECURE_AUTH_KEY',  '|e+1h,%$}jh.~G_Tdn9-LYc6]=pf8t-D3R_<&Ytpc$g7lXFRr5Y)cc|3#5?||,M-');
+define('LOGGED_IN_KEY',    '|3On]|f]pN@w{|#E+_,*-E<CWBO6U1x}gQ@8uc3R5v_z+TG;|LpBrnbR-;=t) 7p');
+define('NONCE_KEY',        '?vUl~8rwp}{?@}wh+/Ac`})zO?xc|]EdvMJ}[|-@!Mk-;M8=SV}T +V3#GlqYS8D');
+define('AUTH_SALT',        'U|R~?gJD$+0%TaFJ[3:q0 Cf*Hb>Ndd_Z[oj]|kBb/V}m4t..qHeZMD?tvtny /5');
+define('SECURE_AUTH_SALT', 'y1}q9e}_@;.^zHC$vaPzmz9RSfw gJD*`|/}hr-=a6tu5#Va|k0W-bP{yXV=p0z<');
+define('LOGGED_IN_SALT',   'y|pH9QwhlM6&rCct^a||5LXfm8D9%Zx`n*Pj0aM+woNZomfDAmy5,6B#YQ0yPy-f');
+define('NONCE_SALT',       '+u7yoel^k4*r:J[8pnjv{Jq8lBQaO$vi/K$25VogpIr?<T7h9U._`[~C-=(Q(8+@');
 
 /**#@-*/
 
@@ -91,7 +69,7 @@ $table_prefix  = 'wp_';
  * de_DE.mo to wp-content/languages and set WPLANG to 'de_DE' to enable German
  * language support.
  */
-define('WPLANG', 'ru_RU');
+define('WPLANG', '');
 
 /**
  * For developers: WordPress debugging mode.
@@ -100,8 +78,7 @@ define('WPLANG', 'ru_RU');
  * It is strongly recommended that plugin and theme developers use WP_DEBUG
  * in their development environments.
  */
-//define('WP_DEBUG', false);
-define('WP_DEBUG', true);
+define('WP_DEBUG', false);
 
 /* That's all, stop editing! Happy blogging. */
 
