@@ -27,8 +27,12 @@ THE SOFTWARE.
 */
 
 div.layout-978 {
-	width: 978px;
-	margin: 0px auto;
+    /* @todo kirill css header */
+	/*margin: 0px auto; */
+    margin: 0px 0px 0px 20px;
+    /*width: 978px;*/
+    min-width: 1000px;
+
 }
 div.row {
 	height: 0%;

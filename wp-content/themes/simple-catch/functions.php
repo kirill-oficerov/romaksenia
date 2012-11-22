@@ -90,7 +90,10 @@ function simplecatch_setup() {
  
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menu( 'primary', __( 'Primary Menu', 'simplecatch' ) );
-	
+
+	// @TODO kirill php menu
+	register_nav_menu( 'custom_menu_0', __( 'Custom menu 0', 'simplecatch' ) );
+
 	// Add support for custom backgrounds	
 	// WordPress 3.4+
 	if ( function_exists( 'get_custom_header') ) {

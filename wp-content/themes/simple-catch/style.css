@@ -402,11 +402,12 @@ a.readmore:hover {
 	border-bottom:4px solid #ccc;
 }
 /* Logo Tile */
+/* @todo kirill css header */
 #header .logo-wrap {
 	padding-left:20px;
 	float:left;
-	margin-top:54px;
-	min-width: 610px;
+	margin-top:20px;
+	min-width: 350px;
 }
 h1#site-title {
 	font-size: 45px;
@@ -605,13 +606,26 @@ h2#site-description {
 
 /* =Menu
 ----------------------------------------------- */
+
+/*
+@todo kirill css header
+#header #mainmenu {*/
+    /*float: left;*/
+    /*border:1px solid #ccc;*/
+    /*background-color:#fff;*/
+    /*margin-top:40px;*/
+    /*position:relative;*/
+    /*width:976px;*/
+    /*z-index:1000;*/
+    /*box-shadow:0 1px 0px #fff;*/
+/*}*/
 #header #mainmenu {
 	float: left;
 	border:1px solid #ccc;
 	background-color:#fff;
 	margin-top:40px;
 	position:relative;
-	width:976px;
+	width:500px;
 	z-index:1000;
 	box-shadow:0 1px 0px #fff;
 }

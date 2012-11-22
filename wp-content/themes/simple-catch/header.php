@@ -36,8 +36,10 @@
 					simplecatch_headerdetails(); 
 				endif;
 			?>
-
-        	<div class="social-search">
+			  <div id="mainmenu">
+				  <?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
+			  </div><!-- #mainmenu-->
+			  <div class="social-search">
 				<?php
                     // simplecatch_headersocialnetworks displays social links given from theme option in header 
                     if ( function_exists( 'simplecatch_headersocialnetworks' ) ) :
@@ -48,12 +50,10 @@
                 ?>      
         	</div><!-- .social-search -->
     		<div class="row-end"></div>
-            <div id="mainmenu">
-            	<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
-            </div><!-- #mainmenu-->  
+
             <div class="row-end"></div>   
-        <?php 
-			// This function passes the value of slider effect to js file 
+        <?php
+			// This function passes the value of slider effect to js file
 			if( function_exists( 'simplecatch_pass_slider_value' ) ) {
 				simplecatch_pass_slider_value();
 			}
