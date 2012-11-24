@@ -11,6 +11,16 @@
  *
  * @since 2.3.2
  */
+
+define('DOCUMENT_ROOT', realpath('..') . '\\');
+spl_autoload_register(function($className) {
+	$parts = explode('_', $className);
+	$fileName = array_pop($parts);
+	if(file_exists(DOCUMENT_ROOT . implode('/', $parts) . '/' . $fileName . '.php')) {
+		require_once DOCUMENT_ROOT . implode('/', $parts) . '/' . $fileName . '.php';
+	}
+});
+
 if ( ! defined('WP_ADMIN') )
 	define('WP_ADMIN', true);
 

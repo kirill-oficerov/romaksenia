@@ -12,6 +12,8 @@
  * @since Simple Catch 1.0
  */
 
+
+
 get_header(); 
 	
 	if( function_exists( 'simplecatch_display_div' ) ) {
@@ -19,7 +21,7 @@ get_header();
 	}
 		
     get_template_part('content'); ?>
-        
+    </div> <!-- keep content -->
 	</div><!-- #content -->
             
 	<?php 

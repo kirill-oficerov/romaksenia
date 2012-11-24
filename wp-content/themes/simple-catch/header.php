@@ -50,8 +50,12 @@
                 ?>      
         	</div><!-- .social-search -->
     		<div class="row-end"></div>
-
-            <div class="row-end"></div>   
+            <div class="row-end"></div>
+			<div style="width: 100px; height: 30px; float: right; position: relative; top: -50px; left: -89px;">
+				<a style="background: url('<?=HTTP_IMAGES_DIR . 'icons.png'?>') no-repeat 0px 0px; width: 27px; height: 24px; display: block; float: left; "></a>
+				<a style="background: url('<?=HTTP_IMAGES_DIR . 'icons.png'?>') no-repeat 0px 0px; width: 27px; height: 24px; display: block; float: left; "></a>
+				<a style="background: url('<?=HTTP_IMAGES_DIR . 'icons.png'?>') no-repeat 0px 0px; width: 27px; height: 24px; display: block; float: left; "></a>
+			</div>
         <?php
 			// This function passes the value of slider effect to js file
 			if( function_exists( 'simplecatch_pass_slider_value' ) ) {

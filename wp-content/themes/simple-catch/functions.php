@@ -93,8 +93,10 @@ function simplecatch_setup() {
 
 	// @TODO kirill php menu
 	register_nav_menu( 'custom_menu_0', __( 'Custom menu 0', 'simplecatch' ) );
-
-	// Add support for custom backgrounds	
+	update_site_option('remove_site_title', 1);
+	define('IMAGES_DIR', realpath('./images'));
+	define('HTTP_IMAGES_DIR', 'http://' . $_SERVER['HTTP_HOST'] . '/wp-content/themes/simple-catch/images/');
+	// Add support for custom backgrounds
 	// WordPress 3.4+
 	if ( function_exists( 'get_custom_header') ) {
 		add_theme_support( 'custom-background' );

@@ -202,9 +202,9 @@ function simplecatch_headerdetails() {
 	global $simplecatch_options_settings;
     $options = $simplecatch_options_settings;	
 		
-	if ( ( !$simplecatch_headerdetails = get_transient( 'simplecatch_headerdetails' ) ) && ( empty( $options[ 'remove_header_logo' ] ) || empty( $options[ 'remove_site_title' ] ) || empty( $options[ 'remove_site_description' ] ) ) ) {
+//	if ( ( !$simplecatch_headerdetails = get_transient( 'simplecatch_headerdetails' ) ) && ( empty( $options[ 'remove_header_logo' ] ) || empty( $options[ 'remove_site_title' ] ) || empty( $options[ 'remove_site_description' ] ) ) ) {
 
-		echo '<!-- refreshing cache -->';
+//		echo '<!-- refreshing cache -->';
 		
 		$simplecatch_headerdetails = '<div class="logo-wrap">';
 
@@ -233,8 +233,8 @@ function simplecatch_headerdetails() {
 
 		$simplecatch_headerdetails .= '</div><!-- .logo-wrap -->';
 		
-	set_transient( 'simplecatch_headerdetails', $simplecatch_headerdetails, 86940 );
-	}
+//	set_transient( 'simplecatch_headerdetails', $simplecatch_headerdetails, 86940 );
+//	}
 	echo $simplecatch_headerdetails;	
 } // simplecatch_headerdetails
 
@@ -882,13 +882,13 @@ function simplecatch_display_div() {
 		
 	if( $themeoption_layout == 'left-sidebar' ) {	
 		get_sidebar();
-		echo '<div id="content" class="col8">';
+		echo '<div class="rubber-layout-keep-content"><div id="content" class="col8 rubber-layout-main">';
 	}
 	elseif( $themeoption_layout == 'right-sidebar' ) {
-		echo '<div id="content" class="col8 no-margin-left">';
+		echo '<div class="rubber-layout-keep-content"><div id="content" class="col8 no-margin-left rubber-layout-main">';
 	}
 	else {
-		echo '<div id="content" class="col8">';
+		echo '<div class="rubber-layout-keep-content"><div id="content" class="col8 rubber-layout-main">';
 	}
 	return $themeoption_layout;
 }

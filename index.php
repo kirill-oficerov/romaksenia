@@ -20,5 +20,17 @@ case 2:echo "Installed by Installatron";break;
  */
 define('WP_USE_THEMES', true);
 
+/**
+ * custom
+ */
+
+define('DOCUMENT_ROOT', realpath('.') . '\\');
+spl_autoload_register(function($className) {
+	$parts = explode('_', $className);
+	$fileName = array_pop($parts);
+	if(file_exists(DOCUMENT_ROOT . implode('/', $parts) . '/' . $fileName . '.php')) {
+		require_once DOCUMENT_ROOT . implode('/', $parts) . '/' . $fileName . '.php';
+	}
+});
 /** Loads the WordPress Environment and Template */
 require('./wp-blog-header.php');

@@ -13,8 +13,8 @@ global $simplecatch_options_defaults;
 $simplecatch_options_defaults = array(
  	'disable_slogan' 			=> get_template_directory_uri().'/images/logo.png',
  	'remove_header_logo'		=> '0',
- 	'remove_site_title'			=> '0',
- 	'remove_site_description'	=> '0',
+ 	'remove_site_title'			=> '1',
+ 	'remove_site_description'	=> '1',
  	'featured_logo_footer' 		=> get_template_directory_uri().'/images/logo-foot.png',
  	'remove_footer_logo'		=> '0',
  	'fav_icon'					=> get_template_directory_uri().'/images/favicon.ico',
