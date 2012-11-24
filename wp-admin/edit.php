@@ -278,7 +278,7 @@ $_SERVER['REQUEST_URI'] = remove_query_arg( array( 'locked', 'skipped', 'updated
 </form>
 
 <?php
-if ( $wp_list_table->has_items() )
+	if ( $wp_list_table->has_items() )
 	$wp_list_table->inline_edit();
 ?>
 
