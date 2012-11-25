@@ -266,6 +266,7 @@ function get_the_excerpt( $deprecated = '' ) {
 		return $output;
 	}
 
+
 	return apply_filters('get_the_excerpt', $output);
 }
 

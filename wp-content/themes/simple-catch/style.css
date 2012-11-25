@@ -775,7 +775,7 @@ h2#site-description {
 #main #content .post h2.entry-title
 {
 	font-size: 22px;
-	line-height:45px;
+	line-height:24px;
 	padding-bottom:6px;
 }
 #main #content .post-img a {
@@ -1630,3 +1630,43 @@ img#wpstats {
 .rubber-layout-main {
     margin-right: 350px;
 }
+
+.category-list {
+    list-style: none;
+    margin: 0px 10px 0px 10px;
+    float: left;
+}
+
+.category-list li {
+    float: left;
+    margin: 0px 5px 0px 0px;
+}
+
+.category-list li a {
+    padding: 5px 10px;
+}
+
+.category-yellow :hover {
+    background: #ffff99;
+}
+
+.category-orange :hover {
+    background: #ffcc00;
+}
+
+.category-green-light :hover {
+    background: #99cc99;
+}
+
+.category-green-bright :hover {
+    background: #ccff99;
+}
+
+.category-white :hover {
+    background: #eee;
+}
+
+.addthis_toolbox {
+    margin-top:5px;
+}
+

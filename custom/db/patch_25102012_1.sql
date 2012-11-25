@@ -1,0 +1,1 @@
+ALTER TABLE  `wp_terms` ADD  `category_settings` TEXT NULL DEFAULT NULL;
