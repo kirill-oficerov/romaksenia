@@ -26,6 +26,13 @@ if ( ! isset( $content_width ) )
  * Tell WordPress to run simplecatch_setup() when the 'after_setup_theme' hook is run.
  */
 add_action( 'after_setup_theme', 'simplecatch_setup' );
+// @todo kirill excerpt
+//function simplecatch_custom_excerpt_add_thumbnail( $output ) {
+//		$output .= "<div>
+//				<a href=" . the_permalink(false) . " title=\"" . sprintf( esc_attr__( 'Permalink to %s', 'simplecatch' ), the_title_attribute( 'echo=0' ) ) . "\"> " . get_the_post_thumbnail( null, 'featured', '' ) . '</a>
+//	                    </div>';
+//	return $output;
+//}
 
 if ( ! function_exists( 'simplecatch_setup' ) ):
 /**
@@ -97,6 +104,9 @@ function simplecatch_setup() {
 //	define('IMAGES_DIR', realpath('./images'));
 	define('HTTP_IMAGES_DIR', 'http://' . $_SERVER['HTTP_HOST'] . '/wp-content/themes/simple-catch/images/');
 	define('HTTP_HOST', 'http://' . $_SERVER['HTTP_HOST']);
+
+
+//	add_filter( 'get_the_excerpt', 'simplecatch_custom_excerpt_add_thumbnail', 20 );
 
 	// Add support for custom backgrounds
 	// WordPress 3.4+

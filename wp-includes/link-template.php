@@ -12,8 +12,13 @@
  * @since 1.2.0
  * @uses apply_filters() Calls 'the_permalink' filter on the permalink string.
  */
-function the_permalink() {
-	echo apply_filters('the_permalink', get_permalink());
+function the_permalink($echo = true) {
+	$toReturn = apply_filters('the_permalink', get_permalink());
+	if ($echo) {
+		echo $toReturn;
+	} else {
+		return $toReturn;
+	}
 }
 
 /**

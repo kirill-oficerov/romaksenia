@@ -243,8 +243,13 @@ function _convert_urlencoded_to_entities( $match ) {
  * @since 0.71
  * @uses apply_filters() Calls 'the_excerpt' hook on post excerpt.
  */
-function the_excerpt() {
-	echo apply_filters('the_excerpt', get_the_excerpt());
+function the_excerpt($echo = true) {
+	$toReturn = apply_filters('the_excerpt', get_the_excerpt());
+	if($echo) {
+		echo $toReturn;
+	} else {
+		return $toReturn;
+	}
 }
 
 /**
@@ -266,8 +271,8 @@ function get_the_excerpt( $deprecated = '' ) {
 		return $output;
 	}
 
-
-	return apply_filters('get_the_excerpt', $output);
+	$toReturn = apply_filters('get_the_excerpt', $output);
+	return $toReturn;
 }
 
 /**

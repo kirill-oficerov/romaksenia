@@ -167,7 +167,11 @@ function image_downsize($id, $size = 'medium') {
 
 	if ( $img_url) {
 		// we have the actual image size, but might need to further constrain it if content_width is narrower
-		list( $width, $height ) = image_constrain_size_for_editor( $width, $height, $size );
+		if($size == 'featured') {
+
+		} else {
+			list( $width, $height ) = image_constrain_size_for_editor( $width, $height, $size );
+		}
 
 		return array( $img_url, $width, $height, $is_intermediate );
 	}
@@ -580,6 +584,14 @@ function image_get_intermediate_size($post_id, $size='thumbnail') {
 		$file_url = wp_get_attachment_url($post_id);
 		$data['path'] = path_join( dirname($imagedata['file']), $data['file'] );
 		$data['url'] = path_join( dirname($file_url), $data['file'] );
+	}
+	// @todo kirill php picture
+	if($size == 'featured') {
+		$data['file'] = wp_basename($file_url);
+		$data['width'] = $imagedata['width'];
+		$data['height'] = $imagedata['height'];
+		$data['path'] = $imagedata['file'];
+		$data['url'] = $file_url;
 	}
 	return $data;
 }

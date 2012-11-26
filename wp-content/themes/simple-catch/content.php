@@ -49,15 +49,28 @@ global $wp_object_cache;
 <!--                                </ul>-->
 
 
-						<div class="clear" style="height: 1px; width: 1px; "></div>
-	                    <div class="">
-		                    <a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'simplecatch' ), the_title_attribute( 'echo=0' ) ); ?>"><?php the_post_thumbnail( 'featured' ); ?></a>
+
+
+
+
+
+
+	                    <?php $excerpt = the_excerpt(false);
+		                    $contentBegin = strrpos($excerpt, '<p rel="begin-of-the-excerpt-text">');
+		                    $content = substr($excerpt, $contentBegin);
+		                    $addThis = substr($excerpt, 35, $contentBegin);
+		                    echo $addThis;
+		                    ?>
+		                    <div class="clear" style="height: 1px; width: 1px; "></div>
+
+		                    <div style="text-align: center; ">
+			                    <a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'simplecatch' ), the_title_attribute( 'echo=0' ) ); ?>"><?php the_post_thumbnail( 'featured' ); ?></a>
+		                    </div>
+
+
+		                    <? echo $content ?>
+
 	                    </div>
-
-
-
-	                    <?php the_excerpt(); ?>
-                            </div>   
                          
                             <div class="row-end"></div>
                     </div><!-- .post -->

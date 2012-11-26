@@ -1670,3 +1670,6 @@ img#wpstats {
     margin-top:5px;
 }
 
+.attachment-featured.wp-post-image {
+    margin: 10px 0px 10px 0px;
+}
