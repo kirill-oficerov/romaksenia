@@ -29,46 +29,7 @@
 		//displays 'sidebar' for all pages
 		dynamic_sidebar( 'sidebar' ); 
 	}
-
-
-
-
-
-
-$defaults = array( 'title' => __('Example', 'example'), 'name' => __('Bilal Shaheen', 'example'), 'show_info' => true );
-$instance = wp_parse_args( (array) $instance, $defaults );
 	?>
-
-
-
-
-
-
-
-
-<p>
-	<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Title:', 'example'); ?></label>
-	<input id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" style="width:100%;" />
-</p>
-
-<p>
-	<label for="<?php echo $this->get_field_id( 'name' ); ?>"><?php _e('Your Name:', 'example'); ?></label>
-	<input id="<?php echo $this->get_field_id( 'name' ); ?>" name="<?php echo $this->get_field_name( 'name' ); ?>" value="<?php echo $instance['name']; ?>" style="width:100%;" />
-</p>
-<p>
-	<input class="checkbox" type="checkbox" <?php checked( $instance['show_info'], true ); ?> id="<?php echo $this->get_field_id( 'show_info' ); ?>" name="<?php echo $this->get_field_name( 'show_info' ); ?>" />
-	<label for="<?php echo $this->get_field_id( 'show_info' ); ?>"><?php _e('Display info publicly?', 'example'); ?></label>
-</p>
-
-
-
-
-
-
-
-
-
-
 	</div><!-- #sidebar -->
 	
 	<?php 
