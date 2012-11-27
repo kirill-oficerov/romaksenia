@@ -13,6 +13,8 @@
  */
 
 define('DOCUMENT_ROOT', realpath('..') . '\\');
+define('CUSTOM_DIR', realpath('..') . '\\custom\\');
+
 spl_autoload_register(function($className) {
 	$parts = explode('_', $className);
 	$fileName = array_pop($parts);

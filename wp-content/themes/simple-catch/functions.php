@@ -26,48 +26,10 @@ if ( ! isset( $content_width ) )
  * Tell WordPress to run simplecatch_setup() when the 'after_setup_theme' hook is run.
  */
 add_action( 'after_setup_theme', 'simplecatch_setup' );
-// @todo kirill excerpt
+// @todo kirill
+define('CUSTOM_DIR', realpath('..') . '\\custom\\');
 
-function register_my_widget() {
-	register_widget( 'My_Widget' );
-}
-
-class My_Widget extends WP_Widget {
-	function My_Widget() {
-		$widget_ops = array( 'classname' => 'example', 'description' => __('A widget that displays the authors name ', 'example') );
-		$control_ops = array( 'width' => 300, 'height' => 350, 'id_base' => 'example-widget' );
-		$this->WP_Widget( 'example-widget', __('Example Widget', 'example'), $widget_ops, $control_ops );
-	}
-	function widget( $args, $instance )  {
-		extract( $args );
-		$title = apply_filters('widget_title', $instance['title'] );
-		$name = $instance['name'];
-		$show_info = isset( $instance['show_info'] ) ? $instance['show_info'] : false;
-		echo $before_widget;
-		// Display the widget title
-		if ( $title )
-			echo $before_title . $title . $after_title;
-		//Display the name
-		if ( $name )
-			printf( '<p>' . __('Hey their Sailor! My name is %1$s.', 'example') . '</p>', $name );
-		if ( $show_info )
-			printf( $name );
-		echo $after_widget;
-	}
-
-	function update( $new_instance, $old_instance ) {
-		$instance = $old_instance;
-		//Strip tags from title and name to remove HTML
-		$instance['title'] = strip_tags( $new_instance['title'] );
-		$instance['name'] = strip_tags( $new_instance['name'] );
-		$instance['show_info'] = $new_instance['show_info'];
-		return $instance;
-	}
-
-	function form() {
-
-	}
-}
+include_once CUSTOM_DIR . 'widgets/Events.php';
 
 if ( ! function_exists( 'simplecatch_setup' ) ):
 /**
@@ -139,11 +101,8 @@ function simplecatch_setup() {
 	define('HTTP_IMAGES_DIR', 'http://' . $_SERVER['HTTP_HOST'] . '/wp-content/themes/simple-catch/images/');
 	define('HTTP_HOST', 'http://' . $_SERVER['HTTP_HOST']);
 
-	// add widget
-	add_action( 'widgets_init', 'register_my_widget' );
-
-
-
+	// widgets
+	register_widget('Widget_Events');
 
 
 
