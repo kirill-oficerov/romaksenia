@@ -290,7 +290,7 @@ abbr, acronym {
 	cursor: help;
 }
 a.readmore {
-	display: block;
+	/*display: block;*/
 	font-size:14px;
 	font-weight:bold;
 	color:#000;

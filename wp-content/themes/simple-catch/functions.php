@@ -27,12 +27,47 @@ if ( ! isset( $content_width ) )
  */
 add_action( 'after_setup_theme', 'simplecatch_setup' );
 // @todo kirill excerpt
-//function simplecatch_custom_excerpt_add_thumbnail( $output ) {
-//		$output .= "<div>
-//				<a href=" . the_permalink(false) . " title=\"" . sprintf( esc_attr__( 'Permalink to %s', 'simplecatch' ), the_title_attribute( 'echo=0' ) ) . "\"> " . get_the_post_thumbnail( null, 'featured', '' ) . '</a>
-//	                    </div>';
-//	return $output;
-//}
+
+function register_my_widget() {
+	register_widget( 'My_Widget' );
+}
+
+class My_Widget extends WP_Widget {
+	function My_Widget() {
+		$widget_ops = array( 'classname' => 'example', 'description' => __('A widget that displays the authors name ', 'example') );
+		$control_ops = array( 'width' => 300, 'height' => 350, 'id_base' => 'example-widget' );
+		$this->WP_Widget( 'example-widget', __('Example Widget', 'example'), $widget_ops, $control_ops );
+	}
+	function widget( $args, $instance )  {
+		extract( $args );
+		$title = apply_filters('widget_title', $instance['title'] );
+		$name = $instance['name'];
+		$show_info = isset( $instance['show_info'] ) ? $instance['show_info'] : false;
+		echo $before_widget;
+		// Display the widget title
+		if ( $title )
+			echo $before_title . $title . $after_title;
+		//Display the name
+		if ( $name )
+			printf( '<p>' . __('Hey their Sailor! My name is %1$s.', 'example') . '</p>', $name );
+		if ( $show_info )
+			printf( $name );
+		echo $after_widget;
+	}
+
+	function update( $new_instance, $old_instance ) {
+		$instance = $old_instance;
+		//Strip tags from title and name to remove HTML
+		$instance['title'] = strip_tags( $new_instance['title'] );
+		$instance['name'] = strip_tags( $new_instance['name'] );
+		$instance['show_info'] = $new_instance['show_info'];
+		return $instance;
+	}
+
+	function form() {
+
+	}
+}
 
 if ( ! function_exists( 'simplecatch_setup' ) ):
 /**
@@ -101,12 +136,18 @@ function simplecatch_setup() {
 	// @TODO kirill php menu
 	register_nav_menu( 'custom_menu_0', __( 'Custom menu 0', 'simplecatch' ) );
 	update_site_option('remove_site_title', 1);
-//	define('IMAGES_DIR', realpath('./images'));
 	define('HTTP_IMAGES_DIR', 'http://' . $_SERVER['HTTP_HOST'] . '/wp-content/themes/simple-catch/images/');
 	define('HTTP_HOST', 'http://' . $_SERVER['HTTP_HOST']);
 
+	// add widget
+	add_action( 'widgets_init', 'register_my_widget' );
 
-//	add_filter( 'get_the_excerpt', 'simplecatch_custom_excerpt_add_thumbnail', 20 );
+
+
+
+
+
+	//	add_filter( 'get_the_excerpt', 'simplecatch_custom_excerpt_add_thumbnail', 20 );
 
 	// Add support for custom backgrounds
 	// WordPress 3.4+
