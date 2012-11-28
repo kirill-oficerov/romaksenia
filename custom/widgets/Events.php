@@ -38,10 +38,14 @@ class Widget_Events extends WP_Widget {
 		?>
 
 	<div class="widget"><h3>Ивенты</h3><hr>
-		<ul>
+		<div>
 			<?
 			foreach($eventsPosts as $postId => $post) { ?>
-				<li class="page_item page-item-<?=$postId?>"><a href="http://wedigital.dev/<?=$post->slug?>/"><?=$post->post_title?></a></li>
+				<div class="page_item page-item-<?=$postId?>"><a href="http://wedigital.dev/<?=$post->post_name ?>/" class="event-title"><?=$post->post_title?></a>
+					<div class="event-content">
+						<?=mb_substr($post->post_content, 0, 200, 'UTF-8')?>
+					</div>
+				</div>
 			<? }
 
 			?>
@@ -52,7 +56,7 @@ class Widget_Events extends WP_Widget {
 <!--				<li class="page_item page-item-46"><a href="http://wedigital.dev/%d0%b8%d0%b2%d0%b5%d0%bd%d1%82%d1%8b/%d0%b8%d0%b2%d0%b5%d0%bd%d1%82-1/">Ивент 1</a></li>-->
 <!--			</ul>-->
 <!--		</li>-->
-	</ul>
+	</div>
 	</div>
 <!--	<li class="page_item page-item-6"><a href="http://wedigital.dev/about/">About</a></li>-->
 <!--	<li class="page_item page-item-14"><a href="http://wedigital.dev/%d0%b2%d0%b0%d0%ba%d0%b0%d0%bd%d1%81%d0%b8%d0%b8/">Вакансии</a></li>-->

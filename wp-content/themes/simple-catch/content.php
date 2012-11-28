@@ -11,8 +11,23 @@ global $wp_object_cache;
 
 			<?php if ( have_posts() ) : 
                 while( have_posts() ):the_post(); ?>	
-                    <div <?php post_class(); ?> >
-                        <?php //If category has thumbnail it displays thumbnail and excerpt of content else excerpt only 
+
+                        <?php
+	                    global $post;
+	                    $tags = $wp_object_cache->get($post->ID, 'category_relationships');
+	                    $isEvent = false;
+	                    foreach($tags as $key=>$tag) {
+		                    if($tag->name == 'Ивенты') {
+			                    $isEvent = true;
+			                    break;
+		                    }
+	                    }
+	                    if($isEvent) {
+		                    continue;
+	                    }?>
+                <div <?php post_class(); ?> >
+	                <?
+                        //If category has thumbnail it displays thumbnail and excerpt of content else excerpt only
                         if ( has_post_thumbnail() ) : ?>
 <!--                            <div class="col3 post-img">-->
 <!--                                <a href="--><?php //the_permalink(); ?><!--" title="--><?php //printf( esc_attr__( 'Permalink to %s', 'simplecatch' ), the_title_attribute( 'echo=0' ) ); ?><!--">--><?php //the_post_thumbnail( 'featured' ); ?><!--</a>-->
@@ -28,7 +43,6 @@ global $wp_object_cache;
 	                <?
                     // tags
                     // ( $key, $group = 'default', $force = false, &$found = null )
-	                global $post;
 					$tags = $wp_object_cache->get($post->ID, 'category_relationships');
                     $output = '<ul class="category-list">';
                     foreach($tags as $key => $tag) {

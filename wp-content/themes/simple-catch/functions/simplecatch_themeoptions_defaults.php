@@ -62,7 +62,7 @@ $simplecatch_options_defaults = array(
  	'more_tag_text'				=> 'Далее',
  	'search_display_text'		=> 'Type KeyWord',
  	'search_button_text'		=> 'Search',
- 	'excerpt_length'			=> 30,
+ 	'excerpt_length'			=> 150,
 	'feed_url'					=> ''
  );
 global $simplecatch_options_settings;

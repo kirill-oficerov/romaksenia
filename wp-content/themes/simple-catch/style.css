@@ -774,8 +774,8 @@ h2#site-description {
 #main #content .post h1,
 #main #content .post h2.entry-title
 {
-	font-size: 22px;
-	line-height:24px;
+	font-size: 16px;
+	/*line-height:24px;*/
 	padding-bottom:6px;
 }
 #main #content .post-img a {
@@ -1543,6 +1543,8 @@ ul.default-wp-page li.next a {
 }
 #footer .powered-by {
 	text-align:right;
+	float: right;
+	margin-right: 20px;
 }
 
 
@@ -1672,4 +1674,17 @@ img#wpstats {
 
 .attachment-featured.wp-post-image {
     margin: 10px 0px 10px 0px;
+}
+
+.event-content {
+	margin: 10px 5px 5px 5px;
+}
+
+.event-title {
+	font-family: Arial;
+	font-size: 18px;
+	font-weight: normal;
+	font-style: normal;
+	text-decoration: none;
+	color: #333;
 }
