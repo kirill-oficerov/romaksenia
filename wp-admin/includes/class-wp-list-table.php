@@ -731,11 +731,6 @@ class WP_List_Table {
 	<tbody id="the-list"<?php if ( $singular ) echo " class='list:$singular'"; ?>>
 
 		<?php $this->display_rows_or_placeholder(); ?>
-		<?
-
-		echo "<pre>".print_r('test2', true)."</pre>\n\n";
-		die();
-		?>
 	</tbody>
 </table>
 <?php
