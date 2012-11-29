@@ -1688,3 +1688,14 @@ img#wpstats {
 	text-decoration: none;
 	color: #333;
 }
+
+.article-categories-content {
+	margin: 30px 75px 0px 150px;
+}
+
+.entry-title .category-link {
+	padding: 5px 10px;
+}
+.article-category.categoty-description {
+	text-align: justify;
+}
