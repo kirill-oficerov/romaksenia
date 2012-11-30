@@ -14,6 +14,7 @@ $simplecatch_search_button_text = $options[ 'search_button_text' ];
 ?>
     <form method="get" class="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>">
     	<input type="text" class="search" value="<?php echo esc_attr( $simplecatch_search_display_text ); ?>" name="s" id="s" title="Type Keyword" />
-        <button><?php printf( __( '%s', 'simplecatch' ), esc_attr( $simplecatch_search_button_text ) ); ?></button>
+        <button class="find-icon"></button>
+<!--        <button>--><?php //printf( __( '%s', 'simplecatch' ), esc_attr( $simplecatch_search_button_text ) ); ?><!--</button>-->
         <div class="CL"></div>
     </form>

@@ -438,8 +438,8 @@ h2#site-description {
 }
 #header .social-search {
 	float: right;
-	width: 306px;
-	padding-right: 20px;
+	width: 257px;
+	/*padding-right: 20px;*/
 	/*margin-top: 40px;*/
 }
 #header .social-search ul.social-profile {
@@ -575,21 +575,21 @@ h2#site-description {
 
 /* Search Form */
 #header .social-search form.searchform {
-	padding-top:15px;
+	padding-top:7px;
 }
 #header .social-search form.searchform input {
 	background:none #fff;
 	border:0 none !important;
 	box-shadow:none;
 	width:202px;
-	height:35px;
+	height:25px;
 	margin:0px;
 	float:left;
 	padding:0px 10px;
 	color:#888;
 	font-size:14px;
 	font-style:italic;
-	line-height:35px;
+	/*line-height:35px;*/
 }
 #header .social-search form.searchform button {
 	background:none #333;
@@ -617,7 +617,8 @@ h2#site-description {
 	background-color:#fff;
 	margin-top:40px;
 	position:relative;
-	width:569px;
+	/*width:569px;*/
+	width:auto;
 	z-index:1000;
 	box-shadow:0 1px 0px #fff;
 }
@@ -1704,4 +1705,45 @@ img#wpstats {
 }
 .article-category.categoty-description {
 	text-align: justify;
+}
+
+.icons {
+	background: url('images/icons.png') no-repeat;
+}
+
+.header-icons-container {
+	width: 100px; height: 30px; float: right; position: relative; top: -67px; left: -153px;
+}
+
+.header-icons-container .sitemap-icon {
+	width: 17px; height: 15px; display: block; float: left;
+}
+
+.header-icons-container .home-icon {
+	margin-left: 7px;
+	width: 15px; height: 16px; display: block; float: left;
+	background-position: -19px 0px;
+}
+
+.header-icons-container .contacts-icon {
+	margin-left: 7px;
+	margin-top: 1px;
+	width: 15px; height: 15px; display: block; float: left;
+	background-position: -35px 0px;
+}
+
+
+
+#header .social-search form.searchform button.find-icon {
+	margin: 5px 0px 0px 5px;
+	background: url('images/icons.png') no-repeat -51px 0px;
+	border:0 none !important;
+	width:16px;
+	height:16px;
+	display:block;
+	float:left;
+	color:#fff;
+	font-size:15px;
+	cursor:pointer;
+	padding:0px;
 }

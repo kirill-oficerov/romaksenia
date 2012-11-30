@@ -51,10 +51,10 @@
         	</div><!-- .social-search -->
     		<div class="row-end"></div>
             <div class="row-end"></div>
-			<div style="width: 100px; height: 30px; float: right; position: relative; top: -50px; left: -89px;">
-				<a style="background: url('<?=HTTP_IMAGES_DIR . 'icons.png'?>') no-repeat 0px 0px; width: 27px; height: 24px; display: block; float: left; "></a>
-				<a style="background: url('<?=HTTP_IMAGES_DIR . 'icons.png'?>') no-repeat 0px 0px; width: 27px; height: 24px; display: block; float: left; "></a>
-				<a style="background: url('<?=HTTP_IMAGES_DIR . 'icons.png'?>') no-repeat 0px 0px; width: 27px; height: 24px; display: block; float: left; "></a>
+			<div class="header-icons-container">
+				<a class="icons sitemap-icon" href="<?= HTTP_HOST . '/'?>">&nbsp;</a>
+				<a class="icons home-icon" href="<?= HTTP_HOST . '/'?>">&nbsp;</a>
+				<a class="icons contacts-icon" href="<?= HTTP_HOST . '/контакты'?>"></a>
 			</div>
         <?php
 			// This function passes the value of slider effect to js file

@@ -10,7 +10,7 @@ class Wd_Parts_MainMenu {
 	public static function addHomeButton($menu) {
 		if(isset($menu[0])) {
 			$menu[0]->url = 'http://' . $_SERVER['HTTP_HOST'];
-			$menu[0]->title = 'Home';
+			$menu[0]->title = 'Главная';
 		}
 		return $menu;
 	}
