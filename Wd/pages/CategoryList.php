@@ -1,5 +1,5 @@
 <?php
-class Custom_Pages_CategoryList {
+class Wd_Pages_CategoryList {
 
 	const MAX_POSTS_SHOW_PER_CATEGORY = 2;
 
@@ -20,7 +20,7 @@ class Custom_Pages_CategoryList {
 			$postCategoryRelations[$post->term_id][] = $post; // $post->term_id here means 'category id'
 		}
 
-		$output = '<div class="article-categories-content">';
+		$output = '<div class="article-categories-content ">';
 		foreach($categories as $catId => $category) {
 			$output .= self::getCategoryTitle($category);
 			$output .= self::getCategoryDescription($category);
@@ -28,6 +28,7 @@ class Custom_Pages_CategoryList {
 			for($i = 0; $i < self::MAX_POSTS_SHOW_PER_CATEGORY && $i < $amount; $i++) {
 				$output .= self::getPost($postCategoryRelations[$catId][$i]);
 			}
+			$output .= '<a href="' . HTTP_HOST . '/category/' . $category->slug . '" style="font-weight: bold;">Все статьи категории</a>';
 			$output .= '<br><br>';
 		}
 		$output .= '</div>';
@@ -38,10 +39,10 @@ class Custom_Pages_CategoryList {
 	protected static function getCategoryTitle($category) {
 		$config = unserialize($category->category_settings);
 		return '
-		<div class="entry-title ' . (isset($config['class']) ? $config['class'] : '') . '">
+		<h2 class="entry-title ' . (isset($config['class']) ? $config['class'] : '') . '">
 			<a class="category-link" style="" href="' . HTTP_HOST . '/category/' . $category->slug . '">' . $category->name . '
 			</a>
-		</div>
+		</h2>
 		';
 	}
 
@@ -70,11 +71,22 @@ class Custom_Pages_CategoryList {
 	}
 
 	protected function getPost($post) {
+//		setup_postdata($post);
+//		$excerpt = the_excerpt(false);
+
+		$thumbnail = get_the_post_thumbnail( $post->ID, 'featured' );
+		$excerpt = wp_trim_words( $post->post_content, Wd::get('settings')->getValue(Settings::MAX_EXCERPT_LENGTH_WORDS), $more = null );
 		return '
 		<div style="margin-left: 40px;">
-			<div class="header">' . $post->post_title . '</div>
+			<h2 class="entry-title" style="margin-top: 10px;">
+				<a href="' . HTTP_HOST . '/' . $post->post_name . '" title="' . $post->post_title . '" rel="bookmark" >' . $post->post_title . '</a>
+			</h2>
 			<div class="content">
-				' . mb_substr($post->post_content, 0, 100, 'UTF-8') . '
+				<div style="">
+                    <a href="' . HTTP_HOST . '/' . $post->post_name . '" title="' . $post->post_title . '">' . $thumbnail . '</a>
+                </div>
+                ' . $excerpt . '
+				<a class="readmore" href="' . HTTP_HOST . '/' . $post->post_name . '">Далее</a>
 			</div>
 		</div>
 		';

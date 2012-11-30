@@ -1184,7 +1184,7 @@ function addthis_remove_tag($content, $text = '')
         // 3.3 and earlier
         if (! function_exists('wp_trim_words'))
             $text = strip_tags($text);
-        $excerpt_length = apply_filters('excerpt_length', 55); 
+        $excerpt_length = apply_filters('excerpt_length', 55);
         $excerpt_more = apply_filters('excerpt_more', ' ' . '[...]');
 
         // 3.3 and later

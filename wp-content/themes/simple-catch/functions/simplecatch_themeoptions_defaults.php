@@ -62,7 +62,7 @@ $simplecatch_options_defaults = array(
  	'more_tag_text'				=> 'Далее',
  	'search_display_text'		=> 'Type KeyWord',
  	'search_button_text'		=> 'Search',
- 	'excerpt_length'			=> 150,
+ 	'excerpt_length'			=> Wd::get('settings')->getValue(Settings::MAX_EXCERPT_LENGTH_WORDS),
 	'feed_url'					=> ''
  );
 global $simplecatch_options_settings;

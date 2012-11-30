@@ -20,6 +20,9 @@ define( 'WP_ADMIN', true );
 if ( empty( $_REQUEST['action'] ) )
 	die( '0' );
 
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Wd/Wd.php';
+Wd::run();
+
 /** Load WordPress Bootstrap */
 require_once( dirname( dirname( __FILE__ ) ) . '/wp-load.php' );
 

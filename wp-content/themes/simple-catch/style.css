@@ -772,11 +772,12 @@ h2#site-description {
 	padding-bottom:30px;
 }
 #main #content .post h1,
-#main #content .post h2.entry-title
+h2.entry-title
 {
 	font-size: 16px;
 	/*line-height:24px;*/
 	padding-bottom:6px;
+
 }
 #main #content .post-img a {
 	width:210px;
@@ -1646,6 +1647,10 @@ img#wpstats {
 
 .category-list li a {
     padding: 5px 10px;
+
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
 }
 
 .category-yellow :hover {
@@ -1691,6 +1696,7 @@ img#wpstats {
 
 .article-categories-content {
 	margin: 30px 75px 0px 150px;
+	min-width: 1085px;
 }
 
 .entry-title .category-link {

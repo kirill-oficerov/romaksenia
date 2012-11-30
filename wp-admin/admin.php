@@ -11,17 +11,10 @@
  *
  * @since 2.3.2
  */
+// @todo kirill
 
-define('DOCUMENT_ROOT', realpath('..') . '\\');
-define('CUSTOM_DIR', realpath('..') . '\\custom\\');
-
-spl_autoload_register(function($className) {
-	$parts = explode('_', $className);
-	$fileName = array_pop($parts);
-	if(file_exists(DOCUMENT_ROOT . implode('/', $parts) . '/' . $fileName . '.php')) {
-		require_once DOCUMENT_ROOT . implode('/', $parts) . '/' . $fileName . '.php';
-	}
-});
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Wd/Wd.php';
+Wd::run();
 
 if ( ! defined('WP_ADMIN') )
 	define('WP_ADMIN', true);

@@ -6,7 +6,7 @@
  * Time: 15:58
  */
 
-class Custom_Parts_MainMenu {
+class Wd_Parts_MainMenu {
 	public static function addHomeButton($menu) {
 		if(isset($menu[0])) {
 			$menu[0]->url = 'http://' . $_SERVER['HTTP_HOST'];

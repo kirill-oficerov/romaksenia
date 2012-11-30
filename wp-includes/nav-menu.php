@@ -540,7 +540,7 @@ function wp_get_nav_menu_items( $menu, $args = array() ) {
 			$items[$k]->$args['output_key'] = $i++;
 		}
 	}
-	$items = Custom_Parts_MainMenu::addHomeButton($items);
+	$items = Wd_Parts_MainMenu::addHomeButton($items);
 	return apply_filters( 'wp_get_nav_menu_items',  $items, $menu, $args );
 }
 

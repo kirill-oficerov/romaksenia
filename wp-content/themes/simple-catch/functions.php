@@ -26,10 +26,6 @@ if ( ! isset( $content_width ) )
  * Tell WordPress to run simplecatch_setup() when the 'after_setup_theme' hook is run.
  */
 add_action( 'after_setup_theme', 'simplecatch_setup' );
-// @todo kirill
-define('CUSTOM_DIR', realpath('..') . '\\custom\\');
-
-include_once CUSTOM_DIR . 'widgets/Events.php';
 
 if ( ! function_exists( 'simplecatch_setup' ) ):
 /**
@@ -95,16 +91,11 @@ function simplecatch_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menu( 'primary', __( 'Primary Menu', 'simplecatch' ) );
 
-	// @TODO kirill php menu
+	// @todo kirill
 	register_nav_menu( 'custom_menu_0', __( 'Custom menu 0', 'simplecatch' ) );
 	update_site_option('remove_site_title', 1);
-	define('HTTP_IMAGES_DIR', 'http://' . $_SERVER['HTTP_HOST'] . '/wp-content/themes/simple-catch/images/');
-	define('HTTP_HOST', 'http://' . $_SERVER['HTTP_HOST']);
-
 	// widgets
-	register_widget('Widget_Events');
-
-
+	register_widget('Wd_Widgets_Events');
 
 	//	add_filter( 'get_the_excerpt', 'simplecatch_custom_excerpt_add_thumbnail', 20 );
 
@@ -119,7 +110,6 @@ function simplecatch_setup() {
 	
 } // simplecatch_setup
 endif;
-
 
 /**
  * Register our sidebars and widgetized areas.

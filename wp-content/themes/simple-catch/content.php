@@ -39,7 +39,9 @@ global $wp_object_cache;
 
 	                    <div class="col8">
 
-                                <h2 class="entry-title"><a href="<?php the_permalink() ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'simplecatch' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark" ><?php the_title(); ?></a></h2>
+                                <h2 class="entry-title">
+	                                <a href="<?php the_permalink() ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'simplecatch' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark" ><?php the_title(); ?></a>
+                                </h2>
 	                <?
                     // tags
                     // ( $key, $group = 'default', $force = false, &$found = null )
