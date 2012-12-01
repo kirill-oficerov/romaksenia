@@ -26,16 +26,17 @@ class Wd {
 	}
 
 	protected static function registerAutoload() {
-		spl_autoload_register(function($className) {
-			$parts = explode('_', $className);
-			$fileName = array_pop($parts);
-			array_shift($parts);
-			$parts = array_map(function($value) {
-				return strtolower($value);
-			}, $parts);
-			if(file_exists(DOCUMENT_ROOT . '/Wd/' . implode('/', $parts) . '/' . $fileName . '.php')) {
-				require_once DOCUMENT_ROOT . '/Wd/' . implode('/', $parts) . '/' . $fileName . '.php';
-			}
-		});
+		spl_autoload_register('self::registerAutoloadRealization');
+	}
+	protected static function registerAutoloadRealization($className) {
+		$parts = explode('_', $className);
+		$fileName = array_pop($parts);
+		array_shift($parts);
+		$parts = array_map(function($value) {
+			return strtolower($value);
+		}, $parts);
+		if(file_exists(DOCUMENT_ROOT . '/Wd/' . implode('/', $parts) . '/' . $fileName . '.php')) {
+			require_once DOCUMENT_ROOT . '/Wd/' . implode('/', $parts) . '/' . $fileName . '.php';
+		}
 	}
 }
