@@ -5,10 +5,10 @@
  * @register jquery cycle and custom-script
  * hooks action wp_enqueue_scripts
  */
-function simplecatch_scripts_method() {	
+function simplecatch_scripts_method() {
 	//Register JQuery circle all and JQuery set up as dependent on Jquery-cycle
 	wp_register_script( 'jquery-cycle', get_template_directory_uri() . '/js/jquery.cycle.all.min.js', array( 'jquery' ), '2.9999.5', true );
-	
+
 	//Enqueue Slider Script only in Front Page
 	if ( is_home() || is_front_page() ) {
 		wp_enqueue_script( 'simplecatch_slider', get_template_directory_uri() . '/js/simplecatch_slider.js', array( 'jquery-cycle' ), '1.0', true );
@@ -20,12 +20,12 @@ function simplecatch_scripts_method() {
 	//Browser Specific Enqueue Script i.e. for IE 1-6
 	$simplecatch_ua = strtolower($_SERVER['HTTP_USER_AGENT']);
 	if(preg_match('/(?i)msie [1-6]/',$simplecatch_ua)) {
-		wp_enqueue_script( 'pngfix', get_template_directory_uri() . '/js/pngfix.min.js' );	  
+		wp_enqueue_script( 'pngfix', get_template_directory_uri() . '/js/pngfix.min.js' );
 	}
 	 if(preg_match('/(?i)msie [1-8]/',$simplecatch_ua)) {
 	 	wp_enqueue_style( 'iebelow8', get_template_directory_uri() . '/css/ie.css', true );
 	}
-	
+
 } // simplecatch_scripts_method
 add_action( 'wp_enqueue_scripts', 'simplecatch_scripts_method' );
 
@@ -63,8 +63,8 @@ add_action( 'admin_enqueue_scripts', 'simplecatch_register_js' );
  *
  * We add some JavaScript to pages with the comment form
  * to support sites with threaded comments (when in use).
- * @used comment_form_before action hook 
- */	 
+ * @used comment_form_before action hook
+ */
 function simplecatch_enqueue_comment_reply_script() {
 	if ( comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -81,14 +81,14 @@ add_action( 'comment_form_before', 'simplecatch_enqueue_comment_reply_script' );
  */
 function simplecatch_filter_wp_title( $title ) {
 	global $page, $paged;
-	
+
 	// Get the Site Name
     $site_name = get_bloginfo( 'name' );
-    
+
 
 	// For Homepage
-    if (  is_home() || is_front_page() ) {		
-		$filtered_title = $site_name;		
+    if (  is_home() || is_front_page() ) {
+		$filtered_title = $site_name;
         // Get the Site Description
         $site_description = get_bloginfo( 'description' );
 		if ( !empty( $site_description ) )  {
@@ -99,7 +99,7 @@ function simplecatch_filter_wp_title( $title ) {
 	elseif( is_feed() ) {
 		$filtered_title = '';
 	}
-	else {	
+	else {
 		// Prepend name
 		$filtered_title = $title .' &#124; '. $site_name;
 	}
@@ -108,7 +108,7 @@ function simplecatch_filter_wp_title( $title ) {
 	if ( $paged >= 2 || $page >= 2 ) {
 		$filtered_title .= ' &#124; ' . sprintf( __( 'Page %s', 'simplecatch' ), max( $paged, $page ) );
 	}
-	
+
 	// Return the modified title
     return $filtered_title;
 
@@ -136,7 +136,7 @@ add_filter( 'excerpt_length', 'simplecatch_excerpt_length' );
 function simplecatch_continue_reading() {
 	global $simplecatch_options_settings;
     $options = $simplecatch_options_settings;
-    
+
 	$more_tag_text = $options[ 'more_tag_text' ];
 	return ' <a class="readmore" href="'. esc_url( get_permalink() ) . '">' . sprintf( __( '%s', 'simplecatch' ), esc_attr( $more_tag_text ) ) . '</a>';
 }
@@ -165,8 +165,8 @@ function simplecatch_custom_excerpt( $output ) {
 add_filter( 'get_the_excerpt', 'simplecatch_custom_excerpt' );
 
 
-/** 
- * Allows post queries to sort the results by the order specified in the post__in parameter. 
+/**
+ * Allows post queries to sort the results by the order specified in the post__in parameter.
  * Just set the orderby parameter to post__in
  *
  * uses action filter posts_orderby
@@ -174,7 +174,7 @@ add_filter( 'get_the_excerpt', 'simplecatch_custom_excerpt' );
 if ( !function_exists('simplecatch_sort_query_by_post_in') ) : //simple WordPress 3.0+ version, now across VIP
 
 	add_filter('posts_orderby', 'simplecatch_sort_query_by_post_in', 10, 2);
-	
+
 	function simplecatch_sort_query_by_post_in($sortby, $thequery) {
 		if ( isset($thequery->query['post__in']) && !empty($thequery->query['post__in']) && isset($thequery->query['orderby']) && $thequery->query['orderby'] == 'post__in' )
 			$sortby = "find_in_set(ID, '" . implode( ',', $thequery->query['post__in'] ) . "')";
@@ -187,25 +187,25 @@ endif;
 /**
  * Get the header logo Image from theme options
  *
- * @uses header logo 
+ * @uses header logo
  * @get the data value of image from theme options
  * @display Header Image logo
  *
  * @uses default logo if logo field on theme options is empty
  *
- * @uses set_transient and delete_transient 
+ * @uses set_transient and delete_transient
  */
 
 function simplecatch_headerdetails() {
-	//delete_transient( 'simplecatch_headerdetails' );	
+	//delete_transient( 'simplecatch_headerdetails' );
 
 	global $simplecatch_options_settings;
-    $options = $simplecatch_options_settings;	
-		
+    $options = $simplecatch_options_settings;
+
 //	if ( ( !$simplecatch_headerdetails = get_transient( 'simplecatch_headerdetails' ) ) && ( empty( $options[ 'remove_header_logo' ] ) || empty( $options[ 'remove_site_title' ] ) || empty( $options[ 'remove_site_description' ] ) ) ) {
 
 //		echo '<!-- refreshing cache -->';
-		
+
 		$simplecatch_headerdetails = '<div class="logo-wrap">';
 
 		if( empty( $options[ 'remove_header_logo' ] ) || empty( $options[ 'remove_site_title' ] ) ) {
@@ -221,7 +221,7 @@ function simplecatch_headerdetails() {
 			}
 
 			if ( empty( $options[ 'remove_site_title' ] ) ) {
-				$simplecatch_headerdetails .= '<span>'.esc_attr( get_bloginfo( 'name', 'display' ) ).'</span>'; 
+				$simplecatch_headerdetails .= '<span>'.esc_attr( get_bloginfo( 'name', 'display' ) ).'</span>';
 			}
 
 			$simplecatch_headerdetails .= '</a></h1>';
@@ -229,40 +229,40 @@ function simplecatch_headerdetails() {
 
 		if( empty( $options[ 'remove_site_description' ] ) ) {
 			$simplecatch_headerdetails .= '<h2 id="site-description">'.esc_attr( get_bloginfo( 'description' ) ).'</h2>';
-		}	
+		}
 
 		$simplecatch_headerdetails .= '</div><!-- .logo-wrap -->';
-		
+
 //	set_transient( 'simplecatch_headerdetails', $simplecatch_headerdetails, 86940 );
 //	}
-	echo $simplecatch_headerdetails;	
+	echo $simplecatch_headerdetails;
 } // simplecatch_headerdetails
 
 
 /**
  * Get the footer logo Image from theme options
  *
- * @uses footer logo 
+ * @uses footer logo
  * @get the data value of image from theme options
  * @display footer Image logo
  *
  * @uses default logo if logo field on theme options is empty
  *
- * @uses set_transient and delete_transient 
+ * @uses set_transient and delete_transient
  */
 function simplecatch_footerlogo() {
-	//delete_transient('simplecatch_footerlogo');	
-	
+	//delete_transient('simplecatch_footerlogo');
+
 	if ( !$simplecatch_footerlogo = get_transient( 'simplecatch_footerlogo' ) ) {
 		global $simplecatch_options_settings;
         $options = $simplecatch_options_settings;
 
 		echo '<!-- refreshing cache -->';
 		if ( $options[ 'remove_footer_logo' ] == "0" ) :
-		
+
 			// if not empty featured_logo_footer on theme options
 			if ( !empty( $options[ 'featured_logo_footer' ] ) ) :
-				$simplecatch_footerlogo = 
+				$simplecatch_footerlogo =
 					'<img src="'.esc_url( $options[ 'featured_logo_footer' ] ).'" alt="'.get_bloginfo( 'name' ).'" />';
 			else:
 				// if empty featured_logo_footer on theme options, display default fav icon
@@ -271,8 +271,8 @@ function simplecatch_footerlogo() {
 			endif;
 		endif;
 
-		
-	set_transient( 'simplecatch_footerlogo', $simplecatch_footerlogo, 86940 );										  
+
+	set_transient( 'simplecatch_footerlogo', $simplecatch_footerlogo, 86940 );
 	}
 	echo $simplecatch_footerlogo;
 } // simplecatch_footerlogo
@@ -281,35 +281,35 @@ function simplecatch_footerlogo() {
 /**
  * Get the favicon Image from theme options
  *
- * @uses favicon 
+ * @uses favicon
  * @get the data value of image from theme options
  * @display favicon
  *
  * @uses default favicon if favicon field on theme options is empty
  *
- * @uses set_transient and delete_transient 
+ * @uses set_transient and delete_transient
  */
 function simplecatch_favicon() {
-	//delete_transient( 'simplecatch_favicon' );	
-	
+	//delete_transient( 'simplecatch_favicon' );
+
 	if( ( !$simplecatch_favicon = get_transient( 'simplecatch_favicon' ) ) ) {
 		global $simplecatch_options_settings;
         $options = $simplecatch_options_settings;
-		
+
 		echo '<!-- refreshing cache -->';
 		if ( $options[ 'remove_favicon' ] == "0" ) :
 			// if not empty fav_icon on theme options
 			if ( !empty( $options[ 'fav_icon' ] ) ) :
-				$simplecatch_favicon = '<link rel="shortcut icon" href="'.esc_url( $options[ 'fav_icon' ] ).'" type="image/x-icon" />'; 	
+				$simplecatch_favicon = '<link rel="shortcut icon" href="'.esc_url( $options[ 'fav_icon' ] ).'" type="image/x-icon" />';
 			else:
 				// if empty fav_icon on theme options, display default fav icon
 				$simplecatch_favicon = '<link rel="shortcut icon" href="'. get_template_directory_uri() .'/images/favicon.ico" type="image/x-icon" />';
 			endif;
 		endif;
-		
-	set_transient( 'simplecatch_favicon', $simplecatch_favicon, 86940 );	
-	}	
-	echo $simplecatch_favicon ;	
+
+	set_transient( 'simplecatch_favicon', $simplecatch_favicon, 86940 );
+	}
+	echo $simplecatch_favicon ;
 } // simplecatch_favicon
 
 //Load Favicon in Header Section
@@ -330,18 +330,18 @@ add_action( 'admin_head', 'simplecatch_favicon' );
  * @uses set_transient and delete_transient
  */
 
-function simplecatch_sliders() {	
+function simplecatch_sliders() {
 	global $post;
 	//delete_transient( 'simplecatch_sliders' );
-		
+
 	global $simplecatch_options_settings;
     $options = $simplecatch_options_settings;
 
 	$postperpage = $options[ 'slider_qty' ];
-	
+
 	if( ( !$simplecatch_sliders = get_transient( 'simplecatch_sliders' ) ) && !empty( $options[ 'featured_slider' ] ) ) {
 		echo '<!-- refreshing cache -->';
-		
+
 		$simplecatch_sliders = '
 		<div class="featured-slider">';
 			$get_featured_posts = new WP_Query( array(
@@ -372,7 +372,7 @@ function simplecatch_sliders() {
 								$simplecatch_sliders .= get_the_post_thumbnail( $post->ID, 'slider', array( 'title' => esc_attr( $title_attribute ), 'alt' => esc_attr( $title_attribute ), 'class'	=> 'pngfix' ) ).'</a>';
 							}
 							else {
-								$simplecatch_sliders .= '<span class="img-effect pngfix"></span>';	
+								$simplecatch_sliders .= '<span class="img-effect pngfix"></span>';
 							}
 							$simplecatch_sliders .= '
 						</div> <!-- .slide-image -->
@@ -389,10 +389,10 @@ function simplecatch_sliders() {
 		</div> <!-- .featured-slider -->
 			<div id="controllers">
 			</div><!-- #controllers -->';
-			
+
 	set_transient( 'simplecatch_sliders', $simplecatch_sliders, 86940 );
 	}
-	echo $simplecatch_sliders;	
+	echo $simplecatch_sliders;
 } // simplecatch_sliders
 
 
@@ -403,14 +403,14 @@ function simplecatch_sliders() {
  * In other pages, breadcrumb will display if exist bread
  */
 function simplecatch_sliderbreadcrumb() {
-	
-	// If the page is home or front page  
+
+	// If the page is home or front page
 	if ( is_home() || is_front_page() ) :
 		// display featured slider
 		if ( function_exists( 'simplecatch_sliders' ) ):
 			simplecatch_sliders();
 		endif;
-	else : 
+	else :
 		// if breadcrumb is not empty, display breadcrumb
 		if ( function_exists( 'bcn_display_list' ) ):
 			echo '<div class="breadcrumb">
@@ -418,9 +418,9 @@ function simplecatch_sliderbreadcrumb() {
 						bcn_display_list();
 			 	echo '</ul>
 					<div class="row-end"></div>
-				</div> <!-- .breadcrumb -->';			
-		endif; 
-		
+				</div> <!-- .breadcrumb -->';
+		endif;
+
   	endif;
 } // simplecatch_sliderbreadcrumb
 
@@ -434,71 +434,71 @@ function simplecatch_sliderbreadcrumb() {
   */
 function simplecatch_headersocialnetworks() {
 	//delete_transient( 'simplecatch_headersocialnetworks' );
-	
+
 	global $simplecatch_options_settings;
     $options = $simplecatch_options_settings;
-	
+
 	if ( ( !$simplecatch_headersocialnetworks = get_transient( 'simplecatch_headersocialnetworks' ) ) &&  ( !empty( $options[ 'social_facebook' ] ) || !empty( $options[ 'social_twitter' ] ) || !empty( $options[ 'social_googleplus' ] ) || !empty( $options[ 'social_pinterest' ] ) || !empty( $options[ 'social_youtube' ] ) || !empty( $options[ 'social_linkedin' ] ) || !empty( $options[ 'social_slideshare' ] )  || !empty( $options[ 'social_foursquare' ] ) || !empty( $options[ 'social_rss' ] )   || !empty( $options[ 'social_vimeo' ] ) || !empty( $options[ 'social_flickr' ] ) || !empty( $options[ 'social_tumblr' ] ) || !empty( $options[ 'social_deviantart' ] ) || !empty( $options[ 'social_dribbble' ] ) || !empty( $options[ 'social_myspace' ] ) || !empty( $options[ 'social_wordpress' ] ) || !empty( $options[ 'social_delicious' ] ) || !empty( $options[ 'social_lastfm' ] ) ) )  {
-	
+
 		echo '<!-- refreshing cache -->';
-		
+
 		$simplecatch_headersocialnetworks .='
 			<ul class="social-profile">';
-		
+
 				//facebook
 				if ( !empty( $options[ 'social_facebook' ] ) ) {
 					$simplecatch_headersocialnetworks .=
 						'<li class="facebook"><a href="'.esc_url( $options[ 'social_facebook' ] ).'" title="'.sprintf( esc_attr__( '%s in Facebook', 'simplecatch' ),get_bloginfo( 'name' ) ).'" target="_blank">'.get_bloginfo( 'name' ).' Facebook </a></li>';
 				}
-				
+
 				//Twitter
 				if ( !empty( $options[ 'social_twitter' ] ) ) {
 					$simplecatch_headersocialnetworks .=
 						'<li class="twitter"><a href="'.esc_url( $options[ 'social_twitter' ] ).'" title="'.sprintf( esc_attr__( '%s in Twitter', 'simplecatch' ),get_bloginfo( 'name' ) ).'" target="_blank">'.get_bloginfo( 'name' ).' Twitter </a></li>';
 				}
-				
+
 				//Google+
 				if ( !empty( $options[ 'social_googleplus' ] ) ) {
 					$simplecatch_headersocialnetworks .=
 						'<li class="google-plus"><a href="'.esc_url( $options[ 'social_googleplus' ] ).'" title="'.sprintf( esc_attr__( '%s in Google+', 'simplecatch' ),get_bloginfo( 'name' ) ).'" target="_blank">'.get_bloginfo( 'name' ).' Google+ </a></li>';
 				}
-				
+
 				//Linkedin
 				if ( !empty( $options[ 'social_linkedin' ] ) ) {
 					$simplecatch_headersocialnetworks .=
 						'<li class="linkedin"><a href="'.esc_url( $options[ 'social_linkedin' ] ).'" title="'.sprintf( esc_attr__( '%s in Linkedin', 'simplecatch' ),get_bloginfo( 'name' ) ).'" target="_blank">'.get_bloginfo( 'name' ).' Linkedin </a></li>';
 				}
-				
+
 				//Pinterest
 				if ( !empty( $options[ 'social_pinterest' ] ) ) {
 					$simplecatch_headersocialnetworks .=
 						'<li class="pinterest"><a href="'.esc_url( $options[ 'social_pinterest' ] ).'" title="'.sprintf( esc_attr__( '%s in Pinterest', 'simplecatch' ),get_bloginfo( 'name' ) ).'" target="_blank">'.get_bloginfo( 'name' ).' Twitter </a></li>';
-				}				
-				
+				}
+
 				//Youtube
 				if ( !empty( $options[ 'social_youtube' ] ) ) {
 					$simplecatch_headersocialnetworks .=
 						'<li class="you-tube"><a href="'.esc_url( $options[ 'social_youtube' ] ).'" title="'.sprintf( esc_attr__( '%s in YouTube', 'simplecatch' ),get_bloginfo( 'name' ) ).'" target="_blank">'.get_bloginfo( 'name' ).' YouTube </a></li>';
 				}
-				
+
 				//Vimeo
 				if ( !empty( $options[ 'social_vimeo' ] ) ) {
 					$simplecatch_headersocialnetworks .=
 						'<li class="viemo"><a href="'.esc_url( $options[ 'social_vimeo' ] ).'" title="'.sprintf( esc_attr__( '%s in Vimeo', 'simplecatch' ),get_bloginfo( 'name' ) ).'" target="_blank">'.get_bloginfo( 'name' ).' Vimeo </a></li>';
-				}				
-				
+				}
+
 				//Slideshare
 				if ( !empty( $options[ 'social_slideshare' ] ) ) {
 					$simplecatch_headersocialnetworks .=
 						'<li class="slideshare"><a href="'.esc_url( $options[ 'social_slideshare' ] ).'" title="'.sprintf( esc_attr__( '%s in Slideshare', 'simplecatch' ),get_bloginfo( 'name' ) ).'" target="_blank">'.get_bloginfo( 'name' ).' Slideshare </a></li>';
-				}				
-				
+				}
+
 				//Foursquare
 				if ( !empty( $options[ 'social_foursquare' ] ) ) {
 					$simplecatch_headersocialnetworks .=
 						'<li class="foursquare"><a href="'.esc_url( $options[ 'social_foursquare' ] ).'" title="'.sprintf( esc_attr__( '%s in Foursquare', 'simplecatch' ),get_bloginfo( 'name' ) ).'" target="_blank">'.get_bloginfo( 'name' ).' foursquare </a></li>';
 				}
-				
+
 				//Flickr
 				if ( !empty( $options[ 'social_flickr' ] ) ) {
 					$simplecatch_headersocialnetworks .=
@@ -528,7 +528,7 @@ function simplecatch_headersocialnetworks() {
 				if ( !empty( $options[ 'social_wordpress' ] ) ) {
 					$simplecatch_headersocialnetworks .=
 						'<li class="wordpress"><a href="'.esc_url( $options[ 'social_wordpress' ] ).'" title="'.sprintf( esc_attr__( '%s in WordPress', 'simplecatch' ),get_bloginfo('name') ).'" target="_blank">'.get_bloginfo( 'name' ).' WordPress </a></li>';
-				}				
+				}
 				//RSS
 				if ( !empty( $options[ 'social_rss' ] ) ) {
 					$simplecatch_headersocialnetworks .=
@@ -538,18 +538,18 @@ function simplecatch_headersocialnetworks() {
 				if ( !empty( $options[ 'social_delicious' ] ) ) {
 					$simplecatch_headersocialnetworks .=
 						'<li class="delicious"><a href="'.esc_url( $options[ 'social_delicious' ] ).'" title="'.sprintf( esc_attr__( '%s in Delicious', 'simplecatch' ),get_bloginfo('name') ).'" target="_blank">'.get_bloginfo( 'name' ).' Delicious </a></li>';
-				}				
+				}
 				//Last.fm
 				if ( !empty( $options[ 'social_lastfm' ] ) ) {
 					$simplecatch_headersocialnetworks .=
 						'<li class="lastfm"><a href="'.esc_url( $options[ 'social_lastfm' ] ).'" title="'.sprintf( esc_attr__( '%s in Last.fm', 'simplecatch' ),get_bloginfo('name') ).'" target="_blank">'.get_bloginfo( 'name' ).' Last.fm </a></li>';
-				}				
-		
+				}
+
 				$simplecatch_headersocialnetworks .='
 			</ul>
 			<div class="row-end"></div>';
-		
-		set_transient( 'simplecatch_headersocialnetworks', $simplecatch_headersocialnetworks, 86940 );	 
+
+		set_transient( 'simplecatch_headersocialnetworks', $simplecatch_headersocialnetworks, 86940 );
 	}
 	echo $simplecatch_headersocialnetworks;
 } // simplecatch_headersocialnetworks
@@ -563,7 +563,7 @@ function simplecatch_headersocialnetworks() {
  * @uses wp_head action to add the code in the header
  * @uses set_transient and delete_transient API for cache
  */
- 
+
 function simplecatch_site_verification() {
 	//delete_transient( 'simplecatch_site_verification' );
 
@@ -571,24 +571,24 @@ function simplecatch_site_verification() {
 
 		global $simplecatch_options_settings;
         $options = $simplecatch_options_settings;
-		echo '<!-- refreshing cache -->';	
-		
+		echo '<!-- refreshing cache -->';
+
 		$simplecatch_site_verification = '';
 		//google
 		if ( !empty( $options['google_verification'] ) ) {
 			$simplecatch_site_verification .= '<meta name="google-site-verification" content="' .  $options['google_verification'] . '" />' . "\n";
 		}
-	
+
 		//bing
 		if ( !empty( $options['bing_verification'] ) ) {
 			$simplecatch_site_verification .= '<meta name="msvalidate.01" content="' .  $options['bing_verification']  . '" />' . "\n";
 		}
-	
+
 		//yahoo
 		 if ( !empty( $options['yahoo_verification'] ) ) {
 			$simplecatch_site_verification .= '<meta name="y_key" content="' .  $options['yahoo_verification']  . '" />' . "\n";
 		}
-	
+
 		//site stats, analytics header code
 		if ( !empty( $options['analytic_header'] ) ) {
 			$simplecatch_site_verification .=  $options[ 'analytic_header' ] ;
@@ -609,20 +609,20 @@ add_action('wp_head', 'simplecatch_site_verification');
  * @uses set_transient and delete_transient
  */
 function simplecatch_footercode() {
-	//delete_transient( 'simplecatch_footercode' );	
-	
+	//delete_transient( 'simplecatch_footercode' );
+
 
 	if ( ( !$simplecatch_footercode = get_transient( 'simplecatch_footercode' ) ) ) {
 
 		global $simplecatch_options_settings;
         $options = $simplecatch_options_settings;
-		echo '<!-- refreshing cache -->';	
-		
+		echo '<!-- refreshing cache -->';
+
 		//site stats, analytics header code
 		if ( !empty( $options['analytic_footer'] ) ) {
 			$simplecatch_footercode =  $options[ 'analytic_footer' ] ;
 		}
-			
+
 	set_transient( 'simplecatch_footercode', $simplecatch_footercode, 86940 );
 	}
 	echo $simplecatch_footercode;
@@ -636,8 +636,8 @@ add_action('wp_footer', 'simplecatch_footercode');
  * @since Simple Catch 1.2.3
  */
 function simplecatch_inline_css() {
-	//delete_transient( 'simplecatch_inline_css' );	
-	
+	//delete_transient( 'simplecatch_inline_css' );
+
 	if ( ( !$simplecatch_inline_css = get_transient( 'simplecatch_inline_css' ) ) ) {
 		global $simplecatch_options_settings;
         $options = $simplecatch_options_settings;
@@ -659,7 +659,7 @@ function simplecatch_inline_css() {
 										   color: ".  $options[ 'heading_color' ] .";
 										}
 										#main #content ul.post-by li, #main #content ul.post-by li a {
-											color: ".  $options[ 'meta_color' ] .";	
+											color: ".  $options[ 'meta_color' ] .";
 										}
 										#sidebar h3, #sidebar h4, #sidebar h5 {
 											color: ".  $options[ 'widget_heading_color' ] .";
@@ -669,7 +669,7 @@ function simplecatch_inline_css() {
 										}". "\n";
 			$simplecatch_inline_css .= '</style>' . "\n";
 		}
-		
+
 
 		echo '<!-- refreshing cache -->' . "\n";
 		if( !empty( $options[ 'custom_css' ] ) ) {
@@ -678,7 +678,7 @@ function simplecatch_inline_css() {
 			$simplecatch_inline_css .=  $options['custom_css'] . "\n";
 			$simplecatch_inline_css .= '</style>' . "\n";
 		}
-			
+
 	set_transient( 'simplecatch_inline_css', $simplecatch_inline_css, 86940 );
 	}
 	echo $simplecatch_inline_css;
@@ -692,7 +692,7 @@ add_action('wp_head', 'simplecatch_inline_css');
 function simplecatch_custom_tag_cloud() {
 ?>
 	<div class="custom-tagcloud"><?php wp_tag_cloud('smallest=12&largest=12px&unit=px'); ?></div>
-<?php	
+<?php
 }
 
 /**
@@ -700,7 +700,7 @@ function simplecatch_custom_tag_cloud() {
  */
 function simplecatch_footer() {
 ?>
-	<div class="col5 powered-by"> 
+	<div class="col5 powered-by">
 		<?php _e( 'Design by:', 'simplecatch');?> <a href="<?php echo esc_url( __( 'http://catchthemes.com/', 'simplecatch' ) ); ?>" target="_blank" title="<?php esc_attr_e( 'Catch Themes', 'simplecatch' ); ?>"><?php _e( 'Catch Themes', 'simplecatch' ); ?></a> | <a href="<?php echo esc_url( __( 'http://wordpress.org/', 'simplecatch' ) ); ?>" title="<?php esc_attr_e( 'WordPress', 'simplecatch' ); ?>" rel="generator" target="_blank" ><?php printf( __( 'Proudly powered by %s.', 'simplecatch' ), 'WordPress' ); ?></a>
   	</div><!--.col6 powered-by-->
 
@@ -719,7 +719,7 @@ function simplecatch_pass_slider_value() {
 	$transition_effect = $options[ 'transition_effect' ];
 	$transition_delay = $options[ 'transition_delay' ] * 1000;
 	$transition_duration = $options[ 'transition_duration' ] * 1000;
-	wp_localize_script( 
+	wp_localize_script(
 		'simplecatch_slider',
 		'js_value',
 		array(
@@ -755,19 +755,19 @@ add_action( 'pre_get_posts','simple_catch_alter_home' );
  * Add specific CSS class by filter
  * @uses body_class filter hook
  * @since Simple Catch 1.3.2
- */  
-function simplecatch_class_names($classes) { 
+ */
+function simplecatch_class_names($classes) {
 	global $post;
 	if( $post )
-		$layout = get_post_meta( $post->ID,'simplecatch-sidebarlayout', true ); 
+		$layout = get_post_meta( $post->ID,'simplecatch-sidebarlayout', true );
 	if( empty( $layout ) || ( !is_page() && !is_single() ) )
 		$layout='default';
-		
+
 	global $simplecatch_options_settings;
     $options = $simplecatch_options_settings;
-		
+
 	$themeoption_layout = $options['sidebar_layout'];
-	
+
 	if( ( $layout == 'no-sidebar' || ( $layout=='default' && $themeoption_layout == 'no-sidebar') ) ){
 		$classes[] = 'no-sidebar';
 	}
@@ -781,18 +781,18 @@ add_filter('body_class','simplecatch_class_names');
  */
 function simplecatch_content() {
 	global $post;
-	$layout = get_post_meta( $post->ID,'simplecatch-sidebarlayout', true ); 
+	$layout = get_post_meta( $post->ID,'simplecatch-sidebarlayout', true );
 	if( empty( $layout ) )
 		$layout='default';
-		
-	get_header(); 
-	
+
+	get_header();
+
     if( $layout=='default') {
 		global $simplecatch_options_settings;
         $options = $simplecatch_options_settings;
 
 		$themeoption_layout = $options['sidebar_layout'];
-			
+
 		if( $themeoption_layout == 'left-sidebar' ) {
 			get_template_part( 'content-sidebar','left' );
 		}
@@ -803,7 +803,7 @@ function simplecatch_content() {
 			get_template_part( 'content-sidebar','no' );
 		}
 	}
-	elseif( $layout=='left-sidebar' ) { 
+	elseif( $layout=='left-sidebar' ) {
 		get_template_part( 'content-sidebar','left' );
 	}
 	elseif( $layout=='right-sidebar' ) {
@@ -812,10 +812,10 @@ function simplecatch_content() {
 	else{
 		get_template_part( 'content-sidebar','no' );
 	}
-	
-	get_footer(); 
+
+	get_footer();
  }
- 
+
  /**
  * Display the page/post loop part
  * @since Simple Catch 1.3.2
@@ -824,23 +824,26 @@ function simplecatch_loop() {
 	global $post, $wp_object_cache;
 
 	if( is_page() ): ?>
-    
+	<?php
+
+
+		?>
 		<div <?php post_class(); ?> >
 			<h2 class="entry-title"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
-       		<?php the_content(); 
+       		<?php the_content();
 			// copy this <!--nextpage--> and paste at the post content where you want to break the page
-			 wp_link_pages(array( 
+			 wp_link_pages(array(
 					'before'			=> '<div class="pagination">Pages: ',
 					'after' 			=> '</div>',
 					'link_before' 		=> '<span>',
 					'link_after'       	=> '</span>',
 					'pagelink' 			=> '%',
-					'echo' 				=> 1 
+					'echo' 				=> 1
 				) ); ?>
 		</div><!-- .post -->
-        
+
     <?php elseif( is_single() ): ?>
-    
+
 		<div <?php post_class(); ?>>
 			<style>
 				.addthis_toolbox {
@@ -901,24 +904,28 @@ function simplecatch_loop() {
 					?>
 				</div>
 				<?php }
-//			the_post_thumbnail( 'featured' );
 
 			?>
             <?php
-//			the_content();
 			$fullContent = get_the_content(null, false);
 			$fullContent = apply_filters('the_content', $fullContent);
 			$fullContent = str_replace(']]>', ']]&gt;', $fullContent);
-			$contentBegin = strrpos($fullContent, '<p rel="begin-of-the-excerpt-text">');
+			$contentBegin = strpos($fullContent, '<p rel="begin-of-the-excerpt-text">');
 			$content = substr($fullContent, $contentBegin);
 			$addThis = substr($fullContent, 0, $contentBegin);
 			echo $addThis;
+//			die;
 			?>
 			<div class="clear" style="height: 1px; width: 1px; "></div>
 			<div style="text-align: center; ">
 				<a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'simplecatch' ), the_title_attribute( 'echo=0' ) ); ?>"><?php the_post_thumbnail( 'featured' ); ?></a>
 			</div>
-			<? echo $content ?>
+			<?
+//			echo "<pre>".print_r('----', true)."</pre>\n\n";
+//			echo "<pre>".print_r($content, true)."</pre>\n\n";
+//			die();
+			$content = preg_replace('/<a/s', '<a rel="prettyPhoto"', $content);
+			echo $content ?>
 			<?
             // copy this <!--nextpage--> and paste at the post content where you want to break the page
 			wp_link_pages(array(
@@ -927,9 +934,36 @@ function simplecatch_loop() {
 					'link_before' 		=> '<span>',
 					'link_after'       	=> '</span>',
 					'pagelink' 			=> '%',
-					'echo' 				=> 1 
+					'echo' 				=> 1
 				) );
 			?>
+			<?php do_action(
+			'related_posts_by_category',
+			array(
+				'orderby' => 'post_date',
+				'order' => 'DESC',
+				'limit' => 5,
+				'echo' => true,
+				'before' => '<li>',
+				'inside' => '&raquo; ',
+				'outside' => '',
+				'after' => '</li>',
+				'rel' => 'nofollow',
+				'type' => 'post',
+				'image' => array(50, 50),
+				'message' => 'No matches'
+			)
+		) ?>
+			<script type="text/javascript">
+				if($ == undefined) {
+					var $ = jQuery;
+				}
+				(function($) {
+					$(function() {
+						wdPrettyPhoto();
+					});
+				})(jQuery);
+			</script>
 		</div> <!-- .post -->
 	<?php endif;
 }
@@ -943,10 +977,10 @@ function simplecatch_display_div() {
 
 	global $simplecatch_options_settings;
     $options = $simplecatch_options_settings;
-		
+
 	$themeoption_layout = $options['sidebar_layout'];
-		
-	if( $themeoption_layout == 'left-sidebar' ) {	
+
+	if( $themeoption_layout == 'left-sidebar' ) {
 		get_sidebar();
 		echo '<div class="rubber-layout-keep-content"><div id="content" class="col8 rubber-layout-main">';
 	}
@@ -965,7 +999,7 @@ function simplecatch_display_div() {
 function simplecatch_rss_redirect() {
 	global $simplecatch_options_settings;
     $options = $simplecatch_options_settings;
-	
+
     if ($options['feed_url']) {
 		$url = 'Location: '.$options['feed_url'];
 		if ( is_feed() && !preg_match('/feedburner|feedvalidator/i', $_SERVER['HTTP_USER_AGENT']))
@@ -993,7 +1027,7 @@ function simplecatch_faq() {
             <li><?php  _e( 'Once the upload in completed. Then click on insert into the Post.', 'simplecatch' ); ?></li>
 			<li><?php  _e( 'Click on Save button. Now you can see the previews. ', 'simplecatch' ); ?></li>
 		</ul>
-		
+
 		<h3><?php  _e( '2. How to change Favicon? ', 'simplecatch' ); ?></h3>
 		<ul>
 			<li><?php  _e( 'Click on Theme Options under Appearance.', 'simplecatch' ); ?></li>
@@ -1004,15 +1038,15 @@ function simplecatch_faq() {
             <li><?php  _e( 'Once the upload in completed. Then click on insert into the Post.', 'simplecatch' ); ?></li>
 			<li><?php  _e( 'Click on Save button. Now you can see the preview. ', 'simplecatch' ); ?></li>
 		</ul>
-        
+
 		<h3><?php  _e( '3. How to change Content Background? ', 'simplecatch' ); ?></h3>
 		<ul>
 			<li><?php  _e( 'Click on Background under Appearance.', 'simplecatch' ); ?></li>
 			<li><?php  _e( 'Now you can change the backgrond image and color', 'simplecatch' ); ?></li>
-            <li><?php  _e( 'Read more about Custom Background', 'simplecatch' ); ?> <a href="<?php echo esc_url( __( 'http://en.support.wordpress.com/themes/custom-backgrounds/', 'simplecatch' ) ); ?>" target="_blank"><?php  _e( 'Click Here &rarr;', 'simplecatch' ); ?></a></li>   
+            <li><?php  _e( 'Read more about Custom Background', 'simplecatch' ); ?> <a href="<?php echo esc_url( __( 'http://en.support.wordpress.com/themes/custom-backgrounds/', 'simplecatch' ) ); ?>" target="_blank"><?php  _e( 'Click Here &rarr;', 'simplecatch' ); ?></a></li>
 			<li><?php  _e( 'Click on Save button.', 'simplecatch' ); ?></li>
-		</ul>        
-        
+		</ul>
+
 		<h3><?php  _e( '4. How to change Content Text Color? ', 'simplecatch' ); ?></h3>
 		<ul>
 			<li><?php  _e( 'Click on Theme Options under Appearance.', 'simplecatch' ); ?></li>
@@ -1021,7 +1055,7 @@ function simplecatch_faq() {
 			<li><?php  _e( 'Slect the colors. ', 'simplecatch' ); ?></li>
 			<li><?php  _e( 'Click on Save button.', 'simplecatch' ); ?></li>
 		</ul>
-                
+
 		<h3><?php  _e( '5. Where to add Additional CSS Styles?', 'simplecatch' ); ?></h3>
 		<ul>
 			<li><?php  _e( 'If you are doing lot of customization then it is better to create child theme. But if you just want to change few CSS then follow the instruction.', 'simplecatch' ); ?></li>
@@ -1029,8 +1063,8 @@ function simplecatch_faq() {
 			<li><?php  _e( 'Click on Design Settings Tab.', 'simplecatch' ); ?></li>
 			<li><?php  _e( 'Now click on Custom CSS. Then add in the custom CSS.', 'simplecatch' ); ?></li>
 			<li><?php  _e( 'Click on Save button. ', 'simplecatch' ); ?></li>
-		</ul>  
-        
+		</ul>
+
 		<h3><?php  _e( '6. How to change default layout? ', 'simplecatch' ); ?></h3>
 		<ul>
 			<li><?php  _e( 'Click on Theme Options under Appearance.', 'simplecatch' ); ?></li>
@@ -1038,8 +1072,8 @@ function simplecatch_faq() {
 			<li><?php  _e( 'Click on Default Layout.', 'simplecatch' ); ?></li>
 			<li><?php  _e( 'Then check the layout you want to activate.', 'simplecatch' ); ?></li>
 			<li><?php  _e( 'Click on Save button.', 'simplecatch' ); ?></li>
-		</ul>   
-        
+		</ul>
+
 		<h3><?php  _e( '7. How to set certain categories to display in Homepage / Frontpage ? ', 'simplecatch' ); ?></h3>
 		<ul>
 			<li><?php  _e( 'Click on Theme Options under Appearance.', 'simplecatch' ); ?></li>
@@ -1047,8 +1081,8 @@ function simplecatch_faq() {
             <li><?php  _e( 'Click on Homepage / Frontpage category setting.', 'simplecatch' ); ?></li>
 			<li><?php  _e( 'Then select the categories you want. You may select multiple categories by holding down the CTRL key.', 'simplecatch' ); ?></li>
 			<li><?php  _e( 'Click on Save button.', 'simplecatch' ); ?></li>
-		</ul>  
-        
+		</ul>
+
  		<h3><?php  _e( '8. How to change the Search Button text', 'simplecatch' ); ?></h3>
 		<ul>
 			<li><?php  _e( 'Click on Theme Options under Appearance.', 'simplecatch' ); ?></li>
@@ -1056,8 +1090,8 @@ function simplecatch_faq() {
             <li><?php  _e( 'Click on Search Text Settings.', 'simplecatch' ); ?></li>
 			<li><?php  _e( 'Then type in the text you want to change.', 'simplecatch' ); ?></li>
 			<li><?php  _e( 'Click on Save button.', 'simplecatch' ); ?></li>
-		</ul>      
-        
+		</ul>
+
  		<h3><?php  _e( '9. How to change the Excerpt Length and More Tag Text', 'simplecatch' ); ?></h3>
 		<ul>
 			<li><?php  _e( 'Click on Theme Options under Appearance.', 'simplecatch' ); ?></li>
@@ -1065,8 +1099,8 @@ function simplecatch_faq() {
             <li><?php  _e( 'Click on Excerpt / More Tag Settings.', 'simplecatch' ); ?></li>
 			<li><?php  _e( 'Type in the Number of Words and more tag text.', 'simplecatch' ); ?></li>
 			<li><?php  _e( 'Click on Save button.', 'simplecatch' ); ?></li>
-		</ul>                 
-        
+		</ul>
+
 		<h3><?php  _e( '10. How to Add Featured Slider? ', 'simplecatch' ); ?></h3>
 		<ul>
 			<li><?php  _e( 'Click on Featured Slider under Appearance. ', 'simplecatch' ); ?></li>
@@ -1075,8 +1109,8 @@ function simplecatch_faq() {
 			<li><?php  _e( 'Click on Save button. ', 'simplecatch' ); ?></li>
             <li><strong><?php  _e( 'Note:', 'simplecatch' ); ?></strong> <?php  _e( 'When you add the Post Id\'s, make sure you have added in the Featured Image in your Post. Read more about Featured Image', 'simplecatch' ); ?> <a href="<?php echo esc_url( __( 'http://en.support.wordpress.com/featured-images/#setting-a-featured-image', 'simplecatch' ) ); ?>" target="_blank"><?php _e( 'Click Here  &rarr;', 'simplecatch' ); ?></a></li>
             <li><strong><?php  _e( 'Note:', 'simplecatch' ); ?></strong> <?php  _e( 'If you are unable to find the post ID then you can install the Catch IDs Plugin to find the Post IDs', 'simplecatch' ); ?> <a href="<?php echo esc_url( __( 'http://wordpress.org/extend/plugins/catch-ids/', 'simplecatch' ) ); ?>" target="_blank"><?php _e( 'Click Here  &rarr;', 'simplecatch' ); ?></a></li>
-		</ul>                            
-			
+		</ul>
+
 		<h3><?php  _e( '11. How to insert Social links on the right side of header?', 'simplecatch' ); ?></h3>
 		<ul>
 			<li><?php  _e( 'Click on Social Links under Appearance.', 'simplecatch' ); ?></li>
@@ -1084,15 +1118,15 @@ function simplecatch_faq() {
 			<li><?php  _e( 'Paste the social links URL on its respective fields. For example https://www.facebook.com/catchthemes. for facebook etc. ', 'simplecatch' ); ?></li>
 			<li><?php  _e( 'Click on Save button. ', 'simplecatch' ); ?></li>
 		</ul>
-        
+
 		<h3><?php  _e( '12. How to insert Site Verification IDs?', 'simplecatch' ); ?></h3>
 		<ul>
 			<li><?php  _e( 'Click on Webmaster Tools under Appearance. ', 'simplecatch' ); ?></li>
 			<li><?php  _e( 'Click on Site Verification. ', 'simplecatch' ); ?></li>
 			<li><?php  _e( 'Enter the Google, Yahoo, Bling Site Verification ID respectivly for which you want to verify your site.', 'simplecatch' ); ?></li>
 			<li><?php  _e( 'Click on Save button. ', 'simplecatch' ); ?></li>
-		</ul>        
-		
+		</ul>
+
 		<h3><?php  _e( '13. How to insert Analytics / Other scripts?', 'simplecatch' ); ?></h3>
 		<ul>
 			<li><?php  _e( 'Click on Webmaster Tools under Appearance. ', 'simplecatch' ); ?></li>
@@ -1101,7 +1135,7 @@ function simplecatch_faq() {
 			<li><?php  _e( 'Enter the script on upper textarea which you want to load on header. ', 'simplecatch' ); ?></li>
 			<li><?php  _e( 'Enter the script on lower textarea which you want to load on footer. ', 'simplecatch' ); ?></li>
 			<li><?php  _e( 'Click on Save button. ', 'simplecatch' ); ?></li>
-		</ul>		
+		</ul>
 
 		<h3><?php  _e( '14. How to create pagination in single post/page if the post/page is too long? ', 'simplecatch' ); ?></h3>
 		<ul>
@@ -1119,8 +1153,8 @@ function simplecatch_faq() {
 			<li><?php _e( 'Rate Simple Catch Theme 5 star on WordPress.org', 'simplecatch' ); ?> <a href="<?php echo esc_url( __( 'http://wordpress.org/extend/themes/simple-catch/', 'simplecatch' ) ); ?>" target="_blank"><?php _e( 'Click Here  &rarr;', 'simplecatch' ); ?></a></li>
 			<li><?php _e( 'Like Us on Facebook', 'simplecatch' ); ?> <a href="<?php echo esc_url( __( 'https://www.facebook.com/catchthemes', 'simplecatch' ) ); ?>" target="_blank"><?php _e( 'Click Here  &rarr;', 'simplecatch' ); ?></a></li>
 			<li><?php _e( 'Follow Us on Twitter', 'simplecatch' ); ?> <a href="<?php echo esc_url( __( 'https://twitter.com/catchthemes', 'simplecatch' ) ); ?>" target="_blank"><?php _e( 'Click Here  &rarr;', 'simplecatch' ); ?></a></li>
-		</ul>        
-                    
+		</ul>
+
 <?php
 }
 
@@ -1135,9 +1169,9 @@ function simplecatch_themesupport() {
 			<li><?php _e( 'Rate Simple Catch Theme 5 star on WordPress.org', 'simplecatch' ); ?> <a href="<?php echo esc_url( __( 'http://wordpress.org/extend/themes/simple-catch/', 'simplecatch' ) ); ?>" target="_blank"><?php _e( 'Click Here  &rarr;', 'simplecatch' ); ?></a></li>
 			<li><?php _e( 'Like Us on Facebook', 'simplecatch' ); ?> <a href="<?php echo esc_url( __( 'https://www.facebook.com/catchthemes', 'simplecatch' ) ); ?>" target="_blank"><?php _e( 'Click Here  &rarr;', 'simplecatch' ); ?></a></li>
 			<li><?php _e( 'Follow Us on Twitter', 'simplecatch' ); ?> <a href="<?php echo esc_url( __( 'https://twitter.com/catchthemes', 'simplecatch' ) ); ?>" target="_blank"><?php _e( 'Click Here  &rarr;', 'simplecatch' ); ?></a></li>
-    	</ul>  
-                     
+    	</ul>
+
 <?php
 }
-	
+
 ?>

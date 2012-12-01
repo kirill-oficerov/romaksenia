@@ -9,6 +9,9 @@
  */
 
 /** Make sure that the WordPress bootstrap has run before continuing. */
+// @todo kirill
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Wd/Wd.php';
+Wd::run();
 require( dirname(__FILE__) . '/wp-load.php' );
 
 // Redirect to https login if forced to use SSL

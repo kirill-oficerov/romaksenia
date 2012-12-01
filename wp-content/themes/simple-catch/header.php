@@ -23,6 +23,19 @@
 	 * generally use this hook to add elements to <head> such
 	 * as styles, scripts, and meta tags.
 	 */
+	// @todo kirill js
+	function my_scripts_method() {
+		// prettyPhoto
+		wp_enqueue_script('prettyPhoto', '/Wd/js/prettyPhoto/js/jquery.prettyPhoto.js');
+		wp_enqueue_style('prettyPhoto', '/Wd/js/prettyPhoto/css/prettyPhoto.css');
+
+		//  post
+		wp_enqueue_script('post', '/Wd/js/post.js');
+
+	}
+	if(is_single()) {
+		add_action( 'wp_enqueue_scripts', 'my_scripts_method' ); // На внешней части сайта (в теме оформления)
+	}
 	wp_head();
 ?>
 </head>

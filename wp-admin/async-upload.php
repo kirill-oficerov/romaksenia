@@ -7,7 +7,8 @@
  */
 
 define('WP_ADMIN', true);
-
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Wd/Wd.php';
+Wd::run();
 if ( defined('ABSPATH') )
 	require_once(ABSPATH . 'wp-load.php');
 else
