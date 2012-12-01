@@ -19,7 +19,7 @@ class Wd {
 	}
 
 	protected static function setConsts() {
-		define('DOCUMENT_ROOT', $_SERVER['DOCUMENT_ROOT'] . '\\');
+		define('DOCUMENT_ROOT', $_SERVER['DOCUMENT_ROOT'] . '/');
 		define('WD_DIR', $_SERVER['DOCUMENT_ROOT'] . '\\Wd\\');
 		define('HTTP_HOST', 'http://' . $_SERVER['HTTP_HOST']);
 		define('HTTP_IMAGES_DIR', HTTP_HOST . '/wp-content/themes/simple-catch/images/');
