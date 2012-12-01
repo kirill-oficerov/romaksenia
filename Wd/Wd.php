@@ -32,9 +32,9 @@ class Wd {
 		$parts = explode('_', $className);
 		$fileName = array_pop($parts);
 		array_shift($parts);
-		$parts = array_map(function($value) {
-			return strtolower($value);
-		}, $parts);
+		foreach($parts as &$value) {
+			$value = strtolower($value);
+		}
 		if(file_exists(DOCUMENT_ROOT . '/Wd/' . implode('/', $parts) . '/' . $fileName . '.php')) {
 			require_once DOCUMENT_ROOT . '/Wd/' . implode('/', $parts) . '/' . $fileName . '.php';
 		}
