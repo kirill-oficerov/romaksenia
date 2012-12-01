@@ -46,7 +46,7 @@ global $wp_object_cache;
                     // tags
                     // ( $key, $group = 'default', $force = false, &$found = null )
 					$tags = $wp_object_cache->get($post->ID, 'category_relationships');
-                    $output = '<ul class="category-list">';
+                    $output = '<ul class="category-list tags">';
                     foreach($tags as $key => $tag) {
 	                    if(!is_null($tag->category_settings)) {
 							$categorySettings = unserialize($tag->category_settings);
@@ -57,18 +57,6 @@ global $wp_object_cache;
                     $output .= '</ul>';
 	                echo $output;
 	                ?>
-
-<!--                                <ul class="post-by">-->
-<!--                                    <li class="no-padding-left"><a href="--><?php //echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?><!--" title="--><?php //echo esc_attr(get_the_author_meta( 'display_name' ) ); ?><!--">--><?php //_e( 'By', 'simplecatch' ); ?><!--&nbsp;--><?php //the_author_meta( 'display_name' );?><!--</a></li>-->
-<!--                                    <li>--><?php //$simplecatch_date_format = get_option( 'date_format' ); the_time( $simplecatch_date_format ); ?><!--</li>-->
-<!--                                    <li class="last">--><?php //comments_popup_link( __( 'No Comments', 'simplecatch' ), __( '1 Comment', 'simplecatch' ), __( '% Comments', 'simplecatch' ) ); ?><!--</li>-->
-<!--                                </ul>-->
-
-
-
-
-
-
 
 
 	                    <?php $excerpt = the_excerpt(false);

@@ -1633,6 +1633,7 @@ img#wpstats {
 
 .rubber-layout-main {
     margin-right: 350px;
+	margin-left: 50px !important;
 }
 
 .category-list {
@@ -1696,8 +1697,8 @@ img#wpstats {
 }
 
 .article-categories-content {
-	margin: 30px 75px 0px 150px;
-	min-width: 1085px;
+	margin: 30px 75px 0px 100px;
+	min-width: 894px;
 }
 
 .entry-title .category-link {
@@ -1746,4 +1747,18 @@ img#wpstats {
 	font-size:15px;
 	cursor:pointer;
 	padding:0px;
+}
+
+[rel=begin-of-the-excerpt-text] {
+	text-align: justify;
+}
+
+.breadscrum {
+	list-style: none;
+	background-color: #dee7ee;
+}
+
+.breadscrum li {
+	float: left;
+
 }

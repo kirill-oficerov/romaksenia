@@ -10,14 +10,14 @@
 
 		<div id="main" class="layout-978">
         
-        	<div id="content" class="col8 no-margin-left">
+        	<div id="content" class="col8 no-margin-left" style="margin-left: 30px !important; margin-right: 250px;">
 
 				<?php while ( have_posts() ):the_post();
 					if( function_exists( 'simplecatch_loop') ) simplecatch_loop(); 
 				?>
 					<div class="row-end"></div>
 					
-					<?php comments_template(); ?> 
+					<?php comments_template(); ?>
 				
 				<?php endwhile; ?>
                 

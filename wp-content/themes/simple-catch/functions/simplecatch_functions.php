@@ -821,6 +821,7 @@ function simplecatch_content() {
  * @since Simple Catch 1.3.2
  */
 function simplecatch_loop() {
+	global $post, $wp_object_cache;
 
 	if( is_page() ): ?>
     
@@ -841,16 +842,86 @@ function simplecatch_loop() {
     <?php elseif( is_single() ): ?>
     
 		<div <?php post_class(); ?>>
+			<style>
+				.addthis_toolbox {
+					margin-top: -10px;
+				}
+			</style>
+			<div class="breadscrum">
+				<div style="background-position: -68px 0px; float: left; ">
+					<span style="float: left; margin-left: 10px;"><a href="<?= HTTP_HOST ?>">Главная</a> &nbsp;</span>
+					<span class="icons" style="background-position: -68px 0px; width: 8px; height: 8px; display: block; float:left; margin-top: 10px;"></span>
+				</div>
+
+				<div style="background-position: -68px 0px; float: left; ">
+					<span style="float: left; margin-left: 10px;"><a href="<?= HTTP_HOST ?>">Статьи</a> &nbsp;</span>
+					<span class="icons" style="background-position: -68px 0px; width: 8px; height: 8px; display: block; float:left; margin-top: 10px;"></span>
+				</div>
+				<div style="background-position: -68px 0px; float: left; ">
+					<span style="float: left; margin-left: 10px;"><a href="<?= HTTP_HOST . '/category' ?>">Мобайл</a> &nbsp;</span>
+				</div>
+			</div>
+			<div class="clear" style="height: 1px; width: 1px; "></div>
+
+			<?
+
+//			bread scrums
+//			$anc = get_post_ancestors( $post->ID );
+//			$output = '';
+//			foreach ( $anc as $ancestor ) {
+//				$output = '<li>'.get_the_title($ancestor).'</li>'.$output;
+//			}
+//			echo $output;
+			?>
 			<h2 class="entry-title"><a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( get_the_title() ); ?>"><?php the_title(); ?></a></h2>
-            <ul class="post-by">
-                <li class="no-padding-left"><a href="<?php echo get_author_posts_url(get_the_author_meta( 'ID' )); ?>" 
-                    title="<?php echo esc_attr( get_the_author_meta( 'display_name' ) ); ?>"><?php _e( 'By', 'simplecatch' ); ?>&nbsp;<?php the_author_meta( 'display_name' );?></a></li>
-                <li><?php $simplecatch_date_format = get_option( 'date_format' ); the_time( $simplecatch_date_format ); ?></li>
-                <li><?php comments_popup_link( __( 'No Comments', 'simplecatch' ), __( '1 Comment', 'simplecatch' ), __( '% Comments', 'simplecatch' ) ); ?></li>
-            </ul>
-            <?php the_content();
+<!--            <ul class="post-by">-->
+<!--                <li class="no-padding-left"><a href="--><?php //echo get_author_posts_url(get_the_author_meta( 'ID' )); ?><!--" -->
+<!--                    title="--><?php //echo esc_attr( get_the_author_meta( 'display_name' ) ); ?><!--">--><?php //_e( 'By', 'simplecatch' ); ?><!--&nbsp;--><?php //the_author_meta( 'display_name' );?><!--</a></li>-->
+<!--                <li>--><?php //$simplecatch_date_format = get_option( 'date_format' ); the_time( $simplecatch_date_format ); ?><!--</li>-->
+<!--                <li>--><?php //comments_popup_link( __( 'No Comments', 'simplecatch' ), __( '1 Comment', 'simplecatch' ), __( '% Comments', 'simplecatch' ) ); ?><!--</li>-->
+<!--            </ul>-->
+			<?
+			$tag = get_the_tags();
+			if (! $tag ) { ?>
+<!--				<div class='tags'>--><?php //_e( 'Categories: ', 'simplecatch' ); ?><!-- --><?php //the_category(', '); ?><!-- </div>-->
+				<div class='tags'>
+					<?php
+//						$categoryList = get_the_category_list(' ');
+					$tags = $wp_object_cache->get($post->ID, 'category_relationships');
+					$output = '<ul class="category-list">';
+					foreach($tags as $key => $tag) {
+						if(!is_null($tag->category_settings)) {
+							$categorySettings = unserialize($tag->category_settings);
+						}
+						$output .= '<li ' . (isset($categorySettings['class']) ? 'class="' . $categorySettings['class'] . '"' : '') . ' ><a  href="' . HTTP_HOST . '/category/' . $tag->slug . '">' . $tag->name . '</a></li>';
+						unset($categorySettings);
+					}
+					$output .= '</ul>';
+					echo $output;
+					?>
+				</div>
+				<?php }
+//			the_post_thumbnail( 'featured' );
+
+			?>
+            <?php
+//			the_content();
+			$fullContent = get_the_content(null, false);
+			$fullContent = apply_filters('the_content', $fullContent);
+			$fullContent = str_replace(']]>', ']]&gt;', $fullContent);
+			$contentBegin = strrpos($fullContent, '<p rel="begin-of-the-excerpt-text">');
+			$content = substr($fullContent, $contentBegin);
+			$addThis = substr($fullContent, 0, $contentBegin);
+			echo $addThis;
+			?>
+			<div class="clear" style="height: 1px; width: 1px; "></div>
+			<div style="text-align: center; ">
+				<a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'simplecatch' ), the_title_attribute( 'echo=0' ) ); ?>"><?php the_post_thumbnail( 'featured' ); ?></a>
+			</div>
+			<? echo $content ?>
+			<?
             // copy this <!--nextpage--> and paste at the post content where you want to break the page
-			 wp_link_pages(array( 
+			wp_link_pages(array(
 					'before'			=> '<div class="pagination">Pages: ',
 					'after' 			=> '</div>',
 					'link_before' 		=> '<span>',
@@ -858,12 +929,7 @@ function simplecatch_loop() {
 					'pagelink' 			=> '%',
 					'echo' 				=> 1 
 				) );
-			$tag = get_the_tags();
-			if (! $tag ) { ?>
-				<div class='tags'><?php _e( 'Categories: ', 'simplecatch' ); ?> <?php the_category(', '); ?> </div>
-			<?php } else { 
-					 the_tags( '<div class="tags"> Tags: ', ', ', '</div>'); 
-			} ?>
+			?>
 		</div> <!-- .post -->
 	<?php endif;
 }
