@@ -14,7 +14,7 @@
 <head profile="http://gmpg.org/xfn/11">
 <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
 <title><?php wp_title(''); ?></title>
- 
+<link rel="stylesheet" media="screen" href="http://openfontlibrary.org/face/sansus-webissimo" rel="stylesheet" type="text/css"/>
 <link rel="stylesheet" type="text/css" media="all" href="<?php echo get_stylesheet_uri(); ?>" />
 <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 <?php
@@ -33,9 +33,9 @@
 		wp_enqueue_script('post', '/Wd/js/post.js');
 
 	}
-	if(is_single()) {
+//	if(is_single()) {
 		add_action( 'wp_enqueue_scripts', 'my_scripts_method' ); // На внешней части сайта (в теме оформления)
-	}
+//	}
 	wp_head();
 ?>
 </head>
@@ -49,10 +49,11 @@
 					simplecatch_headerdetails(); 
 				endif;
 			?>
-			  <div id="mainmenu">
-				  <?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
-			  </div><!-- #mainmenu-->
-			  <div class="social-search">
+			<div id="mainmenu">
+			    <?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
+			</div><!-- #mainmenu-->
+
+			<div class="social-search">
 				<?php
                     // simplecatch_headersocialnetworks displays social links given from theme option in header 
                     if ( function_exists( 'simplecatch_headersocialnetworks' ) ) :
@@ -62,13 +63,14 @@
                     get_search_form();
                 ?>      
         	</div><!-- .social-search -->
+			  <div class="header-icons-container">
+				  <a class="icons home-icon" href="<?= HTTP_HOST . '/'?>">&nbsp;</a>
+				  <a class="icons contacts-icon" href="<?= HTTP_HOST . '/контакты'?>"></a>
+				  <a class="icons sitemap-icon" href="<?= HTTP_HOST . '/'?>">&nbsp;</a>
+			  </div>
     		<div class="row-end"></div>
             <div class="row-end"></div>
-			<div class="header-icons-container">
-				<a class="icons sitemap-icon" href="<?= HTTP_HOST . '/'?>">&nbsp;</a>
-				<a class="icons home-icon" href="<?= HTTP_HOST . '/'?>">&nbsp;</a>
-				<a class="icons contacts-icon" href="<?= HTTP_HOST . '/контакты'?>"></a>
-			</div>
+
         <?php
 			// This function passes the value of slider effect to js file
 			if( function_exists( 'simplecatch_pass_slider_value' ) ) {

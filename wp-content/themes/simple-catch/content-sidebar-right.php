@@ -10,7 +10,7 @@
 
 		<div id="main" class="layout-978">
         
-        	<div id="content" class="col8 no-margin-left" style="margin-left: 30px !important; margin-right: 250px;">
+        	<div id="content" class="col8 no-margin-left" style="margin-left: 21px !important; margin-right: 250px;">
 
 				<?php while ( have_posts() ):the_post();
 					if( function_exists( 'simplecatch_loop') ) simplecatch_loop(); 

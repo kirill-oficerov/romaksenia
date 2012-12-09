@@ -8,9 +8,18 @@
  */
 global $wp_object_cache;
 ?>
-
+<script type="text/javascript">
+	if($ == undefined) {
+		var $ = jQuery;
+	}
+	(function($) {
+		$(function() {
+			wdPrettyPhoto();
+		});
+	})(jQuery);
+</script>
 			<?php if ( have_posts() ) : 
-                while( have_posts() ):the_post(); ?>	
+                while( have_posts() ):the_post(); ?>
 
                         <?php
 	                    global $post;
@@ -40,7 +49,7 @@ global $wp_object_cache;
 	                    <div class="col8">
 
                                 <h2 class="entry-title">
-	                                <a href="<?php the_permalink() ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'simplecatch' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark" ><?php the_title(); ?></a>
+	                                <a href="<?php the_permalink() ?>" title="" rel="bookmark" ><?php the_title(); ?></a>
                                 </h2>
 	                <?
                     // tags
@@ -62,13 +71,31 @@ global $wp_object_cache;
 	                    <?php $excerpt = the_excerpt(false);
 		                    $contentBegin = strrpos($excerpt, '<p rel="begin-of-the-excerpt-text">');
 		                    $content = substr($excerpt, $contentBegin);
-		                    $addThis = substr($excerpt, 35, $contentBegin);
-		                    echo $addThis;
+//		                    $addThis = substr($excerpt, 35, $contentBegin);
+//		                    echo $addThis;
+		                    echo '<script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
+				<div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="none"
+				data-yashareQuickServices="vkontakte,facebook,twitter,odnoklassniki,lj,gplus,pinterest"></div>'
 		                    ?>
 		                    <div class="clear" style="height: 1px; width: 1px; "></div>
 
 		                    <div style="text-align: center; ">
-			                    <a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'simplecatch' ), the_title_attribute( 'echo=0' ) ); ?>"><?php the_post_thumbnail( 'featured' ); ?></a>
+<!--			                    <a href="--><?php //the_permalink(); ?><!--" title="--><?php //printf( esc_attr__( 'Permalink to %s', 'simplecatch' ), the_title_attribute( 'echo=0' ) ); ?><!--">-->
+			                    <?
+			                    $picture = get_the_post_thumbnail( null, 'featured', '' );
+			                    if(!empty($picture)) {
+				                    $pictureSrc = array();
+				                    preg_match('/src="[^"]+"/', $picture, $pictureSrc);
+				                    ?>
+                                    <a rel="prettyPhoto" href=<?=substr($pictureSrc[0], 4)?> title="<?php the_title_attribute( 'echo=0' ) ?>">
+				                    <?php the_post_thumbnail( 'featured' ); ?>
+			                    </a>
+			                    <?
+			                    }
+
+
+								?>
+
 		                    </div>
 
 

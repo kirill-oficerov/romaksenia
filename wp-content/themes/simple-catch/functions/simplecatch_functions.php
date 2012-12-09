@@ -912,8 +912,10 @@ function simplecatch_loop() {
 			$fullContent = str_replace(']]>', ']]&gt;', $fullContent);
 			$contentBegin = strpos($fullContent, '<p rel="begin-of-the-excerpt-text">');
 			$content = substr($fullContent, $contentBegin);
-			$addThis = substr($fullContent, 0, $contentBegin);
-			echo $addThis;
+//			$addThis = substr($fullContent, 0, $contentBegin);
+//			echo $addThis;
+
+
 //			die;
 			?>
 			<div class="clear" style="height: 1px; width: 1px; "></div>
