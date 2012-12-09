@@ -391,6 +391,7 @@ a.readmore:hover {
 #header {
 	background:url(images/header-bg.jpg) left bottom repeat-x;
 	padding-bottom:20px;
+	border-bottom:2px solid #ccc;
 }
 #header .top-bg, #footer {
 	background:url(images/header-top-footer-bg.jpg) repeat-x;
@@ -399,7 +400,7 @@ a.readmore:hover {
 #header .top-bg {
 	background-position:center bottom;
 	height:16px;
-	border-bottom:4px solid #ccc;
+	border-bottom:2px solid #ccc;
 }
 /* Logo Tile */
 /* @todo kirill css header */
@@ -641,7 +642,7 @@ h2#site-description {
 	display: block;
 	color: #fff;
 	font-size: 15px;
-	line-height: 48px;
+	line-height: 36px;
 	color: #444;
 	float: left;
 }
