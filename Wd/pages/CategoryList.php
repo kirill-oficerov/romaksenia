@@ -75,7 +75,7 @@ class Wd_Pages_CategoryList {
 //		$excerpt = the_excerpt(false);
 
 		$thumbnail = get_the_post_thumbnail( $post->ID, 'featured' );
-		$excerpt = wp_trim_words( $post->post_content, Wd::get('settings')->getValue(Settings::MAX_EXCERPT_LENGTH_WORDS), $more = null );
+		$excerpt = wp_trim_words( $post->post_content, Wd::get('settings')->getValue(Settings::MAX_EXCERPT_LENGTH_WORDS), '' );
 		return '
 		<div style="margin-left: 40px;">
 			<h2 class="entry-title" style="margin-top: 10px;">

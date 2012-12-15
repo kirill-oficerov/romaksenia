@@ -700,9 +700,8 @@ function simplecatch_custom_tag_cloud() {
  */
 function simplecatch_footer() {
 ?>
-	<div class="col5 powered-by">
-		<?php _e( 'Design by:', 'simplecatch');?> <a href="<?php echo esc_url( __( 'http://catchthemes.com/', 'simplecatch' ) ); ?>" target="_blank" title="<?php esc_attr_e( 'Catch Themes', 'simplecatch' ); ?>"><?php _e( 'Catch Themes', 'simplecatch' ); ?></a> | <a href="<?php echo esc_url( __( 'http://wordpress.org/', 'simplecatch' ) ); ?>" title="<?php esc_attr_e( 'WordPress', 'simplecatch' ); ?>" rel="generator" target="_blank" ><?php printf( __( 'Proudly powered by %s.', 'simplecatch' ), 'WordPress' ); ?></a>
-  	</div><!--.col6 powered-by-->
+
+<!--.col6 powered-by-->
 
 <?php
 }
@@ -910,7 +909,7 @@ function simplecatch_loop() {
 			$fullContent = get_the_content(null, false);
 			$fullContent = apply_filters('the_content', $fullContent);
 			$fullContent = str_replace(']]>', ']]&gt;', $fullContent);
-			$contentBegin = strpos($fullContent, '<p rel="begin-of-the-excerpt-text">');
+			$contentBegin = strpos($fullContent, '<p style="clear:left;" rel="begin-of-the-excerpt-text">');
 			$content = substr($fullContent, $contentBegin);
 //			$addThis = substr($fullContent, 0, $contentBegin);
 //			echo $addThis;

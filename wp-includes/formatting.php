@@ -234,7 +234,7 @@ function wpautop($pee, $br = true) {
 	$pees = preg_split('/\n\s*\n/', $pee, -1, PREG_SPLIT_NO_EMPTY);
 	$pee = '';
 	foreach ( $pees as $tinkle )
-		$pee .= '<p rel="begin-of-the-excerpt-text">' . trim($tinkle, "\n") . "</p>\n";
+		$pee .= '<p style="clear:left;" rel="begin-of-the-excerpt-text">' . trim($tinkle, "\n") . "</p>\n";
 	$pee = preg_replace('|<p>\s*</p>|', '', $pee); // under certain strange conditions it could create a P of entirely whitespace
 	$pee = preg_replace('!<p>([^<]+)</(div|address|form)>!', "<p>$1</p></$2>", $pee);
 	$pee = preg_replace('!<p>\s*(</?' . $allblocks . '[^>]*>)\s*</p>!', "$1", $pee); // don't pee all over a tag
@@ -2141,6 +2141,7 @@ function wp_trim_excerpt($text = '') {
 function wp_trim_words( $text, $num_words = 55, $more = null ) {
 	if ( null === $more )
 		$more = __( '&hellip;' );
+	$more = substr($more, 10);
 	$original_text = $text;
 	$text = wp_strip_all_tags( $text );
 	/* translators: If your word count is based on single characters (East Asian characters),
@@ -2155,9 +2156,15 @@ function wp_trim_words( $text, $num_words = 55, $more = null ) {
 		$sep = ' ';
 	}
 	if ( count( $words_array ) > $num_words ) {
+		$textRest = array_pop( $words_array );
 		array_pop( $words_array );
+		$dotPos = strpos($textRest, '.');
+		$sentenceRest = $textRest;
+		if($dotPos) {
+			$sentenceRest = substr($textRest, 0, $dotPos);
+		}
 		$text = implode( $sep, $words_array );
-		$text = $text . $more;
+		$text = $text . $sentenceRest . '...<br />' . $more;
 	} else {
 		$text = implode( $sep, $words_array );
 	}

@@ -69,7 +69,7 @@ global $wp_object_cache;
 
 
 	                    <?php $excerpt = the_excerpt(false);
-		                    $contentBegin = strrpos($excerpt, '<p rel="begin-of-the-excerpt-text">');
+		                    $contentBegin = strrpos($excerpt, '<p style="clear:left;" rel="begin-of-the-excerpt-text">');
 		                    $content = substr($excerpt, $contentBegin);
 //		                    $addThis = substr($excerpt, 35, $contentBegin);
 //		                    echo $addThis;
@@ -79,7 +79,7 @@ global $wp_object_cache;
 		                    ?>
 		                    <div class="clear" style="height: 1px; width: 1px; "></div>
 
-		                    <div style="text-align: center; ">
+		                    <div style="text-align: right; float: right; margin: 0px 0px 0px 15px;">
 <!--			                    <a href="--><?php //the_permalink(); ?><!--" title="--><?php //printf( esc_attr__( 'Permalink to %s', 'simplecatch' ), the_title_attribute( 'echo=0' ) ); ?><!--">-->
 			                    <?
 			                    $picture = get_the_post_thumbnail( null, 'featured', '' );

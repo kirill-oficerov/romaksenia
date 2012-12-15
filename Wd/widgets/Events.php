@@ -43,28 +43,27 @@ class Wd_Widgets_Events extends WP_Widget {
 			foreach($eventsPosts as $postId => $post) { ?>
 				<div class="page_item page-item-<?=$postId?>"><a href="http://wedigital.dev/<?=$post->post_name ?>/" class="event-title"><?=$post->post_title?></a>
 					<div class="event-content">
-						<?=mb_substr($post->post_content, 0, 200, 'UTF-8')?>
+						<?
+						$wordsAmount = Wd::get('settings')->getValue(Settings::MAX_EVENT_LENGTH_WORDS);
+						$words_array = preg_split( "/[\n\r\t ]+/", $post->post_content, $wordsAmount, PREG_SPLIT_NO_EMPTY );
+						$textRest = array_pop( $words_array );
+						$dotPos = strpos($textRest, '.');
+						$sentenceRest = $textRest;
+						if($dotPos) {
+							$sentenceRest = substr($textRest, 0, $dotPos);
+						}
+						$text = implode( ' ', $words_array );
+						$more = '<a class="readmore" href="http://wedigital.dev/' . $post->post_name . '/">Далее</a>';
+						$text = $text . $sentenceRest . '...<br />' . $more;
+						echo $text;
+						?>
 					</div>
 				</div>
 			<? }
 
 			?>
-<!--		<li class="page_item page-item-6"><a href="http://wedigital.dev/about/">About</a></li>-->
-<!--		<li class="page_item page-item-14"><a href="http://wedigital.dev/%d0%b2%d0%b0%d0%ba%d0%b0%d0%bd%d1%81%d0%b8%d0%b8/">Вакансии</a></li>-->
-<!--		<li class="page_item page-item-31"><a href="http://wedigital.dev/%d0%b8%d0%b2%d0%b5%d0%bd%d1%82%d1%8b/">Ивенты</a>-->
-<!--			<ul class="children">-->
-<!--				<li class="page_item page-item-46"><a href="http://wedigital.dev/%d0%b8%d0%b2%d0%b5%d0%bd%d1%82%d1%8b/%d0%b8%d0%b2%d0%b5%d0%bd%d1%82-1/">Ивент 1</a></li>-->
-<!--			</ul>-->
-<!--		</li>-->
 	</div>
 	</div>
-<!--	<li class="page_item page-item-6"><a href="http://wedigital.dev/about/">About</a></li>-->
-<!--	<li class="page_item page-item-14"><a href="http://wedigital.dev/%d0%b2%d0%b0%d0%ba%d0%b0%d0%bd%d1%81%d0%b8%d0%b8/">Вакансии</a></li>-->
-<!--	<li class="page_item page-item-31"><a href="http://wedigital.dev/%d0%b8%d0%b2%d0%b5%d0%bd%d1%82%d1%8b/">Ивенты</a>-->
-<!--		<ul class="children">-->
-<!--			<li class="page_item page-item-46"><a href="http://wedigital.dev/%d0%b8%d0%b2%d0%b5%d0%bd%d1%82%d1%8b/%d0%b8%d0%b2%d0%b5%d0%bd%d1%82-1/">Ивент 1</a></li>-->
-<!--		</ul>-->
-<!--	</li>-->
 		<?
 	}
 }

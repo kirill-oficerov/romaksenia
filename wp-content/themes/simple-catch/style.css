@@ -397,6 +397,7 @@ a.readmore:hover {
 	background:url(images/header-bg.jpg) left bottom repeat-x;
 	padding-bottom:20px;
 	border-bottom:1px solid #ccc;
+	min-width: 1085px;
 }
 #header .top-bg, #footer {
 	background:url(images/header-top-footer-bg.jpg) repeat-x;
@@ -1522,14 +1523,17 @@ ul.default-wp-page li.next a {
 	float:right;
 	display:block;
 }
+
 /* =Footer
 -------------------------------------------------------------- */
 #footer {
-	border-top:6px solid #ccc;
+	border-top:2px solid #ccc;
 	height:60px;
 	color:#666;
 	font-size:12px;
 	padding-top:30px;
+	min-width: 1085px;
+
 }
 #footer span {
 	color:#999;
@@ -1663,25 +1667,32 @@ img#wpstats {
 	/*-webkit-border-radius: 3px;*/
 	/*border-radius: 3px;*/
 }
-
+/*{*/
+	/*background: #fef60b;*/
+	/*background: #2dae18;*/
+	/*background: #f44051;*/
+	/*background: #7740f4;*/
+	/*background: #f4a640;*/
+	/*background: #fef60b;*/
+/*}*/
 .category-yellow :hover {
-    background: #ffff99;
+    background: #fef60b;
 }
 
 .category-orange :hover {
-    background: #ffcc00;
+    background: #f4a640;
 }
 
 .category-green-light :hover {
-    background: #99cc99;
+    background: #2dae18;
 }
 
 .category-green-bright :hover {
-    background: #ccff99;
+    background: #f44051;
 }
 
 .category-white :hover {
-    background: #eee;
+    background: #7740f4;
 }
 
 .addthis_toolbox {
@@ -1721,7 +1732,19 @@ img#wpstats {
 .icons {
 	background: url('images/icons.png') no-repeat;
 }
-
+.facebook {
+	float: left;
+	height: 16px; width: 16px;
+	background-position: 0px -17px;
+	display: block;
+}
+.twitter {
+	float: left;
+	height: 16px; width: 16px;
+	background-position: -77px 0px;
+	display: block;
+	margin-left: 2px;
+}
 .header-icons-container {
 	width: 100px; height: 30px; float: right;
 	/*position: relative; top: 14px; left: -261px;*/

@@ -44,14 +44,15 @@ get_header();
 		
 	else : ?>
 		<h2><?php printf( __( 'Your search <span> "%s" </span> did not match any documents', 'simplecatch' ), get_search_query() ); ?></h2>
-		<div class="post">
-			<h5><?php _e( 'A few suggestions', 'simplecatch' ); ?></h5>
-			<ul>
-				<li><?php _e( 'Make sure all words are spelled correctly', 'simplecatch' ); ?></li>
-				<li><?php _e( 'Try different keywords', 'simplecatch' ); ?></li>
-				<li><?php _e( 'Try more general keywords', 'simplecatch' ); ?></li>
-			</ul> 
-		</div> <!-- .post -->
+<!--		<div class="post">-->
+<!--			<h5>--><?php //_e( 'A few suggestions', 'simplecatch' ); ?><!--</h5>-->
+<!--			<ul>-->
+<!--				<li>--><?php //_e( 'Make sure all words are spelled correctly', 'simplecatch' ); ?><!--</li>-->
+<!--				<li>--><?php //_e( 'Try different keywords', 'simplecatch' ); ?><!--</li>-->
+<!--				<li>--><?php //_e( 'Try more general keywords', 'simplecatch' ); ?><!--</li>-->
+<!--			</ul> -->
+<!--		</div> -->
+	<!-- .post -->
 		
 <?php endif; ?>
 
