@@ -210,6 +210,9 @@ input[type=text], input.text, input.title, textarea, select {
 	box-shadow: 0 2px 2px #e5e5e5 inset;
 	margin: 0 0 20px;
 }
+.home.blog #main #sidebar {
+	margin-top: 20px;
+}
 #sidebar .input[type=text] {
 	width: 282px;
 }
@@ -372,6 +375,13 @@ a.readmore:hover {
 }
 .clearfix {
 	display: inline-block;
+}
+
+html {
+	height: 100%;
+}
+body {
+	height: 100%;
 }
 /* start commented backslash hack \*/
 * html .clearfix {
@@ -774,7 +784,8 @@ h2#site-description {
 /* =Content
 ----------------------------------------------- */
 #main {
-	padding-top:30px;
+	/*padding-top:30px;*/
+	min-height: 100%;
 }
 #main #content .post {
 	padding-bottom:30px;
@@ -1533,7 +1544,7 @@ ul.default-wp-page li.next a {
 	font-size:12px;
 	padding-top:30px;
 	min-width: 1085px;
-
+	margin-top: -92px;
 }
 #footer span {
 	color:#999;
@@ -1641,6 +1652,7 @@ img#wpstats {
     width: 100%;
     margin-right: -350px;
     float: left;
+	padding-top: 20px;
 }
 
 .rubber-layout-main {

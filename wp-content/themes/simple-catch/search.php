@@ -59,10 +59,13 @@ get_header();
     </div> <!-- #content -->
             
  	<?php 
-    if( $themeoption_layout == 'right-sidebar' ) {
-        get_sidebar(); 
-    }?>
-            
+//    if( $themeoption_layout == 'right-sidebar' ) {
+//        get_sidebar();
+//    }?>
+            <div style="clear: both;"></div>
+</div> <!-- #main -->
+	            <div style="clear: both;"></div>
+
 </div> <!-- #main -->
 
 <?php get_footer(); ?> 
