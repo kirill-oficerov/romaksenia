@@ -786,6 +786,66 @@ function simplecatch_content() {
 
 	get_header();
 
+
+
+
+
+?>
+
+	<div id="header">
+	<div class="top-bg"></div>
+	<div class="layout-978">
+	<?php
+		// Funcition to show the header logo, site title and site description
+	if ( function_exists( 'simplecatch_headerdetails' ) ) :
+	simplecatch_headerdetails();
+	endif;
+	?>
+			<div id="mainmenu">
+			    <?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
+			</div><!-- #mainmenu-->
+
+			<div class="social-search">
+				<?php
+		// simplecatch_headersocialnetworks displays social links given from theme option in header
+		if ( function_exists( 'simplecatch_headersocialnetworks' ) ) :
+		simplecatch_headersocialnetworks();
+		endif;
+		// get search form
+		get_search_form();
+		?>
+        	</div><!-- .social-search -->
+			  <div class="header-icons-container">
+				  <a class="icons home-icon" href="<?= HTTP_HOST . '/'?>">&nbsp;</a>
+				  <a class="icons contacts-icon" href="<?= HTTP_HOST . '/контакты'?>"></a>
+				  <a class="icons sitemap-icon" href="<?= HTTP_HOST . '/'?>">&nbsp;</a>
+			  </div>
+    		<div class="row-end"></div>
+            <div class="row-end"></div>
+
+        <?php
+		// This function passes the value of slider effect to js file
+	if( function_exists( 'simplecatch_pass_slider_value' ) ) {
+	simplecatch_pass_slider_value();
+	}
+			// Display slider in home page and breadcrumb in other pages
+			if ( function_exists( 'simplecatch_sliderbreadcrumb' ) ) :
+				simplecatch_sliderbreadcrumb();
+			endif;
+		?>
+	</div><!-- .layout-978 -->
+</div><!-- #header -->
+<?
+
+
+
+
+
+
+
+
+
+
     if( $layout=='default') {
 		global $simplecatch_options_settings;
         $options = $simplecatch_options_settings;
@@ -856,7 +916,7 @@ function simplecatch_loop() {
 				</div>
 
 				<div style="background-position: -68px 0px; float: left; ">
-					<span style="float: left; margin-left: 10px;"><a href="<?= HTTP_HOST ?>">Статьи</a> &nbsp;</span>
+					<span style="float: left; margin-left: 10px;"><a href="<?= HTTP_HOST . '/category/' . ''?>">Статьи</a> &nbsp;</span>
 					<span class="icons" style="background-position: -68px 0px; width: 8px; height: 8px; display: block; float:left; margin-top: 10px;"></span>
 				</div>
 				<div style="background-position: -68px 0px; float: left; ">
@@ -970,7 +1030,7 @@ function simplecatch_loop() {
 }
 
 /**
- * Display the header div
+ * Display the header divx
  * @since Simple Catch 1.3.2
  */
 function simplecatch_display_div() {

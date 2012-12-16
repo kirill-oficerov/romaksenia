@@ -24,6 +24,7 @@ class Wd_Widgets_Events extends WP_Widget {
 			}
 		}
 		if(!$eventCategoryId) {
+			echo 'id of Ивенты not found';
 			return;
 		}
 		$eventsPosts = array();
