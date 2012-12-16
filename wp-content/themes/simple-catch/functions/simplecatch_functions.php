@@ -792,49 +792,9 @@ function simplecatch_content() {
 
 ?>
 
-	<div id="header">
-	<div class="top-bg"></div>
-	<div class="layout-978">
-	<?php
-		// Funcition to show the header logo, site title and site description
-	if ( function_exists( 'simplecatch_headerdetails' ) ) :
-	simplecatch_headerdetails();
-	endif;
-	?>
-			<div id="mainmenu">
-			    <?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
-			</div><!-- #mainmenu-->
 
-			<div class="social-search">
-				<?php
-		// simplecatch_headersocialnetworks displays social links given from theme option in header
-		if ( function_exists( 'simplecatch_headersocialnetworks' ) ) :
-		simplecatch_headersocialnetworks();
-		endif;
-		// get search form
-		get_search_form();
-		?>
-        	</div><!-- .social-search -->
-			  <div class="header-icons-container">
-				  <a class="icons home-icon" href="<?= HTTP_HOST . '/'?>">&nbsp;</a>
-				  <a class="icons contacts-icon" href="<?= HTTP_HOST . '/контакты'?>"></a>
-				  <a class="icons sitemap-icon" href="<?= HTTP_HOST . '/'?>">&nbsp;</a>
-			  </div>
-    		<div class="row-end"></div>
-            <div class="row-end"></div>
 
-        <?php
-		// This function passes the value of slider effect to js file
-	if( function_exists( 'simplecatch_pass_slider_value' ) ) {
-	simplecatch_pass_slider_value();
-	}
-			// Display slider in home page and breadcrumb in other pages
-			if ( function_exists( 'simplecatch_sliderbreadcrumb' ) ) :
-				simplecatch_sliderbreadcrumb();
-			endif;
-		?>
-	</div><!-- .layout-978 -->
-</div><!-- #header -->
+
 <?
 
 
@@ -905,28 +865,35 @@ function simplecatch_loop() {
 
 		<div <?php post_class(); ?>>
 			<?
-				$categories = get_categories();
-			$categories = array_map(function($value) {
-				return array($value->id, $value->name);
-			}, $categories);
-			?>
-			<style>
-				.addthis_toolbox {
-					margin-top: -10px;
+				$categories = get_the_category();
+				$categoriesHtml = '';
+				$lastElement = end($categories);
+				foreach($categories as $key => $category) {
+					$categoriesHtml .= '<span style="float: left; margin-left: 7px;"><a href="' . HTTP_HOST . '/category/' . $category->slug . '">' . $category->name;
+					if($category != $lastElement) {
+						$categoriesHtml .= ', ';
+					}
+					$categoriesHtml .= '</a> &nbsp;</span>';
 				}
-			</style>
+				$categoriesHtml .= '<span class="icons" style="background-position: -68px 0px; width: 8px; height: 8px; display: block; float:left; margin-top: 10px;"></span>';
+			?>
+<!--			<style>-->
+<!--				.addthis_toolbox {-->
+<!--					margin-top: -10px;-->
+<!--				}-->
+<!--			</style>-->
+			<h2 class="entry-title post-title"><a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( get_the_title() ); ?>"><?php the_title(); ?></a></h2>
 			<div class="breadscrum">
 				<div style="background-position: -68px 0px; float: left; ">
-					<span style="float: left; margin-left: 10px;"><a href="<?= HTTP_HOST ?>">Главная</a> &nbsp;</span>
+					<span style="float: left; margin-left: 7px;"><a href="<?= HTTP_HOST ?>">Главная</a> &nbsp;</span>
 					<span class="icons" style="background-position: -68px 0px; width: 8px; height: 8px; display: block; float:left; margin-top: 10px;"></span>
 				</div>
 
 				<div style="background-position: -68px 0px; float: left; ">
-					<span style="float: left; margin-left: 10px;"><a href="<?= HTTP_HOST . '/category/' . ''?>">Статьи</a> &nbsp;</span>
-					<span class="icons" style="background-position: -68px 0px; width: 8px; height: 8px; display: block; float:left; margin-top: 10px;"></span>
+					<?=$categoriesHtml?>
 				</div>
 				<div style="background-position: -68px 0px; float: left; ">
-					<span style="float: left; margin-left: 10px;"><a href="<?= HTTP_HOST . '/category' ?>">Мобайл</a> &nbsp;</span>
+					<span style="float: left; margin-left: 7px;"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a> &nbsp;</span>
 				</div>
 			</div>
 			<div class="clear" style="height: 1px; width: 1px; "></div>
@@ -941,7 +908,7 @@ function simplecatch_loop() {
 //			}
 //			echo $output;
 			?>
-			<h2 class="entry-title"><a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( get_the_title() ); ?>"><?php the_title(); ?></a></h2>
+
 <!--            <ul class="post-by">-->
 <!--                <li class="no-padding-left"><a href="--><?php //echo get_author_posts_url(get_the_author_meta( 'ID' )); ?><!--" -->
 <!--                    title="--><?php //echo esc_attr( get_the_author_meta( 'display_name' ) ); ?><!--">--><?php //_e( 'By', 'simplecatch' ); ?><!--&nbsp;--><?php //the_author_meta( 'display_name' );?><!--</a></li>-->
@@ -977,20 +944,12 @@ function simplecatch_loop() {
 			$fullContent = str_replace(']]>', ']]&gt;', $fullContent);
 			$contentBegin = strpos($fullContent, '<p style="clear:left;" rel="begin-of-the-excerpt-text">');
 			$content = substr($fullContent, $contentBegin);
-//			$addThis = substr($fullContent, 0, $contentBegin);
-//			echo $addThis;
-
-
-//			die;
 			?>
 			<div class="clear" style="height: 1px; width: 1px; "></div>
 			<div style="text-align: center; ">
 				<a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'simplecatch' ), the_title_attribute( 'echo=0' ) ); ?>"><?php the_post_thumbnail( 'featured' ); ?></a>
 			</div>
 			<?
-//			echo "<pre>".print_r('----', true)."</pre>\n\n";
-//			echo "<pre>".print_r($content, true)."</pre>\n\n";
-//			die();
 			$content = preg_replace('/<a/s', '<a rel="prettyPhoto"', $content);
 			echo $content ?>
 			<?
