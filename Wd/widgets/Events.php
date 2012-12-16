@@ -17,32 +17,43 @@ class Wd_Widgets_Events extends WP_Widget {
 		$cache = $wp_object_cache->cache;
 		// find categoryId
 		$eventCategoryId = 0;
-		foreach($cache['category'] as $categoryId => $category) {
-			if($category->name == 'Ивенты') {
-				$eventCategoryId = $categoryId;
-				break;
-			}
-		}
-		if(!$eventCategoryId) {
+		global $wpdb;
+
+		$query = "SELECT * FROM wp_terms
+LEFT JOIN wp_term_taxonomy ON wp_term_taxonomy.term_id = wp_terms.term_id
+LEFT JOIN wp_term_relationships ON wp_term_relationships.term_taxonomy_id = wp_term_taxonomy.term_taxonomy_id
+LEFT JOIN wp_posts ON wp_posts.ID = wp_term_relationships.object_id
+WHERE wp_terms.name = 'Ивенты'";
+
+		$terms = $wpdb->get_results($query);
+
+
+//		foreach($terms as $key => $category) {
+//			if($category->name == 'Ивенты') {
+//				$eventCategoryId = $category->term_id;
+//				break;
+//			}
+//		}
+		if(!count($terms)) {
 			echo 'id of Ивенты not found';
 			return;
 		}
-		$eventsPosts = array();
-		foreach($cache['category_relationships'] as $postId => $categories) {
-			if(array_key_exists($eventCategoryId, $categories)) {
-				array_push($eventsPosts, $cache['posts'][$postId]);
-			}
-		}
-		if(empty($eventsPosts)) {
-			return;
-		}
+//		$eventsPosts = array();
+//		foreach($cache['category_relationships'] as $postId => $categories) {
+//			if(array_key_exists($eventCategoryId, $categories)) {
+//				array_push($eventsPosts, $cache['posts'][$postId]);
+//			}
+//		}
+//		if(empty($eventsPosts)) {
+//			return;
+//		}
 		?>
 
 	<div class="widget"><h3>Ивенты</h3><hr>
 		<div>
 			<?
-			foreach($eventsPosts as $postId => $post) { ?>
-				<div class="page_item page-item-<?=$postId?>"><a href="http://wedigital.dev/<?=$post->post_name ?>/" class="event-title"><?=$post->post_title?></a>
+			foreach($terms as $key => $post) { ?>
+				<div class="page_item page-item-<?=$post->term_id?>"><a href="http://wedigital.dev/<?=$post->post_name ?>/" class="event-title"><?=$post->post_title?></a>
 					<div class="event-content">
 						<?
 						$wordsAmount = Wd::get('settings')->getValue(Settings::MAX_EVENT_LENGTH_WORDS);

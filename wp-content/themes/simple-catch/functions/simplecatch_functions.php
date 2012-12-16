@@ -904,6 +904,12 @@ function simplecatch_loop() {
     <?php elseif( is_single() ): ?>
 
 		<div <?php post_class(); ?>>
+			<?
+				$categories = get_categories();
+			$categories = array_map(function($value) {
+				return array($value->id, $value->name);
+			}, $categories);
+			?>
 			<style>
 				.addthis_toolbox {
 					margin-top: -10px;
