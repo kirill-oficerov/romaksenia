@@ -24,8 +24,8 @@
 			<div style="float: left;">
 				Мы в соцсетях:
 				<div style="clear: both;"></div>
-				<a href="facebook://asd.by" class="icons facebook" style=""></a>
-				<a href="twitter://asd.by" class="icons twitter" style=""></a>
+				<a href="http://www.facebook.com/wedigitalby" target="_blank" class="icons facebook" style=""></a>
+				<a href="https://twitter.com/wedigitalby" target="_blank" class="icons twitter" style=""></a>
 				<div style="clear: both;"></div>
 			</div>
 			<div style="float: left; margin-left: 8px;">

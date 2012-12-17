@@ -873,9 +873,9 @@ function simplecatch_loop() {
 					if($category != $lastElement) {
 						$categoriesHtml .= ', ';
 					}
-					$categoriesHtml .= '</a> &nbsp;</span>';
+					$categoriesHtml .= '</a></span>';
 				}
-				$categoriesHtml .= '<span class="icons" style="background-position: -68px 0px; width: 8px; height: 8px; display: block; float:left; margin-top: 10px;"></span>';
+				$categoriesHtml .= '<span class="icons" style="background-position: -68px 0px; width: 8px; height: 8px; display: block; float:left; margin: 10px 0px 0px 5px;"></span>';
 			?>
 <!--			<style>-->
 <!--				.addthis_toolbox {-->

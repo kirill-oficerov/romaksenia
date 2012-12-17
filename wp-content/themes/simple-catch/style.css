@@ -24,9 +24,10 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 	font: inherit;
 	vertical-align: baseline;
 
-	font-family: 'Sansus Webissimo';
+	/*font-family: 'Sansus Webissimo';*/
+	font-family: 'Verdana';
 	font-weight: normal;
-	font-style: italic;
+	/*font-style: italic;*/
 }
 /* =HTML5 display-role reset for older browsers
 ----------------------------------------------- */
@@ -80,6 +81,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
 	color: #444444;
+	font-size: 18px;
 }
 h1 {
 	font-size: 34px;
@@ -699,7 +701,8 @@ h2#site-description {
 }
 #header #mainmenu ul li ul li a {
 	padding: 7px 10px;
-	color: #999;
+	color: #000;
+	/*color: #999;*/
 	float:none;
 	line-height: 18px;
 	font-size: 13px;
@@ -1688,23 +1691,23 @@ img#wpstats {
 	/*background: #f4a640;*/
 	/*background: #fef60b;*/
 /*}*/
-.category-yellow :hover {
+.category-yellow :hover, #header #mainmenu ul li ul li.category-yellow {
     background: #fef60b;
 }
 
-.category-orange :hover {
+.category-orange :hover, #header #mainmenu ul li ul li.category-orange {
     background: #f4a640;
 }
 
-.category-green-light :hover {
+.category-green-light :hover, #header #mainmenu ul li ul li.category-green-light {
     background: #2dae18;
 }
 
-.category-green-bright :hover {
+.category-green-bright :hover, #header #mainmenu ul li ul li.category-green-bright {
     background: #f44051;
 }
 
-.category-white :hover {
+.category-white :hover, #header #mainmenu ul li ul li.category-white {
     background: #7740f4;
 }
 
@@ -1761,22 +1764,20 @@ img#wpstats {
 .header-icons-container {
 	width: 100px; height: 30px; float: right;
 	/*position: relative; top: 14px; left: -261px;*/
-	margin: 10px -94px 0px 0px;
+	margin: 65px -101px 0px 0px;
 }
 
 .header-icons-container .sitemap-icon {
-	width: 17px; height: 15px; display: block; float: left; margin: 1px 0px 0px 7px;
+	width: 16px; height: 15px; display: block; float: left; margin: 0px 0px 0px 3px;
 }
 
 .header-icons-container .home-icon {
-	margin-left: 5px;
-	width: 15px; height: 16px; display: block; float: left;
+	width: 15px; height: 15px; display: block; float: left;
 	background-position: -19px 0px;
 }
 
 .header-icons-container .contacts-icon {
-	margin-left: 7px;
-	margin-top: 1px;
+	margin-left: 3px;
 	width: 15px; height: 15px; display: block; float: left;
 	background-position: -35px 0px;
 }
