@@ -14,17 +14,23 @@ class Wd_Parts_MainMenu {
 		}
 		foreach($menu as $key => &$value) {
 			if($value->title == 'Мобайл') {
-				$value->classes[0] = 'category-yellow';
+//				$value->classes[0] = 'category-yellow-right-border';
+				$value->colored = 'category-yellow';
 			} elseif($value->title == 'Дизайн') {
-				$value->classes[0] = 'category-orange';
+//				$value->classes[0] = 'category-orange-right-border';
+				$value->colored = 'category-orange';
 			} elseif($value->title == 'Проектирование') {
-				$value->classes[0] = 'category-green-light';
+//				$value->classes[0] = 'category-green-light-right-border';
+				$value->colored = 'category-green-light';
 			} elseif($value->title == 'Веб') {
-				$value->classes[0] = 'category-green-bright';
+//				$value->classes[0] = 'category-green-bright-right-border';
+				$value->colored = 'category-green-bright';
 			} elseif($value->title == 'Медиа') {
-				$value->classes[0] = 'category-white';
+//				$value->classes[0] = 'category-white-right-border';
+				$value->colored = 'category-white';
 			}
 		}
+
 		return $menu;
 	}
 }

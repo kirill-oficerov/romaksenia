@@ -86,11 +86,25 @@ class Walker_Nav_Menu extends Walker {
 		$attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
 		$attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : '';
 
-		$item_output = $args->before;
-		$item_output .= '<a'. $attributes .'>';
-		$item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
-		$item_output .= '</a>';
-		$item_output .= $args->after;
+		if(isset($item->colored) && $item->colored) {
+			$item_output = $args->before;
+			$item_output .= '<a'. $attributes .' style="padding:0px;">';
+			$item_output .= '<span style="display:block; float:left; width: 165px;height: 32px;padding-left: 10px;line-height: 32px;">';
+			$item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
+			$item_output .= '</span>
+	<span class="' . $item->colored . '" style="display:block; float:left; height: 32px; width: 10px;;">
+	</span>
+	<div style="clear:both;"></div>';
+			$item_output .= '</a>';
+			$item_output .= $args->after;
+
+		} else {
+			$item_output = $args->before;
+			$item_output .= '<a'. $attributes .'>';
+			$item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
+			$item_output .= '</a>';
+			$item_output .= $args->after;
+		}
 
 		$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
 	}

@@ -105,7 +105,7 @@ h6 {
 }
 p {
 	padding-bottom:15px;
-	line-height:24px;
+	line-height:18px;
 }
 strong {
 	font-weight: bold;
@@ -649,10 +649,10 @@ h2#site-description {
 	list-style: none;
 }
 #header #mainmenu ul li {
-	border-bottom: 1px solid #CCCCCC;
+	/*border-bottom: 1px solid #CCCCCC;*/
 	border-right: 1px solid #CCCCCC;
 	float: left;
-	margin-bottom: -1px;
+	/*margin-bottom: -1px;*/
 	position: relative;
 }
 #header #mainmenu ul li a {
@@ -700,9 +700,9 @@ h2#site-description {
 	border-right:0 none;
 }
 #header #mainmenu ul li ul li a {
-	padding: 7px 10px;
-	color: #000;
-	/*color: #999;*/
+	/*padding: 7px 10px;*/
+	/*color: #000;*/
+	color: #999;
 	float:none;
 	line-height: 18px;
 	font-size: 13px;
@@ -1545,7 +1545,7 @@ ul.default-wp-page li.next a {
 	border-top:2px solid #ccc;
 	height:60px;
 	color:#666;
-	font-size:12px;
+	font-size:13px;
 	padding-top:30px;
 	min-width: 1085px;
 	margin-top: -92px;
@@ -1691,25 +1691,45 @@ img#wpstats {
 	/*background: #f4a640;*/
 	/*background: #fef60b;*/
 /*}*/
-.category-yellow :hover, #header #mainmenu ul li ul li.category-yellow {
+.category-yellow :hover, #header #mainmenu ul span.category-yellow {
     background: #fef60b;
 }
 
-.category-orange :hover, #header #mainmenu ul li ul li.category-orange {
+.category-orange :hover, #header #mainmenu ul span.category-orange {
     background: #f4a640;
 }
 
-.category-green-light :hover, #header #mainmenu ul li ul li.category-green-light {
+.category-green-light :hover, #header #mainmenu ul span.category-green-light {
     background: #2dae18;
 }
 
-.category-green-bright :hover, #header #mainmenu ul li ul li.category-green-bright {
+.category-green-bright :hover, #header #mainmenu ul span.category-green-bright {
     background: #f44051;
 }
 
-.category-white :hover, #header #mainmenu ul li ul li.category-white {
+.category-white :hover, #header #mainmenu ul span.category-white {
     background: #7740f4;
 }
+
+/*#header #mainmenu ul li ul li.category-yellow-right-border {*/
+	/*border-right: 16px solid #fef60b;*/
+/*}*/
+
+/*.category-orange :hover, #header #mainmenu ul li ul li.category-orange {*/
+	/*background: #f4a640;*/
+/*}*/
+
+/*.category-green-light :hover, #header #mainmenu ul li ul li.category-green-light {*/
+	/*background: #2dae18;*/
+/*}*/
+
+/*.category-green-bright :hover, #header #mainmenu ul li ul li.category-green-bright {*/
+	/*background: #f44051;*/
+/*}*/
+
+/*.category-white :hover, #header #mainmenu ul li ul li.category-white {*/
+	/*background: #7740f4;*/
+/*}*/
 
 .addthis_toolbox {
     margin-top:5px;

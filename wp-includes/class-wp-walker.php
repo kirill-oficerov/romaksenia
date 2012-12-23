@@ -227,8 +227,9 @@ class Walker {
 			}
 		}
 
-		foreach ( $top_level_elements as $e )
+		foreach ( $top_level_elements as $e ) {
 			$this->display_element( $e, $children_elements, $max_depth, 0, $args, $output );
+		}
 
 		/*
 		 * if we are displaying all levels, and remaining children_elements is not empty,
