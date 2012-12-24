@@ -37,5 +37,38 @@
 		</div>
 	</div><!-- #footer -->      
 <?php wp_footer(); ?>
+<script type="text/javascript">
+	(function($) {
+
+
+
+		$(function() {
+			(function() {
+				var tk = document.createElement('script');
+				tk.src = 'http://fonts.gawker.com/zvc4iwz.js';
+				tk.type = 'text/javascript';
+				tk.async = 'true';
+				tk.onload = tk.onreadystatechange = function() {
+					var rs = this.readyState;
+					if (rs && rs != 'complete' && rs != 'loaded') return;
+					try { Typekit.load(); } catch (e) {}
+				};
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(tk, s);
+			})();
+
+
+		});
+
+
+
+
+
+
+
+	})(jQuery);
+
+
+</script>
 </body>
 </html>

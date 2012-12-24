@@ -69,7 +69,7 @@ global $wp_object_cache;
 
 
 	                    <?php $excerpt = the_excerpt(false);
-		                    $contentBegin = strrpos($excerpt, '<p style="clear:left;" rel="begin-of-the-excerpt-text">');
+		                    $contentBegin = strrpos($excerpt, '<p style="" rel="begin-of-the-excerpt-text">');
 		                    $content = substr($excerpt, $contentBegin);
 //		                    $addThis = substr($excerpt, 35, $contentBegin);
 //		                    echo $addThis;

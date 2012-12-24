@@ -942,7 +942,7 @@ function simplecatch_loop() {
 			$fullContent = get_the_content(null, false);
 			$fullContent = apply_filters('the_content', $fullContent);
 			$fullContent = str_replace(']]>', ']]&gt;', $fullContent);
-			$contentBegin = strpos($fullContent, '<p style="clear:left;" rel="begin-of-the-excerpt-text">');
+			$contentBegin = strpos($fullContent, '<p style="" rel="begin-of-the-excerpt-text">');
 			$content = substr($fullContent, $contentBegin);
 			?>
 			<div class="clear" style="height: 1px; width: 1px; "></div>
