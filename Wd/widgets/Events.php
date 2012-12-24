@@ -14,9 +14,7 @@ class Wd_Widgets_Events extends WP_Widget {
 	function widget($args, $instance) {
 		// outputs the content of the widget
 		global $wp_object_cache;
-		$cache = $wp_object_cache->cache;
-		// find categoryId
-		$eventCategoryId = 0;
+//		$cache = $wp_object_cache->cache;
 		global $wpdb;
 
 		$query = "SELECT * FROM wp_terms
@@ -28,25 +26,10 @@ WHERE wp_terms.name = 'Ивенты'";
 		$terms = $wpdb->get_results($query);
 
 
-//		foreach($terms as $key => $category) {
-//			if($category->name == 'Ивенты') {
-//				$eventCategoryId = $category->term_id;
-//				break;
-//			}
-//		}
 		if(!count($terms)) {
 			echo 'id of Ивенты not found';
 			return;
 		}
-//		$eventsPosts = array();
-//		foreach($cache['category_relationships'] as $postId => $categories) {
-//			if(array_key_exists($eventCategoryId, $categories)) {
-//				array_push($eventsPosts, $cache['posts'][$postId]);
-//			}
-//		}
-//		if(empty($eventsPosts)) {
-//			return;
-//		}
 		?>
 
 	<div class="widget"><h3>Ивенты</h3><hr>
