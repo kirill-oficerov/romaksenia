@@ -1861,3 +1861,7 @@ div#main div#content.col8 h2.entry-title a, #sidebar .widget .page_item a.event-
 #main #sidebar .widget .page_item div.event-content {
 	line-height: 1.5;
 }
+[id|=wp-realtime-sitemap] {
+	float: left;
+	margin-right: 50px;
+}
