@@ -869,32 +869,26 @@ function simplecatch_loop() {
 				$categoriesHtml = '';
 				$lastElement = end($categories);
 				foreach($categories as $key => $category) {
-					$categoriesHtml .= '<span style="float: left; margin-left: 7px;"><a href="' . HTTP_HOST . '/category/' . $category->slug . '">' . $category->name;
+					$categoriesHtml .= '<span style="float: left; margin: 0px 0px 0px 7px;"><a href="' . HTTP_HOST . '/category/' . $category->slug . '">' . $category->name;
 					if($category != $lastElement) {
 						$categoriesHtml .= ', ';
 					}
 					$categoriesHtml .= '</a></span>';
 				}
-				$categoriesHtml .= '<span class="icons" style="background-position: -68px 0px; width: 8px; height: 8px; display: block; float:left; margin: 10px 0px 0px 5px;"></span>';
+				$categoriesHtml .= '<span class="icons" style="background-position: -68px 0px; width: 8px; height: 8px; display: block; float:left; margin: 5px 0px 0px 7px;"></span>';
 			?>
-<!--			<style>-->
-<!--				.addthis_toolbox {-->
-<!--					margin-top: -10px;-->
-<!--				}-->
-<!--			</style>-->
 			<h2 class="entry-title post-title"><a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( get_the_title() ); ?>"><?php the_title(); ?></a></h2>
 			<div class="breadscrum">
 				<div style="background-position: -68px 0px; float: left; ">
-					<span style="float: left; margin-left: 7px;"><a href="<?= HTTP_HOST ?>">Главная</a> &nbsp;</span>
-					<span class="icons" style="background-position: -68px 0px; width: 8px; height: 8px; display: block; float:left; margin-top: 10px;"></span>
+					<span style="float: left; margin-left: 7px;"><a href="<?= HTTP_HOST ?>">Главная</a></span>
+					<span class="icons" style="background-position: -68px 0px; width: 8px; height: 8px; display: block; float:left; margin: 5px 0px 0px 7px;"></span>
 				</div>
 
+				<div style="background-position: -68px 0px; float: left; "><?=$categoriesHtml?></div>
 				<div style="background-position: -68px 0px; float: left; ">
-					<?=$categoriesHtml?>
+					<span style="float: left; margin-left: 7px; line-height: 16px;"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a> &nbsp;</span>
 				</div>
-				<div style="background-position: -68px 0px; float: left; ">
-					<span style="float: left; margin-left: 7px;"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a> &nbsp;</span>
-				</div>
+
 			</div>
 			<div class="clear" style="height: 1px; width: 1px; "></div>
 
