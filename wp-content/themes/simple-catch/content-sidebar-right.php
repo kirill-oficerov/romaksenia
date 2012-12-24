@@ -80,7 +80,7 @@
         	</div><!-- #content -->
             
       	 	<?php
-//			if(!is_single() && $name != 'about') {
+//			@todo kirill sidebar ( !is_single() && !is_page() )
 			if(!is_single() && !is_page()) {
 				get_sidebar();
 			}

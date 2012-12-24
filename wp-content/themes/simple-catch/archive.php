@@ -21,7 +21,10 @@ get_header();
             
 	<?php 
     if( $themeoption_layout == 'right-sidebar' ) {
-        get_sidebar(); 
+//	    @todo kirill sidebar ( !is_category() )
+	    if(!is_category()) {
+		    get_sidebar();
+	    }
     }?>
             
 	</div><!-- #main --> 

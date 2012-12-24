@@ -91,7 +91,7 @@ function simplecatch_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menu( 'primary', __( 'Primary Menu', 'simplecatch' ) );
 
-	// @todo kirill
+	// @todo kirill menu
 	register_nav_menu( 'custom_menu_0', __( 'Custom menu 0', 'simplecatch' ) );
 	update_site_option('remove_site_title', 1);
 	// widgets
