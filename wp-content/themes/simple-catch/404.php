@@ -22,7 +22,7 @@ get_header(); ?>
 			            foreach($terms as $value) {
 				            $map[$value->name] = $value->slug;
 			            }
-			            $query = "SELECT * FROM wp_posts WHERE post_title IN ('Статьи', 'About', 'Контакты') AND post_type IN ('page', 'post')";
+			            $query = "SELECT * FROM wp_posts WHERE post_title IN ('Статьи', 'О Нас', 'Контакты') AND post_type IN ('page', 'post')";
 			            $terms = $wpdb->get_results($query);
 			            foreach($terms as $value) {
 			                $map[$value->post_title] = $value->post_name;
@@ -31,32 +31,32 @@ get_header(); ?>
 			            <div style="margin: 10px 0px 0px 81px; ">
 				            <div>
 					            <div style="float: left; margin: 0px 3px;">
-						            <a href="http://wedigital.dev" style="text-decoration: underline;">Главная</a>
+						            <a href="<?=HTTP_HOST?>" style="text-decoration: underline;">Главная</a>
 					            </div>
 				            </div>
 				            <div>
 					            <div style="float: left; margin: 0px 3px;">
-						            <a href="http://wedigital.dev/<?=$map['Статьи']?>"  style="text-decoration: underline;">Статьи</a>
+						            <a href="<?=HTTP_HOST?>/<?=$map['Статьи']?>"  style="text-decoration: underline;">Статьи</a>
 					            </div>
 				            </div>
 				            <div>
 					            <div style="float: left; margin: 0px 3px;">
-						            <a href="http://wedigital.dev/<?=$map['Кейсы']?>"  style="text-decoration: underline;">Кейсы</a>
+						            <a href="<?=HTTP_HOST?>/<?=$map['Кейсы']?>"  style="text-decoration: underline;">Кейсы</a>
 					            </div>
 				            </div>
 				            <div>
 					            <div style="float: left; margin: 0px 3px;">
-						            <a href="http://wedigital.dev/<?=$map['Ивенты']?>"  style="text-decoration: underline;">Ивенты</a>
+						            <a href="<?=HTTP_HOST?>/<?=$map['Ивенты']?>"  style="text-decoration: underline;">Ивенты</a>
 					            </div>
 				            </div>
 				            <div>
 					            <div style="float: left; margin: 0px 3px;">
-						            <a href="http://wedigital.dev/<?=$map['About']?>"  style="text-decoration: underline;">О нас</a>
+						            <a href="<?=HTTP_HOST?>/<?=$map['О Нас']?>"  style="text-decoration: underline;">О нас</a>
 					            </div>
 				            </div>
 				            <div>
 					            <div style="float: left; margin: 0px 3px;">
-						            <a href="http://wedigital.dev/<?=$map['Контакты']?>"  style="text-decoration: underline;">Контакты</a>
+						            <a href="<?=HTTP_HOST?>/<?=$map['Контакты']?>"  style="text-decoration: underline;">Контакты</a>
 					            </div>
 				            </div>
 				            <div class="clear"></div>

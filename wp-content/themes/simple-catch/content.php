@@ -7,6 +7,7 @@
  * @since Simple Catch 1.3.2
  */
 global $wp_object_cache;
+get_header();
 ?>
 <script type="text/javascript">
 	if($ == undefined) {
@@ -122,8 +123,8 @@ global $wp_object_cache;
 						if ( $wp_query->max_num_pages > 1 ) : 
 					?>
 							<ul class="default-wp-page">
-								<li class="previous"><?php next_posts_link( __( 'Previous', 'simplecatch' ) ); ?></li>
-								<li class="next"><?php previous_posts_link( __( 'Next', 'simplecatch' ) ); ?></li>
+								<li class="previous"><?php next_posts_link( __( 'Предыдущие', 'simplecatch' ) ); ?></li>
+								<li class="next"><?php previous_posts_link( __( 'Следующие', 'simplecatch' ) ); ?></li>
 							</ul>
                         <?php endif;
  					endif; 
@@ -132,9 +133,9 @@ global $wp_object_cache;
                     			
 			<?php else : ?>
                     <div class="post">
-                        <h2><?php _e( 'Not found', 'simplecatch' ); ?></h2>
-                        <p><?php _e( 'Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post.', 'simplecatch' ); ?></p>
-                        <?php get_search_form(); ?>
+                        <h2>К сожалению, в этой категории ещё нет статей. Но будут обязательно!</h2>
+<!--                        <p>--><?php //_e( 'Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post.', 'simplecatch' ); ?><!--</p>-->
+<!--                        --><?php //get_search_form(); ?>
                     </div><!-- .post -->
 			
 			<?php endif; ?>

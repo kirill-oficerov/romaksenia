@@ -33,9 +33,7 @@
 		wp_enqueue_script('post', '/Wd/js/post.js');
 
 	}
-//	if(is_single()) {
-		add_action( 'wp_enqueue_scripts', 'my_scripts_method' ); // На внешней части сайта (в теме оформления)
-//	}
+	add_action( 'wp_enqueue_scripts', 'my_scripts_method' ); // На внешней части сайта (в теме оформления)
 	wp_head();
 ?>
 </head>

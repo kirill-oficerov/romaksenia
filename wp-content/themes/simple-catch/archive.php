@@ -10,7 +10,7 @@
  * @since Simple Catch 1.0
  */
  
-get_header(); 
+//get_header();
 	
 	if( function_exists( 'simplecatch_display_div' ) ) {
 		$themeoption_layout = simplecatch_display_div();
@@ -28,5 +28,6 @@ get_header();
     }?>
             
 	</div><!-- #main --> 
-        
+	</div><!-- #main 2 -->
+
 <?php get_footer(); ?>

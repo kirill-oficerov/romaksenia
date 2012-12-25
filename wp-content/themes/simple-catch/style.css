@@ -1538,7 +1538,7 @@ ul.default-wp-page li.previous a {
 }
 ul.default-wp-page li.next a {
 	background: url(images/ul-bg.png) no-repeat right 9px;
-	padding:0 15px 30px 0;
+	padding:2px 15px 30px 0px;
 	float:right;
 	display:block;
 }
