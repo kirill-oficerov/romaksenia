@@ -628,7 +628,10 @@ h2#site-description {
 
 /* =Menu
 ----------------------------------------------- */
-
+@font-face {
+	font-family: ProximaNovaReg;
+	src: url("/ProximaNovaReg.woff") format("opentype");
+}
 /*
 @todo kirill css header
 */
@@ -643,7 +646,17 @@ h2#site-description {
 	width:auto;
 	z-index:1000;
 	box-shadow:0 1px 0px #fff;
+
+
+
+
 }
+#main #header #mainmenu #menu-main-menu a {
+	text-transform: uppercase;
+	font-size: 12px;
+	font-family:ProximaNovaReg;
+}
+
 .home #header #mainmenu {
 	box-shadow: none;
 }

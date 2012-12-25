@@ -25,17 +25,17 @@
 			<div style="float: left; width: 43px;">
 				RSS:
 				<div style="clear: both;"></div>
-				<a href="<?=HTTP_HOST?>/feed" target="_blank" class="icons rss" ></a>
+				<a href="<?=HTTP_HOST?>/feed" target="_blank" class="icons rss" style="margin-top: 7px;"></a>
 				<div style="clear: both;"></div>
 			</div>
-			<div style="float: left;">
+			<div style="float: left; ">
 				Мы в соцсетях:
 				<div style="clear: both;"></div>
-				<a href="http://www.facebook.com/wedigitalby" target="_blank" class="icons facebook" style=""></a>
-				<a href="https://twitter.com/wedigitalby" target="_blank" class="icons twitter" style=""></a>
+				<a href="http://www.facebook.com/wedigitalby" target="_blank" class="icons facebook" style="margin-top: 7px;"></a>
+				<a href="https://twitter.com/wedigitalby" target="_blank" class="icons twitter" style="margin-top: 7px;"></a>
 				<div style="clear: both;"></div>
 			</div>
-			<div style="float: left; margin-left: 8px;">
+			<div style="float: left; margin-left:8px;">
 			Электронная почта:
 			<div style="clear: both;"></div>
 				<a href="mailto://info@wedigital.by">info@wedigital.by</a>
