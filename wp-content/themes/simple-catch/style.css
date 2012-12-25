@@ -651,7 +651,7 @@ h2#site-description {
 
 
 }
-#main #header #mainmenu #menu-main-menu a {
+#main #header > div > #mainmenu > div > #menu-main-menu > [id|=menu-item] > a {
 	text-transform: uppercase;
 	font-size: 12px;
 	font-family:ProximaNovaReg;
