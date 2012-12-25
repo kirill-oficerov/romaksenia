@@ -1872,3 +1872,9 @@ div#main div#content.col8 h2.entry-title a, #sidebar .widget .page_item a.event-
 	float: left;
 	margin-right: 50px;
 }
+.rss {
+	float: left;
+	height: 16px; width: 16px;
+	background-position: -17px -17px;
+	display: block;
+}

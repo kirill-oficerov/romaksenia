@@ -10,9 +10,10 @@
 	<div id="footer">
     	<div class="layout-978" style="float: left; min-width: 0px;">
 			<?php //Displaying footer logo ?>
-            <div class="col7 copyright no-margin-left">
+            <div class="col7 copyright" style="margin-left: 21px;">
 				<?php if( function_exists( 'simplecatch_footerlogo' ) ) :
-						simplecatch_footerlogo(); 
+	            // @todo kirill footer
+//						simplecatch_footerlogo();
 					  endif;	
 				?><?php _e( 'Copyright', 'simplecatch' ); ?> &copy; <?php echo date("Y"); ?> <span><a href="http://wedigital.by"><?php bloginfo('name')?></span></a>. <?php _e( 'All Right Reserved.', 'simplecatch' ); ?>
             </div><!-- .col7 -->
@@ -21,6 +22,12 @@
             
 		</div><!-- .layout-978 -->
 		<div style="float: right; margin-right: 50px; color: #999;">
+			<div style="float: left; width: 43px;">
+				RSS:
+				<div style="clear: both;"></div>
+				<a href="<?=HTTP_HOST?>/feed" target="_blank" class="icons rss" ></a>
+				<div style="clear: both;"></div>
+			</div>
 			<div style="float: left;">
 				Мы в соцсетях:
 				<div style="clear: both;"></div>
