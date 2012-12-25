@@ -52,7 +52,7 @@ get_header(); ?>
 				            </div>
 				            <div>
 					            <div style="float: left; margin: 0px 3px;">
-						            <a href="<?=HTTP_HOST?>/<?=$map['about']?>"  style="text-decoration: underline;">О нас</a>
+						            <a href="<?=HTTP_HOST?>/<?=$map['О нас']?>"  style="text-decoration: underline;">О нас</a>
 					            </div>
 				            </div>
 				            <div>
