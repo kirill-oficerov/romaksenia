@@ -31,6 +31,8 @@
 						endif;
 						// get search form
 						get_search_form();
+						$query = "SELECT * FROM wp_posts WHERE post_title IN ('Контакты') AND post_type IN ('page', 'post')";
+						$terms = $wpdb->get_results($query);
 						?>
 					</div><!-- .social-search -->
 					<div class="header-icons-container">
