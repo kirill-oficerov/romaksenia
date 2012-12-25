@@ -27,7 +27,7 @@ get_header(); ?>
 			            foreach($terms as $value) {
 			                $map[$value->post_title] = $value->post_name;
 			            }
-			            echo "<pre>".print_r($terms, true)."</pre>\n\n";
+			            echo "<pre>".print_r($map, true)."</pre>\n\n";
 						?>
 			            <div style="margin: 10px 0px 0px 81px; ">
 				            <div>
