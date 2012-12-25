@@ -1018,11 +1018,18 @@ function simplecatch_display_div() {
 		endif;
 		// get search form
 		get_search_form();
+		global $wpdb;
+		$query = "SELECT * FROM wp_posts WHERE post_title IN ('Контакты') AND post_type IN ('page', 'post')";
+		$terms = $wpdb->get_results($query);
+
+//		echo "<pre>".print_r($terms, true)."</pre>\n\n";
+//		die();
+
 		?>
         	</div><!-- .social-search -->
 			  <div class="header-icons-container">
 				  <a class="icons home-icon" href="<?= HTTP_HOST . '/'?>">&nbsp;</a>
-				  <a class="icons contacts-icon" href="<?= HTTP_HOST . '/contacts/'?>"></a>
+				  <a class="icons contacts-icon" href="<?= HTTP_HOST . '/' . $terms[0]->post_name?>"></a>
 				  <a class="icons sitemap-icon" href="<?= HTTP_HOST . '/sitemap/'?>">&nbsp;</a>
 			  </div>
     		<div class="row-end"></div>
