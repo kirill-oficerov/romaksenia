@@ -1030,7 +1030,7 @@ function simplecatch_display_div() {
 			  <div class="header-icons-container">
 				  <a class="icons home-icon" href="<?= HTTP_HOST . '/'?>">&nbsp;</a>
 				  <a class="icons contacts-icon" href="<?= HTTP_HOST . '/' . $terms[0]->post_name?>"></a>
-				  <a class="icons sitemap-icon" href="<?= HTTP_HOST . '/sitemap/'?>">&nbsp;</a>
+				  <a class="icons sitemap-icon" href="<?= HTTP_HOST . '/sitemap'?>">&nbsp;</a>
 			  </div>
     		<div class="row-end"></div>
             <div class="row-end"></div>
