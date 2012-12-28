@@ -1832,7 +1832,7 @@ img#wpstats {
 	padding:0px;
 }
 
-#main #content .col8 p[rel=begin-of-the-excerpt-text] {
+#main #content .col8 p[rel=begin-of-the-excerpt-text], #main #content.col8 p[rel=begin-of-the-excerpt-text] {
 	text-align: justify;
 	line-height: 1.5;
 	clear:left;

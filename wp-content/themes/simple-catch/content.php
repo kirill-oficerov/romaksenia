@@ -111,8 +111,6 @@ get_header();
 			<?php else : ?>
                     <div class="post">
                         <h2>К сожалению, в этой категории ещё нет статей. Но будут обязательно!</h2>
-<!--                        <p>--><?php //_e( 'Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post.', 'simplecatch' ); ?><!--</p>-->
-<!--                        --><?php //get_search_form(); ?>
                     </div><!-- .post -->
 			
 			<?php endif; ?>
