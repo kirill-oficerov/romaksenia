@@ -233,8 +233,9 @@ function wpautop($pee, $br = true) {
 	// make paragraphs, including one at the end
 	$pees = preg_split('/\n\s*\n/', $pee, -1, PREG_SPLIT_NO_EMPTY);
 	$pee = '';
-	foreach ( $pees as $tinkle )
-		$pee .= '<p rel="begin-of-the-excerpt-text">' . trim($tinkle, "\n") . "</p>\n";
+	foreach ( $pees as $tinkle ) {
+		$pee .=  trim($tinkle, "\n");
+	}
 	$pee = preg_replace('|<p>\s*</p>|', '', $pee); // under certain strange conditions it could create a P of entirely whitespace
 	$pee = preg_replace('!<p>([^<]+)</(div|address|form)>!', "<p>$1</p></$2>", $pee);
 	$pee = preg_replace('!<p>\s*(</?' . $allblocks . '[^>]*>)\s*</p>!', "$1", $pee); // don't pee all over a tag

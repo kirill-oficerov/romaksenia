@@ -849,7 +849,10 @@ function simplecatch_loop() {
 		?>
 		<div <?php post_class(); ?> >
 			<h2 class="entry-title"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
-       		<?php the_content();
+       		<?php
+			the_content();
+//			$content = get_the_content();
+//			echo $content;
 			// copy this <!--nextpage--> and paste at the post content where you want to break the page
 			 wp_link_pages(array(
 					'before'			=> '<div class="pagination">Pages: ',
