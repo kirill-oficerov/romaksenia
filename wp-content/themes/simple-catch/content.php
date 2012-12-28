@@ -36,44 +36,31 @@ get_header();
 		                    continue;
 	                    }?>
                 <div <?php post_class(); ?> >
-	                <?
-                        //If category has thumbnail it displays thumbnail and excerpt of content else excerpt only
-                        if ( has_post_thumbnail() ) : ?>
-<!--                            <div class="col3 post-img">-->
-<!--                                <a href="--><?php //the_permalink(); ?><!--" title="--><?php //printf( esc_attr__( 'Permalink to %s', 'simplecatch' ), the_title_attribute( 'echo=0' ) ); ?><!--">--><?php //the_post_thumbnail( 'featured' ); ?><!--</a>-->
-<!--                            </div> <!-- .col3 -->
-<!--                            -->
-<!--                            <div class="col5">-->
-                        <?php else : ?>
-                        <?php endif; ?>
-
 	                    <div class="col8">
-
-                                <h2 class="entry-title">
+                            <div style="float: left; margin-right: -150px; width: 100%; ">
+			                    <h2 class="entry-title" style="margin: 10px 150px 3px 0px; ">
 	                                <a href="<?php the_permalink() ?>" title="" rel="bookmark" ><?php the_title(); ?></a>
-                                </h2>
-	                <?
-                    // tags
-                    // ( $key, $group = 'default', $force = false, &$found = null )
-					$tags = $wp_object_cache->get($post->ID, 'category_relationships');
-                    $output = '<ul class="category-list tags">';
-                    foreach($tags as $key => $tag) {
-	                    if(!is_null($tag->category_settings)) {
-							$categorySettings = unserialize($tag->category_settings);
-	                    }
-	                    $output .= '<li ' . (isset($categorySettings['class']) ? 'class="' . $categorySettings['class'] . '"' : '') . ' ><a  href="' . HTTP_HOST . '/category/' . $tag->slug . '">' . $tag->name . '</a></li>';
-	                    unset($categorySettings);
-                    }
-                    $output .= '</ul>';
-	                echo $output;
-	                ?>
+	                            </h2>
+                            </div>
+<!--	                --><?//
+//                    // tags
+//					$tags = $wp_object_cache->get($post->ID, 'category_relationships');
+//                    $output = '<ul class="category-list tags">';
+//                    foreach($tags as $key => $tag) {
+//	                    if(!is_null($tag->category_settings)) {
+//							$categorySettings = unserialize($tag->category_settings);
+//	                    }
+//	                    $output .= '<li ' . (isset($categorySettings['class']) ? 'class="' . $categorySettings['class'] . '"' : '') . ' ><a  href="' . HTTP_HOST . '/category/' . $tag->slug . '">' . $tag->name . '</a></li>';
+//	                    unset($categorySettings);
+//                    }
+//                    $output .= '</ul>';
+//	                echo $output;
+//	                ?>
 
 
 	                    <?php $excerpt = the_excerpt(false);
 		                    $contentBegin = strrpos($excerpt, '<p style="" rel="begin-of-the-excerpt-text">');
 		                    $content = substr($excerpt, $contentBegin);
-//		                    $addThis = substr($excerpt, 35, $contentBegin);
-//		                    echo $addThis;
 		                    echo '<script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
 				<div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="none"
 				data-yashareQuickServices="vkontakte,facebook,twitter,odnoklassniki,lj,gplus,pinterest"></div>'
@@ -81,30 +68,20 @@ get_header();
 		                    <div class="clear" style="height: 1px; width: 1px; "></div>
 
 		                    <div style="text-align: right; float: right; margin: 0px 0px 0px 15px;">
-<!--			                    <a href="--><?php //the_permalink(); ?><!--" title="--><?php //printf( esc_attr__( 'Permalink to %s', 'simplecatch' ), the_title_attribute( 'echo=0' ) ); ?><!--">-->
 			                    <?
-			                    $picture = get_the_post_thumbnail( null, 'featured', '' );
-			                    if(!empty($picture)) {
-				                    $pictureSrc = array();
-				                    preg_match('/src="[^"]+"/', $picture, $pictureSrc);
-				                    ?>
+			                        $picture = get_the_post_thumbnail( null, 'featured', '' );
+				                    if(!empty($picture)) {
+					                    $pictureSrc = array();
+					                    preg_match('/src="[^"]+"/', $picture, $pictureSrc);
+					                    ?>
                                     <a rel="prettyPhoto" href=<?=substr($pictureSrc[0], 4)?> title="<?php the_title_attribute( 'echo=0' ) ?>">
 				                    <?php the_post_thumbnail( 'featured' ); ?>
 			                    </a>
-			                    <?
-			                    }
-
-
-								?>
-
+			                        <? } ?>
 		                    </div>
-
-
 		                    <? echo $content ?>
-
 	                    </div>
-                         
-                            <div class="row-end"></div>
+                        <div class="row-end"></div>
                     </div><!-- .post -->
                     <hr />
                     

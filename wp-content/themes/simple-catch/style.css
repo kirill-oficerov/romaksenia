@@ -248,7 +248,7 @@ hr {
 	border-bottom-style:solid;
 	border-width:0 0 1px;
 	height:0px;
-	margin:0 0 30px;
+	margin:0 0 0px;
 	overflow:hidden;
 }
 ul {
@@ -811,7 +811,7 @@ h2.entry-title
 {
 	font-size: 16px;
 	/*line-height:24px;*/
-	padding-bottom:6px;
+	padding-bottom:0px;
 	margin-top: 10px;
 
 }
@@ -1887,4 +1887,10 @@ div#main div#content.col8 h2.entry-title a, #sidebar .widget .page_item a.event-
 	height: 16px; width: 16px;
 	background-position: -17px -17px;
 	display: block;
+}
+.yashare-auto-init {
+	float: right;
+	margin-top: 15px;
+	position: relative;
+	left: 5px;
 }
