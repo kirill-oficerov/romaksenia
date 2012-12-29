@@ -1,9 +1,11 @@
 /* Custom Contact Forms CSS */
 form.customcontactform, form.customcontactform-sidebar {
-	margin:8px;
+	/*margin:8px;*/
 	width:95%;
 	max-width:600px;
-	padding:4px;
+	/*padding:4px;*/
+	/* @todo kirill css custom_contact_forms */
+	margin: 10px 0px;
 }
 form.customcontactform-sidebar { width:100%; }
 form.customcontactform h4, form.customcontactform-sidebar h4 {
