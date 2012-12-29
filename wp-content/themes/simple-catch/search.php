@@ -43,7 +43,12 @@ get_header();
 			<?php endif; 
 		
 	else : ?>
-		<h2><?php printf( __( 'Your search <span> "%s" </span> did not match any documents', 'simplecatch' ), get_search_query() ); ?></h2>
+		<h2 style="font-size: 20px;">
+			По вашему запросу не найдено результатов<br>
+			<!--			--><?php //printf( __( 'Your search <span> "%s" </span> did not match any documents', 'simplecatch' ), get_search_query() ); ?>
+		</h2>
+	<a style="text-transform: uppercase; font-size: 12px; font-family: ProximaNovaReg; margin-left: 2px;" href="<?=HTTP_HOST . '/' . 'sitemap'?>">Карта сайта</a>
+
 <!--		<div class="post">-->
 <!--			<h5>--><?php //_e( 'A few suggestions', 'simplecatch' ); ?><!--</h5>-->
 <!--			<ul>-->
