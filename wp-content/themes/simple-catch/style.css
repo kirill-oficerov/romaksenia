@@ -1895,3 +1895,8 @@ div#main div#content.col8 h2.entry-title a, #sidebar .widget .page_item a.event-
 	position: relative;
 	left: 5px;
 }
+#main #content.col8 div.col8 {
+	/*display: inline;*/
+	text-align: justify;
+	line-height: 1.5;
+}
