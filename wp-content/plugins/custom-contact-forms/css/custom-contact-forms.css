@@ -35,7 +35,7 @@ form.customcontactform div input[type=checkbox], form.customcontactform-sidebar 
 form.customcontactform div input[type=radio], form.customcontactform-sidebar div input[type=radio] { width:20px; margin:5px 6px 0 0; }
 form.customcontactform input, form.customcontactform-sidebar input { margin: 7px 0 0 0; }
 form.customcontactform div textarea, form.customcontactform-sidebar div textarea {
-	width:17em;
+	width:227px;
 	padding:4px;
 	margin:0;
 	font-family:inherit;
