@@ -447,6 +447,7 @@ h1#site-title a img {
 	max-height: 90px;
 	float:left;
 	padding-right:20px;
+	padding-top: 4px;
 }
 h2#site-description {
 	font:14px Arial, Helvetica, sans-serif;
