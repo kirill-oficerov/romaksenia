@@ -82,7 +82,7 @@ h1, h2, h3, h4, h5, h6 {
 	color: #444444;
 	font-weight: bold;
 }
-h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+h1 a, h2 a, h3 a, h3 span.select-search-result, h4 a, h5 a, h6 a {
 	color: #444444;
 	font-size: 18px;
 }
@@ -807,6 +807,10 @@ h2#site-description {
 #main #content .post {
 	padding-bottom:30px;
 }
+#main #content .search-result-container .post {
+	padding-bottom:0px;
+}
+
 #main #content .post h1,
 h2.entry-title
 {
@@ -1899,4 +1903,8 @@ div#main div#content.col8 h2.entry-title a, #sidebar .widget .page_item a.event-
 	/*display: inline;*/
 	text-align: justify;
 	line-height: 1.5;
+}
+span.select-search-result {
+	background-color: yellow;
+	padding: 2px 5px;
 }

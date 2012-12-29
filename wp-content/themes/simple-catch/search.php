@@ -14,17 +14,27 @@ get_header();
 	}
       
 	if (have_posts()): ?>
-		<h2 class="entry-title"><?php printf( __( 'Showing results for: <span class="img-title">%s</span>', 'simplecatch' ), get_search_query() ); ?></h2>
-		
+<!--		<h2 class="entry-title">--><?php //printf( __( 'Showing results for: <span class="img-title">%s</span>', 'simplecatch' ), get_search_query() ); ?><!--</h2>-->
+		<div class="search-result-container">
 		<?php while (have_posts()) : the_post(); ?>
 		
 			<div <?php post_class();?>>
 				
-				<h3><a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( get_the_title() ); ?>"><?php the_title(); ?></a></h3>
-				<?php the_excerpt(); ?>
+				<h3 style="padding-top: 10px;"><a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( get_the_title() ); ?>">
+					<?php
+						$search = get_search_query();
+						$title = get_the_title();
+						echo str_replace($search, '<span class="select-search-result">' . $search . '</span>', $title)
+
+					?></a></h3>
+				<?php
+					$excerpt = get_the_excerpt();
+					echo str_replace($search, '<span class="select-search-result">' . $search . '</span>', $excerpt)
+				?>
 				<div class="row-end"></div>
 			</div> <!-- .post -->
-		
+		<hr style="padding-top: 20px;"/>
+		</div>
 		<?php endwhile; 
 			// Checking WP Page Numbers plugin exist
 			if ( function_exists('wp_pagenavi' ) ) : 
