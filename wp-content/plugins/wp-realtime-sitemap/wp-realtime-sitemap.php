@@ -1578,9 +1578,7 @@ if (!class_exists('WPRealtimeSitemap')) {
 				// Pages: Yes/No?
 				if (($all_options['show_pages'] != 'No' && $all_options['show_pages'] != 'Off') && ($show == 'pages' || $show == 'all')) {
 					$pages_header = (empty($pages_header)) ? __('Pages', 'wp-realtime-sitemap') : $pages_header;
-
-					$pages = '<div id="wp-realtime-sitemap-pages"><h3>' . $pages_header . '</h3>';
-					$pages .= '<ul>' . wp_list_pages(array('sort_column' => $page_sort_column, 'sort_order' => $page_sort_order, 'exclude' => $page_exclude, 'depth' => $page_depth, 'show_date' => $page_show_date, 'title_li' => '', 'echo' => '0')) . '</ul></div>';
+					$pages = '<div id="wp-realtime-sitemap-pages"><h3>' . $pages_header . '</h3>' . Wd_Pages_Sitemap::mergePagesPosts($all_options);
 				}
 
 				// Posts: Yes/No?
@@ -1625,6 +1623,11 @@ if (!class_exists('WPRealtimeSitemap')) {
 							}
 
 							$posts_header = (empty($posts_header)) ? __('Posts', 'wp-realtime-sitemap') : $posts_header;
+
+							// @todo kiriill sitemap
+//							$pages_header = (empty($pages_header)) ? __('Pages', 'wp-realtime-sitemap') : $pages_header;
+//							$pages = '<div id="wp-realtime-sitemap-pages"><h3>' . $pages_header . '</h3>';
+//							$pages .= wp_list_pages(array('sort_column' => $page_sort_column, 'sort_order' => $page_sort_order, 'exclude' => $page_exclude, 'depth' => $page_depth, 'show_date' => $page_show_date, 'title_li' => '', 'echo' => '0'));
 
 							$posts = '<div id="wp-realtime-sitemap-posts"><h3>' . $posts_header . '</h3><ul>' . $posts . '</ul></div>';
 						}
