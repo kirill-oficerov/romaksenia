@@ -16,7 +16,7 @@ class Wd_Pages_Sitemap {
 
 	function listPages($args = '', $all_options) {
 		extract($all_options);
-
+ 
 		$defaults = array(
 			'depth' => 0, 'show_date' => '',
 			'date_format' => get_option('date_format'),
