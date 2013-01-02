@@ -25,14 +25,17 @@ get_header();
 						$search = get_search_query();
 						$search = htmlspecialchars_decode($search);
 						$title = get_the_title();
-						echo str_ireplace($search, '<span class="select-search-result">' . $search . '</span>', $title)
+						echo Wd_Pages_Search::highlightString($search, $title);
+//						echo str_ireplace($search, '<span class="select-search-result">' . $search . '</span>', $title)
 
 					?></a></h3>
 				<?php
 //					$excerpt = get_the_excerpt();
+//					@todo kirill search get_the_excerpt
 					$excerpt = Wd_Pages_Search::getExcerpt($search);
+					echo Wd_Pages_Search::highlightString($search, $excerpt);
 
-					echo str_replace($search, '<span class="select-search-result">' . $search . '</span>', $excerpt)
+//					echo str_replace($search, '<span class="select-search-result">' . $search . '</span>', $excerpt)
 				?>
 				<div class="row-end"></div>
 			</div> <!-- .post -->

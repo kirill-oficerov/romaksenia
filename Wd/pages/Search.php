@@ -62,4 +62,14 @@ class Wd_Pages_Search {
 		}
 		return $firstSearchResultIndex;
 	}
+	public static function highlightString($needle, $haystack) {
+		$ind = mb_stripos($haystack, $needle, null, 'UTF-8');
+		$len = mb_strlen($needle, 'UTF-8');
+		if($ind !== false){
+			return mb_substr($haystack, 0, $ind, 'UTF-8') . '<span class="select-search-result">' . mb_substr($haystack, $ind, $len, 'UTF-8') . '</span>' .
+				self::highlightString($needle, mb_substr($haystack, $ind + $len));
+		} else {
+			return $haystack;
+		}
+	}
 }
