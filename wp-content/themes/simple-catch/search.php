@@ -23,12 +23,15 @@ get_header();
 				<h3 style="padding-top: 10px;"><a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( get_the_title() ); ?>">
 					<?php
 						$search = get_search_query();
+						$search = htmlspecialchars_decode($search);
 						$title = get_the_title();
-						echo str_replace($search, '<span class="select-search-result">' . $search . '</span>', $title)
+						echo str_ireplace($search, '<span class="select-search-result">' . $search . '</span>', $title)
 
 					?></a></h3>
 				<?php
-					$excerpt = get_the_excerpt();
+//					$excerpt = get_the_excerpt();
+					$excerpt = Wd_Pages_Search::getExcerpt($search);
+
 					echo str_replace($search, '<span class="select-search-result">' . $search . '</span>', $excerpt)
 				?>
 				<div class="row-end"></div>
@@ -73,7 +76,7 @@ get_header();
 
     </div> <!-- #content -->
             
- 	<?php 
+ 	<?php
 //    if( $themeoption_layout == 'right-sidebar' ) {
 //        get_sidebar();
 //    }?>
