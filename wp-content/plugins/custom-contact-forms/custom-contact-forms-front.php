@@ -69,26 +69,42 @@ if (!class_exists('CustomContactFormsFront')) {
 		}
 	
 		function insertFrontEndStyles() {
-            wp_register_style('CCFStandardsCSS', plugins_url() . '/custom-contact-forms/css/custom-contact-forms-standards.css');
-           	wp_register_style('CCFFormsCSS', plugins_url() . '/custom-contact-forms/css/custom-contact-forms.css');
-           	wp_enqueue_style('CCFStandardsCSS');
-			wp_enqueue_style('CCFFormsCSS');
+			//		@todo kirill try make faster custom-contact-forms css
+
+			if(is_page('contacts')) {
+
+	            wp_register_style('CCFStandardsCSS', plugins_url() . '/custom-contact-forms/css/custom-contact-forms-standards.css');
+	            wp_register_style('CCFFormsCSS', plugins_url() . '/custom-contact-forms/css/custom-contact-forms.css');
+	            wp_enqueue_style('CCFStandardsCSS');
+				wp_enqueue_style('CCFFormsCSS');
+			}
+
 		}
 		
-		function insertFrontEndScripts() { 
-			wp_enqueue_script('jquery');
-			wp_enqueue_script('jquery-tools', plugins_url() . '/custom-contact-forms/js/jquery.tools.min.js');
-			wp_enqueue_script('ccf-main', plugins_url() . '/custom-contact-forms/js/custom-contact-forms.js', '1.0');
+		function insertFrontEndScripts() {
+			//		@todo kirill try make faster custom-contact-forms jquery-tools
+
+			if(is_page('contacts')) {
+				wp_enqueue_script('jquery');
+				wp_enqueue_script('jquery-tools', plugins_url() . '/custom-contact-forms/js/jquery.tools.min.js');
+				wp_enqueue_script('ccf-main', plugins_url() . '/custom-contact-forms/js/custom-contact-forms.js', '1.0');
+			}
 		}
 		
 		function insertDatePickerScripts() {
-			wp_enqueue_script('jquery-ui-datepicker', plugins_url() . '/custom-contact-forms/js/jquery.ui.datepicker.js', array('jquery-ui-core', 'jquery-ui-widget'));
-			wp_enqueue_script('ccf-datepicker', plugins_url() . '/custom-contact-forms/js/custom-contact-forms-datepicker.js', '1.2');
+	//		@todo kirill try make faster custom-contact-forms datepicker
+//			wp_enqueue_script('jquery-ui-datepicker', plugins_url() . '/custom-contact-forms/js/jquery.ui.datepicker.js', array('jquery-ui-core', 'jquery-ui-widget'));
+//			wp_enqueue_script('ccf-datepicker', plugins_url() . '/custom-contact-forms/js/custom-contact-forms-datepicker.js', '1.2');
 		}
 		
 		function insertDatePickerStyles() {
-			wp_register_style('ccf-jquery-ui', plugins_url() . '/custom-contact-forms/css/jquery-ui.css');
-            wp_enqueue_style('ccf-jquery-ui');
+			//		@todo kirill try make faster custom-contact-forms datepicker
+
+			if(is_page('contacts')) {
+
+				wp_register_style('ccf-jquery-ui', plugins_url() . '/custom-contact-forms/css/jquery-ui.css');
+	            wp_enqueue_style('ccf-jquery-ui');
+			}
 		}
 		
 		function setFormError($key, $message) {

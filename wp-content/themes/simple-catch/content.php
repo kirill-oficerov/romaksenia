@@ -102,8 +102,8 @@ get_header();
 						if ( $wp_query->max_num_pages > 1 ) : 
 					?>
 							<ul class="default-wp-page">
-								<li class="previous"><?php next_posts_link( __( 'Предыдущие', 'simplecatch' ) ); ?></li>
-								<li class="next"><?php previous_posts_link( __( 'Следующие', 'simplecatch' ) ); ?></li>
+								<li class="previous"><a class="icons left-arrow-icon" href="javascript:void(0);">&nbsp;</a><?php next_posts_link('Предыдущие'); ?></li>
+								<li class="next"><?php previous_posts_link('Следующие'); ?></li>
 							</ul>
                         <?php endif;
  					endif; 

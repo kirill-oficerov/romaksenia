@@ -14,7 +14,6 @@
 <head profile="http://gmpg.org/xfn/11">
 <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
 <title><?php wp_title(''); ?></title>
-<link rel="stylesheet" media="screen" href="http://openfontlibrary.org/face/sansus-webissimo" rel="stylesheet" type="text/css"/>
 <link rel="stylesheet" type="text/css" media="all" href="<?php echo get_stylesheet_uri(); ?>" />
 <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 <?php
@@ -26,11 +25,12 @@
 	// @todo kirill js
 	function my_scripts_method() {
 		// prettyPhoto
+		wp_enqueue_script('jquery');
 		wp_enqueue_script('prettyPhoto', '/Wd/js/prettyPhoto/js/jquery.prettyPhoto.js');
 		wp_enqueue_style('prettyPhoto', '/Wd/js/prettyPhoto/css/prettyPhoto.css');
 
 		//  post
-		wp_enqueue_script('post', '/Wd/js/post.js');
+//		wp_enqueue_script('post', '/Wd/js/post.js');
 
 	}
 	add_action( 'wp_enqueue_scripts', 'my_scripts_method' ); // На внешней части сайта (в теме оформления)

@@ -197,8 +197,10 @@ function wp_nav_menu( $args = array() ) {
 		$allowed_tags = apply_filters( 'wp_nav_menu_container_allowedtags', array( 'div', 'nav' ) );
 		if ( in_array( $args->container, $allowed_tags ) ) {
 			$show_container = true;
-			$class = $args->container_class ? ' class="' . esc_attr( $args->container_class ) . '"' : ' class="menu-'. $menu->slug .'-container"';
-			$id = $args->container_id ? ' id="' . esc_attr( $args->container_id ) . '"' : '';
+//			$class = $args->container_class ? ' class="' . esc_attr( $args->container_class ) . '"' : ' class="menu-'. $menu->slug .'-container"';
+			$class = $args->container_class ? ' class="' . $args->container_class . '"' : ' class="menu-'. $menu->slug .'-container"';
+//			$id = $args->container_id ? ' id="' . esc_attr( $args->container_id ) . '"' : '';
+			$id = $args->container_id ? ' id="' . $args->container_id . '"' : '';
 			$nav_menu .= '<'. $args->container . $id . $class . '>';
 		}
 	}
@@ -234,16 +236,17 @@ function wp_nav_menu( $args = array() ) {
 	$wrap_class = $args->menu_class ? $args->menu_class : '';
 
 	// Allow plugins to hook into the menu to add their own <li>'s
-	$items = apply_filters( 'wp_nav_menu_items', $items, $args );
-	$items = apply_filters( "wp_nav_menu_{$menu->slug}_items", $items, $args );
+//	$items = apply_filters( 'wp_nav_menu_items', $items, $args );
+//	$items = apply_filters( "wp_nav_menu_{$menu->slug}_items", $items, $args );
 
-	$nav_menu .= sprintf( $args->items_wrap, esc_attr( $wrap_id ), esc_attr( $wrap_class ), $items );
+//	$nav_menu .= sprintf( $args->items_wrap, esc_attr( $wrap_id ), esc_attr( $wrap_class ), $items );
+	$nav_menu .= sprintf( $args->items_wrap, $wrap_id , $wrap_class, $items );
 	unset( $items );
 
 	if ( $show_container )
 		$nav_menu .= '</' . $args->container . '>';
 
-	$nav_menu = apply_filters( 'wp_nav_menu', $nav_menu, $args );
+//	$nav_menu = apply_filters( 'wp_nav_menu', $nav_menu, $args );
 
 	if ( $args->echo )
 		echo $nav_menu;

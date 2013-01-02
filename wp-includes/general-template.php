@@ -51,17 +51,19 @@ function get_header( $name = null ) {
  * @param string $name The name of the specialised footer.
  */
 function get_footer( $name = null ) {
-	do_action( 'get_footer', $name );
+//	@todo kirill try make faster footer get_footer
+	require_once( SIMPLE_CATCH_DIR . 'footer.php' );
 
-	$templates = array();
-	if ( isset($name) )
-		$templates[] = "footer-{$name}.php";
+//	do_action( 'get_footer', $name );
 
-	$templates[] = 'footer.php';
-
+//	$templates = array();
+//	if ( isset($name) )
+//		$templates[] = "footer-{$name}.php";
+//
+//	$templates[] = 'footer.php';
 	// Backward compat code will be removed in a future release
-	if ('' == locate_template($templates, true))
-		load_template( ABSPATH . WPINC . '/theme-compat/footer.php');
+//	if ('' == locate_template($templates, true))
+//		load_template( ABSPATH . WPINC . '/theme-compat/footer.php');
 }
 
 /**

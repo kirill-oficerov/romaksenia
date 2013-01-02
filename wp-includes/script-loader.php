@@ -121,7 +121,7 @@ function wp_default_scripts( &$scripts ) {
 
 	$scripts->add( 'jquery', '/wp-includes/js/jquery/jquery.js', array(), '1.7.2' );
 	// @todo kirill js prettyphoto
-	$scripts->add( 'prettyPhoto', '/Wd/js/prettyPhoto/js/jquery.prettyPhoto.js', array());
+	$scripts->add( 'prettyPhoto', '/Wd/js/prettyPhoto/js/jquery.prettyPhoto.js', array(), '', 1);
 
 	// full jQuery UI
 	$scripts->add( 'jquery-ui-core', '/wp-includes/js/jquery/ui/jquery.ui.core.min.js', array('jquery'), '1.8.20', 1 );

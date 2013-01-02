@@ -11,20 +11,25 @@ function simplecatch_scripts_method() {
 
 	//Enqueue Slider Script only in Front Page
 	if ( is_home() || is_front_page() ) {
-		wp_enqueue_script( 'simplecatch_slider', get_template_directory_uri() . '/js/simplecatch_slider.js', array( 'jquery-cycle' ), '1.0', true );
+//		@todo kirill try make faster slider
+//		wp_enqueue_script( 'simplecatch_slider', get_template_directory_uri() . '/js/simplecatch_slider.js', array( 'jquery-cycle' ), '1.0', true );
 	}
 
 	//Enqueue Search Script
-	wp_enqueue_script ( 'simplecatch_search', get_template_directory_uri() . '/js/simplecatch_search.js', array( 'jquery' ), '1.0', true );
+	//		@todo kirill try make faster search
+
+//	wp_enqueue_script ( 'simplecatch_search', get_template_directory_uri() . '/js/simplecatch_search.js', array( 'jquery' ), '1.0', true );
 
 	//Browser Specific Enqueue Script i.e. for IE 1-6
-	$simplecatch_ua = strtolower($_SERVER['HTTP_USER_AGENT']);
-	if(preg_match('/(?i)msie [1-6]/',$simplecatch_ua)) {
-		wp_enqueue_script( 'pngfix', get_template_directory_uri() . '/js/pngfix.min.js' );
-	}
-	 if(preg_match('/(?i)msie [1-8]/',$simplecatch_ua)) {
-	 	wp_enqueue_style( 'iebelow8', get_template_directory_uri() . '/css/ie.css', true );
-	}
+	//		@todo kirill try make faster IE
+
+//	$simplecatch_ua = strtolower($_SERVER['HTTP_USER_AGENT']);
+//	if(preg_match('/(?i)msie [1-6]/',$simplecatch_ua)) {
+//		wp_enqueue_script( 'pngfix', get_template_directory_uri() . '/js/pngfix.min.js' );
+//	}
+//	 if(preg_match('/(?i)msie [1-8]/',$simplecatch_ua)) {
+//	 	wp_enqueue_style( 'iebelow8', get_template_directory_uri() . '/css/ie.css', true );
+//	}
 
 } // simplecatch_scripts_method
 add_action( 'wp_enqueue_scripts', 'simplecatch_scripts_method' );
@@ -40,7 +45,8 @@ function simplecatch_load_google_fonts() {
     wp_register_style('google-fonts', 'http://fonts.googleapis.com/css?family=Lobster');
 	wp_enqueue_style( 'google-fonts');
 }
-add_action('wp_enqueue_scripts', 'simplecatch_load_google_fonts');
+//	@todo kirill try make faster js
+//add_action('wp_enqueue_scripts', 'simplecatch_load_google_fonts');
 
 
 /**
@@ -70,7 +76,8 @@ function simplecatch_enqueue_comment_reply_script() {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
-add_action( 'comment_form_before', 'simplecatch_enqueue_comment_reply_script' );
+//	@todo kirill try make faster js
+//add_action( 'comment_form_before', 'simplecatch_enqueue_comment_reply_script' );
 
 
 /**
@@ -986,10 +993,9 @@ function simplecatch_loop() {
  * @since Simple Catch 1.3.2
  */
 function simplecatch_display_div() {
-	echo '<div id="main" class="layout-978">';
-
 	// @todo kirill header
 	?>
+	<div id="main" class="layout-978">
 	<div id="header">
 	<div class="top-bg"></div>
 	<div class="layout-978">
@@ -1014,10 +1020,6 @@ function simplecatch_display_div() {
 		global $wpdb;
 		$query = "SELECT * FROM wp_posts WHERE post_title IN ('Контакты') AND post_type IN ('page', 'post')";
 		$terms = $wpdb->get_results($query);
-
-//		echo "<pre>".print_r($terms, true)."</pre>\n\n";
-//		die();
-
 		?>
         	</div><!-- .social-search -->
 			  <div class="header-icons-container">
@@ -1029,14 +1031,16 @@ function simplecatch_display_div() {
             <div class="row-end"></div>
 
         <?php
+//		@todo kirill try make faster header
 		// This function passes the value of slider effect to js file
-	if( function_exists( 'simplecatch_pass_slider_value' ) ) {
-	simplecatch_pass_slider_value();
-	}
+
+//	if( function_exists( 'simplecatch_pass_slider_value' ) ) {
+//	simplecatch_pass_slider_value();
+//	}
 			// Display slider in home page and breadcrumb in other pages
-			if ( function_exists( 'simplecatch_sliderbreadcrumb' ) ) :
-				simplecatch_sliderbreadcrumb();
-			endif;
+//			if ( function_exists( 'simplecatch_sliderbreadcrumb' ) ) :
+//				simplecatch_sliderbreadcrumb();
+//			endif;
 		?>
 	</div><!-- .layout-978 -->
 </div><!-- #header -->

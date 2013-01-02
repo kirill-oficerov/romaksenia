@@ -1545,8 +1545,8 @@ ul.default-wp-page li.next {
 	float:right;
 }
 ul.default-wp-page li.previous a {
-	background: url(images/ul-bg-prev.png) no-repeat left 9px;
-	padding:0 0 30px 15px;
+	/*background: url(images/ul-bg-prev.png) no-repeat left 9px;*/
+	padding:0 0 30px 7px;
 	float:left;
 	display:block;
 	padding-top: 3px;
@@ -1558,6 +1558,15 @@ ul.default-wp-page li.next a {
 	display:block;
 }
 
+ul.default-wp-page li.previous a.left-arrow-icon {
+	background: url('images/icons.png') no-repeat -68px -8px;
+	width: 8px;
+	height: 8px;
+	display: block;
+	float: left;
+	padding: 0px;
+	margin-top: 9px;
+}
 /* =Footer
 -------------------------------------------------------------- */
 #footer {
