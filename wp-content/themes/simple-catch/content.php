@@ -77,7 +77,8 @@ get_header();
 					                    preg_match('/src="[^"]+"/', $picture, $pictureSrc);
 					                    ?>
                                     <a rel="prettyPhoto" href=<?=substr($pictureSrc[0], 4)?> title="<?php the_title_attribute( 'echo=0' ) ?>">
-				                    <?php the_post_thumbnail( 'featured' ); ?>
+<!--				                    --><?php // the_post_thumbnail( 'featured' ); ?>
+				                    <?php echo $picture ?>
 			                    </a>
 			                        <? } ?>
 		                    </div>

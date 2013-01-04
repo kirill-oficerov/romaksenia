@@ -22,17 +22,18 @@
  * @param string $name The name of the specialised header.
  */
 function get_header( $name = null ) {
-	do_action( 'get_header', $name );
+	require_once(SIMPLE_CATCH_DIR . 'header.php');
+//	do_action( 'get_header', $name );
 
-	$templates = array();
-	if ( isset($name) )
-		$templates[] = "header-{$name}.php";
+//	$templates = array();
+//	if ( isset($name) )
+//		$templates[] = "header-{$name}.php";
 
-	$templates[] = 'header.php';
+//	$templates[] = 'header.php';
 
 	// Backward compat code will be removed in a future release
-	if ('' == locate_template($templates, true))
-		load_template( ABSPATH . WPINC . '/theme-compat/header.php');
+//	if ('' == locate_template($templates, true))
+//		load_template( ABSPATH . WPINC . '/theme-compat/header.php');
 }
 
 /**

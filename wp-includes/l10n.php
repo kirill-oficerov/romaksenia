@@ -94,7 +94,10 @@ function translate_with_gettext_context( $text, $context, $domain = 'default' ) 
  * @return string Translated text
  */
 function __( $text, $domain = 'default' ) {
-	return translate( $text, $domain );
+
+	return $text;
+//	@todo kirill try make faster translate __
+//	return translate( $text, $domain );
 }
 
 /**

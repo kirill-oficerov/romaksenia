@@ -604,7 +604,8 @@ function simplecatch_site_verification() {
 	}
 	echo $simplecatch_site_verification;
 }
-add_action('wp_head', 'simplecatch_site_verification');
+//@todo kirill try make faster simplecatch_site_verification
+//add_action('wp_head', 'simplecatch_site_verification');
 
 
 /**
@@ -634,7 +635,8 @@ function simplecatch_footercode() {
 	}
 	echo $simplecatch_footercode;
 }
-add_action('wp_footer', 'simplecatch_footercode');
+//@todo kirill try make faster simplecatch_footercode
+//add_action('wp_footer', 'simplecatch_footercode');
 
 
 /**
@@ -690,7 +692,8 @@ function simplecatch_inline_css() {
 	}
 	echo $simplecatch_inline_css;
 }
-add_action('wp_head', 'simplecatch_inline_css');
+//@todo kirill try make faster simplecatch_inline_css
+//add_action('wp_head', 'simplecatch_inline_css');
 
 
 /*

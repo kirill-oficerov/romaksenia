@@ -93,7 +93,7 @@ function simplecatch_setup() {
 
 	// @todo kirill menu
 	register_nav_menu( 'custom_menu_0', __( 'Custom menu 0', 'simplecatch' ) );
-	update_site_option('remove_site_title', 1);
+//	update_site_option('remove_site_title', 1);
 	// widgets
 	register_widget('Wd_Widgets_Events');
 
