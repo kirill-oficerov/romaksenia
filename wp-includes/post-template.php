@@ -213,8 +213,11 @@ function get_the_content($more_link_text = null, $stripteaser = false) {
 		if ( $more ) {
 			$output .= '<span id="more-' . $post->ID . '"></span>' . $content[1];
 		} else {
-			if ( ! empty($more_link_text) )
-				$output .= apply_filters( 'the_content_more_link', ' <a href="' . get_permalink() . "#more-{$post->ID}\" class=\"more-link\">$more_link_text</a>", $more_link_text );
+//			if ( ! empty($more_link_text) ) {
+//
+//			}
+			$more_link_text = '1234567890';
+			$output .= apply_filters( 'the_content_more_link', ' <a href="' . get_permalink() . "#more-{$post->ID}\" class=\"more-link\">$more_link_text</a>", $more_link_text );
 			$output = force_balance_tags($output);
 		}
 

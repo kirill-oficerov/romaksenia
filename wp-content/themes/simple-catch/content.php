@@ -36,8 +36,8 @@ get_header();
 		                    continue;
 	                    }?>
                 <div <?php post_class(); ?> >
-	                    <div class="col8">
-                            <div style="float: left; margin-right: -150px; width: 100%; ">
+	                    <div class="col8" style="min-width: 100%">
+                            <div style="float: left; margin-right: -150px; min-width: 100%; ">
 			                    <h2 class="entry-title" style="margin: 10px 150px 3px 0px; ">
 	                                <a href="<?php the_permalink() ?>" title="" rel="bookmark" ><?php the_title(); ?></a>
 	                            </h2>

@@ -2121,6 +2121,15 @@ function wp_trim_excerpt($text = '') {
 		$excerpt_length = apply_filters('excerpt_length', 55);
 		$excerpt_more = apply_filters('excerpt_more', ' ' . '[...]');
 		$text = wp_trim_words( $text, $excerpt_length, $excerpt_more );
+		if(strpos($text, '1234567890') !== false) {
+			global $post;
+			$more_link_text = 'Далее';
+			$excerptMore = apply_filters( 'the_content_more_link', ' <a href="' . get_permalink() . "#more-{$post->ID}\" class=\"more-link\">$more_link_text</a>", $more_link_text );
+			$excerptMore = str_replace('more-link', 'readmore', $excerptMore);
+			$text = mb_substr($text, 0, mb_strlen($text) - 11, 'UTF-8');
+			$text = str_replace('&nbsp;', ' ', $text);
+			$text = rtrim($text, '. ') . '...<br />' . $excerptMore;
+		}
 	}
 	return apply_filters('wp_trim_excerpt', $text, $raw_excerpt);
 }
