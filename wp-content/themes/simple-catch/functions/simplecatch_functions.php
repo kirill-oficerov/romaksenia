@@ -947,7 +947,7 @@ function simplecatch_loop() {
 				<a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'simplecatch' ), the_title_attribute( 'echo=0' ) ); ?>"><?php the_post_thumbnail( 'featured' ); ?></a>
 			</div>
 			<?
-			$content = preg_replace('/<a/s', '<a rel="prettyPhoto"', $content);
+//			$content = preg_replace('/<a/s', '<a rel="prettyPhoto"', $content);
 			echo $content ?>
 			<?
             // copy this <!--nextpage--> and paste at the post content where you want to break the page
