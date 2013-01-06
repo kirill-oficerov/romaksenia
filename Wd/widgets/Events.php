@@ -36,7 +36,7 @@ WHERE wp_terms.name = 'Ивенты' AND wp_posts.post_status = 'publish'";
 		<div>
 			<?
 			foreach($terms as $key => $post) { ?>
-				<div class="page_item page-item-<?=$post->term_id?>"><a href="<?=HTTP_HOST?>/<?=$post->post_name ?>/" class="event-title"><?=$post->post_title?></a>
+				<div class="page_item page-item-<?=$post->term_id?>"><a href="<?=HTTP_HOST?>/events/<?=$post->post_name ?>/" class="event-title"><?=$post->post_title?></a>
 					<div class="event-content">
 						<?
 						$wordsAmount = Wd::get('settings')->getValue(Settings::MAX_EVENT_LENGTH_WORDS);
