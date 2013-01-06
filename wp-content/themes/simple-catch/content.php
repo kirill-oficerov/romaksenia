@@ -75,6 +75,12 @@ get_header();
 				                    if(!empty($picture)) {
 					                    $pictureSrc = array();
 					                    preg_match('/src="[^"]+"/', $picture, $pictureSrc);
+					                    $settings = unserialize($post->settings);
+					                    if($settings) {
+						                    $width = $settings['width'];
+						                    $height = $settings['height'];
+						                    $picture = str_replace('<img', '<img style="width:' . $width . 'px; height:' . $height . 'px;"', $picture);
+					                    }
 					                    ?>
                                     <a rel="prettyPhoto" href=<?=substr($pictureSrc[0], 4)?> title="<?php the_title_attribute( 'echo=0' ) ?>">
 <!--				                    --><?php // the_post_thumbnail( 'featured' ); ?>

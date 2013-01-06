@@ -425,7 +425,18 @@ function media_upload_form_handler() {
 		$keys = array_keys($_POST['send']);
 		$send_id = (int) array_shift($keys);
 	}
+	// @todo kirill admin featured image
+	if(isset($_POST['featured_width']) && !empty($_POST['featured_width']) ||
+		isset($_POST['featured_height']) && !empty($_POST['featured_height'])
+	) {
+		$height = intval($_POST['featured_height']);
+		$width = intval($_POST['featured_width']);
+		$settings = serialize(array('width' => $width, 'height' => $height));
+		global $wpdb;
+		$query = 'UPDATE wp_posts SET settings = \'' . $settings . '\' WHERE ID=' . intval($_POST['post_id']);
 
+		$terms = $wpdb->get_results($query);
+	}
 	if ( !empty($_POST['attachments']) ) foreach ( $_POST['attachments'] as $attachment_id => $attachment ) {
 		$post = $_post = get_post($attachment_id, ARRAY_A);
 		$post_type_object = get_post_type_object( $post[ 'post_type' ] );
@@ -1183,9 +1194,31 @@ function get_media_item( $attachment_id, $args = null ) {
 		$thumbnail = "<a class='wp-post-thumbnail' id='wp-post-thumbnail-" . $attachment_id . "' href='#' onclick='WPSetAsThumbnail(\"$attachment_id\", \"$ajax_nonce\");return false;'>" . esc_html__( "Use as featured image" ) . "</a>";
 	}
 
-	if ( ( $send || $thumbnail || $delete ) && !isset( $form_fields['buttons'] ) )
-		$form_fields['buttons'] = array( 'tr' => "\t\t<tr class='submit'><td></td><td class='savesend'>$send $thumbnail $delete</td></tr>\n" );
+	if ( ( $send || $thumbnail || $delete ) && !isset( $form_fields['buttons'] ) ) {
+		// @todo kirill admin featured
+		$form_fields['buttons'] = array( 'tr' => "\t\t<tr class='submit'><td></td><td class='savesend'>$send $thumbnail $delete</td><td></td></tr>\n" );
+		$width = '';
+		$height = '';
+		if(isset($_GET['post_id']) && !empty($_GET['post_id'])) {
+			$query = 'SELECT settings FROM wp_posts WHERE ID=' . intval($_GET['post_id']);
+			global $wpdb;
+			$settings = $wpdb->get_results($query);
+			if($settings) {
+				$settings = array_pop($settings);
+				$settings = unserialize($settings->settings);
+				if($settings) {
+					$width = $settings['width'];
+					$height = $settings['height'];
+				}
+			}
+		}
 
+		$form_fields['featured_info'] = array( 'tr' => "\t\t<tr class='submit'>
+		<th valign='top' scope='row' class='label' style='font-size:13px; font-weight: bold;'><span style='cursor: pointer;' class='alignleft'>Featured settings</span><br class='clear'></th>
+		<td class='savesend' style='padding-top: 1px;'>
+			<span style='margin-top:5px;'>width:</span><input type='text' value='" . $width . "' class='text' style='width:60px;' name='featured_width'> &nbsp; <span style='margin-top:5px;'>height:</span><input type='text' value='" . $height . "' class='text' style='width:60px;' name='featured_height'>
+		</td><td></td></tr>\n" );
+	}
 	$hidden_fields = array();
 
 	foreach ( $form_fields as $id => $field ) {
