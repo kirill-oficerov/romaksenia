@@ -69,6 +69,18 @@ WHERE wp_terms.name = 'Ивенты' AND wp_posts.post_status = 'publish'";
 			?>
 	</div>
 	</div>
+	<script type="text/javascript">
+		(function($) {
+			$(function() {
+//				var contentHeight = $('.rubber-layout-keep-content');
+				var sidebarHeight = $('#sidebar').height();
+//				if(contentHeight < sidebarHeight) {
+					$('.rubber-layout-keep-content').css({'min-height':sidebarHeight + 'px'});
+
+//				}
+			});
+		})(jQuery);
+	</script>
 		<?
 	}
 }
