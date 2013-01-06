@@ -2129,7 +2129,7 @@ function wp_trim_excerpt($text = '') {
 			$excerptMore = str_replace('more-link', 'readmore', $excerptMore);
 			$text = mb_substr($text, 0, mb_strlen($text) - 11, 'UTF-8');
 			$text = str_replace('&nbsp;', ' ', $text);
-			$text = rtrim($text, '. ') . '.<br />' . $excerptMore;
+			$text = rtrim($text, '. ') . '<br />' . $excerptMore;
 		}
 	}
 	return apply_filters('wp_trim_excerpt', $text, $raw_excerpt);
