@@ -1,0 +1,1 @@
+ALTER TABLE  `wp_posts` ADD  `settings` TEXT NOT NULL;
