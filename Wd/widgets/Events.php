@@ -40,16 +40,26 @@ WHERE wp_terms.name = 'Ивенты' AND wp_posts.post_status = 'publish'";
 					<div class="event-content">
 						<?
 						$wordsAmount = Wd::get('settings')->getValue(Settings::MAX_EVENT_LENGTH_WORDS);
-						$words_array = preg_split( "/[\n\r\t ]+/", $post->post_content, $wordsAmount, PREG_SPLIT_NO_EMPTY );
-						$textRest = array_pop( $words_array );
-						$dotPos = strpos($textRest, '.');
-						$sentenceRest = $textRest;
-						if($dotPos) {
-							$sentenceRest = substr($textRest, 0, $dotPos);
+						$postContent = $post->post_content;
+						$matches = 0;
+						if ( preg_match('/<!--more(.*?)?-->/', $postContent, $matches) ) {
+							// exist
+							list($text, $extended) = explode($matches[0], $postContent, 2);
+							$text = strip_tags($text) . '<br /><a class="readmore" href="http://wedigital.dev/' . $post->post_name . '/#more-' . $post->ID . '">Далее</a>';
+						} else {
+							$postContent = strip_tags($post->post_content);
+							$words_array = preg_split( "/[\n\r\t ]+/", $postContent, $wordsAmount, PREG_SPLIT_NO_EMPTY );
+							$textRest = array_pop( $words_array );
+							$dotPos = strpos($textRest, '.');
+							$sentenceRest = $textRest;
+							if($dotPos) {
+								$sentenceRest = substr($textRest, 0, $dotPos);
+							}
+							$text = implode( ' ', $words_array );
+							$more = '.<br />' . '<a class="readmore" href="http://wedigital.dev/' . $post->post_name . '/">Далее</a>';
+							$text = $text . $sentenceRest . $more;
 						}
-						$text = implode( ' ', $words_array );
-						$more = '<a class="readmore" href="http://wedigital.dev/' . $post->post_name . '/">Далее</a>';
-						$text = $text . $sentenceRest . '...<br />' . $more;
+
 						echo $text;
 						?>
 					</div>

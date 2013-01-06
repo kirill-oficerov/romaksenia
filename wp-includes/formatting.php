@@ -2176,7 +2176,7 @@ function wp_trim_words( $text, $num_words = 55, $more = null ) {
 		}
 		$text = implode( $sep, $words_array );
 		// @todo kirill excerpt
-		$text = $text . $sentenceRest . '.<br />' . $more;
+		$text = $text . $sentenceRest . '<br />' . $more;
 	} else {
 		$text = implode( $sep, $words_array );
 	}
