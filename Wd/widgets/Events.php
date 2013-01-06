@@ -45,7 +45,7 @@ WHERE wp_terms.name = 'Ивенты' AND wp_posts.post_status = 'publish'";
 						if ( preg_match('/<!--more(.*?)?-->/', $postContent, $matches) ) {
 							// exist
 							list($text, $extended) = explode($matches[0], $postContent, 2);
-							$text = strip_tags($text) . '<br /><a class="readmore" href="' . HTTP_HOST . '/' . $post->post_name . '/#more-' . $post->ID . '">Далее</a>';
+							$text = strip_tags($text) . '<br /><a class="readmore" href="' . HTTP_HOST . '/events/' . $post->post_name . '/#more-' . $post->ID . '">Далее</a>';
 						} else {
 							$postContent = strip_tags($post->post_content);
 							$words_array = preg_split( "/[\n\r\t ]+/", $postContent, $wordsAmount, PREG_SPLIT_NO_EMPTY );
@@ -56,7 +56,7 @@ WHERE wp_terms.name = 'Ивенты' AND wp_posts.post_status = 'publish'";
 								$sentenceRest = substr($textRest, 0, $dotPos);
 							}
 							$text = implode( ' ', $words_array );
-							$more = '.<br />' . '<a class="readmore" href="http://wedigital.dev/' . $post->post_name . '/">Далее</a>';
+							$more = '.<br />' . '<a class="readmore" href="' . HTTP_HOST . '/events/' . $post->post_name . '/">Далее</a>';
 							$text = $text . $sentenceRest . $more;
 						}
 
