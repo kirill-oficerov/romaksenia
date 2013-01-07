@@ -216,6 +216,7 @@ function get_the_content($more_link_text = null, $stripteaser = false) {
 //			if ( ! empty($more_link_text) ) {
 //
 //			}
+			// @todo kirill 1234567890
 			$more_link_text = '1234567890';
 			$output .= apply_filters( 'the_content_more_link', ' <a href="' . get_permalink() . "#more-{$post->ID}\" class=\"more-link\">$more_link_text</a>", $more_link_text );
 			$output = force_balance_tags($output);

@@ -3599,8 +3599,12 @@ function setup_postdata($post) {
 	$page = get_query_var('page');
 	if ( !$page )
 		$page = 1;
-	if ( is_single() || is_page() || is_feed() )
+	// @todo kirill articles more
+	if ( (is_single() || is_page() || is_feed()) && !is_page('articles')) {
 		$more = 1;
+	} else {
+		$more = 0;
+	}
 	$content = $post->post_content;
 	if ( strpos( $content, '<!--nextpage-->' ) ) {
 		if ( $page > 1 )
