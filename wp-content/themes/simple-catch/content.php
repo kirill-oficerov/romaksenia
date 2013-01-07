@@ -20,7 +20,8 @@ get_header();
 	})(jQuery);
 </script>
 			<?php if ( have_posts() ) : 
-                while( have_posts() ):the_post(); ?>
+                while( have_posts() ):
+	                the_post(); ?>
 
                         <?php
 	                    global $post;
@@ -109,8 +110,9 @@ get_header();
 						if ( $wp_query->max_num_pages > 1 ) : 
 					?>
 							<ul class="default-wp-page">
-								<li class="previous"><a class="icons left-arrow-icon" href="javascript:void(0);">&nbsp;</a><?php next_posts_link('Предыдущие'); ?></li>
-								<li class="next"><?php previous_posts_link('Следующие'); ?></li>
+								<li class="previous"><? next_posts_link( 'Предыдущие' );?></li>
+								<li class="next"><? previous_posts_link('Следующие'); ?></li>
+								<div class="clear" style="margin-bottom: 10px;"></div>
 							</ul>
                         <?php endif;
  					endif; 

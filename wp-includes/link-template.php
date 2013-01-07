@@ -1502,7 +1502,9 @@ function get_next_posts_link( $label = null, $max_page = 0 ) {
 
 	if ( !is_single() && ( $nextpage <= $max_page ) ) {
 		$attr = apply_filters( 'next_posts_link_attributes', '' );
-		return '<a href="' . next_posts( $max_page, false ) . "\" $attr>" . preg_replace('/&([^#])(?![a-z]{1,8};)/i', '&#038;$1', $label) . '</a>';
+		// @todo kirill previous
+		$href = next_posts( $max_page, false );
+		return '</a><a class="icons left-arrow-icon" href="' . $href . "\" $attr>" . preg_replace('/&([^#])(?![a-z]{1,8};)/i', '&#038;$1', $label) . '</a>';
 	}
 }
 
@@ -1572,8 +1574,9 @@ function get_previous_posts_link( $label = null ) {
 		$label = __( '&laquo; Previous Page' );
 
 	if ( !is_single() && $paged > 1 ) {
+		// @todo kirill previous
 		$attr = apply_filters( 'previous_posts_link_attributes', '' );
-		return '<a href="' . previous_posts( false ) . "\" $attr>". preg_replace( '/&([^#])(?![a-z]{1,8};)/i', '&#038;$1', $label ) .'</a>';
+		return '<a class="icons right-arrow-icon" href="' . previous_posts( false ) . "\" $attr>". preg_replace( '/&([^#])(?![a-z]{1,8};)/i', '&#038;$1', $label ) .'</a>';
 	}
 }
 

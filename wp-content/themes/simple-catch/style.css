@@ -1544,19 +1544,19 @@ ul.default-wp-page li.previous {
 ul.default-wp-page li.next {
 	float:right;
 }
-ul.default-wp-page li.previous a {
+/*ul.default-wp-page li.previous a {*/
 	/*background: url(images/ul-bg-prev.png) no-repeat left 9px;*/
-	padding:0 0 30px 7px;
-	float:left;
-	display:block;
-	padding-top: 3px;
-}
-ul.default-wp-page li.next a {
-	background: url(images/ul-bg.png) no-repeat right 9px;
-	padding:2px 15px 30px 0px;
-	float:right;
-	display:block;
-}
+	/*padding:0 0 30px 7px;*/
+	/*float:left;*/
+	/*display:block;*/
+	/*padding-top: 3px;*/
+/*}*/
+/*ul.default-wp-page li.next a {*/
+	/*background: url(images/ul-bg.png) no-repeat right 9px;*/
+	/*padding:2px 15px 30px 0px;*/
+	/*float:right;*/
+	/*display:block;*/
+/*}*/
 
 ul.default-wp-page li.previous a.left-arrow-icon {
 	background: url('images/icons.png') no-repeat -68px -8px;
@@ -1566,6 +1566,19 @@ ul.default-wp-page li.previous a.left-arrow-icon {
 	float: left;
 	padding: 0px;
 	margin-top: 9px;
+	text-indent: 14px;
+	line-height: 7px;
+}
+ul.default-wp-page li.next a.right-arrow-icon {
+	background: url('images/icons.png') no-repeat -68px -0px;
+	width: 8px;
+	height: 8px;
+	display: block;
+	float: left;
+	padding: 0px;
+	margin-top: 10px;
+	text-indent: -84px;
+	line-height: 5px;
 }
 /* =Footer
 -------------------------------------------------------------- */
