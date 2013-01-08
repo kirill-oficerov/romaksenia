@@ -861,9 +861,6 @@ function simplecatch_loop() {
 			<h2 class="entry-title"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
        		<?php
 			the_content();
-//			$content = get_the_content();
-//			echo $content;
-			// copy this <!--nextpage--> and paste at the post content where you want to break the page
 			 wp_link_pages(array(
 					'before'			=> '<div class="pagination">Pages: ',
 					'after' 			=> '</div>',
@@ -877,64 +874,8 @@ function simplecatch_loop() {
     <?php elseif( is_single() ): ?>
 
 		<div <?php post_class(); ?>>
-<!--			--><?//
-//				$categories = get_the_category();
-//				$categoriesHtml = '';
-//				$lastElement = end($categories);
-//				foreach($categories as $key => $category) {
-//					$categoriesHtml .= '<span style="float: left; margin: 0px 0px 0px 7px;"><a href="' . HTTP_HOST . '/category/' . $category->slug . '">' . $category->name;
-//					if($category != $lastElement) {
-//						$categoriesHtml .= ', ';
-//					}
-//					$categoriesHtml .= '</a></span>';
-//				}
-//				$categoriesHtml .= '<span class="icons" style="background-position: -68px 0px; width: 8px; height: 8px; display: block; float:left; margin: 5px 0px 0px 7px;"></span>';
-//			?>
 			<h2 class="entry-title post-title"><a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( get_the_title() ); ?>"><?php the_title(); ?></a></h2>
-<!--			<div class="breadscrum">-->
-<!--				<div style="background-position: -68px 0px; float: left; ">-->
-<!--					<span style="float: left; margin-left: 7px;"><a href="--><?//= HTTP_HOST ?><!--">Главная</a></span>-->
-<!--					<span class="icons" style="background-position: -68px 0px; width: 8px; height: 8px; display: block; float:left; margin: 5px 0px 0px 7px;"></span>-->
-<!--				</div>-->
-<!---->
-<!--				<div style="background-position: -68px 0px; float: left; ">--><?//=$categoriesHtml?><!--</div>-->
-<!--				<div style="background-position: -68px 0px; float: left; ">-->
-<!--					<span style="float: left; margin-left: 7px; line-height: 16px;"><a href="--><?php //the_permalink(); ?><!--">--><?php //the_title(); ?><!--</a> &nbsp;</span>-->
-<!--				</div>-->
-<!---->
-<!--			</div>-->
 			<div class="clear" style="height: 1px; width: 1px; "></div>
-
-
-<!--            <ul class="post-by">-->
-<!--                <li class="no-padding-left"><a href="--><?php //echo get_author_posts_url(get_the_author_meta( 'ID' )); ?><!--" -->
-<!--                    title="--><?php //echo esc_attr( get_the_author_meta( 'display_name' ) ); ?><!--">--><?php //_e( 'By', 'simplecatch' ); ?><!--&nbsp;--><?php //the_author_meta( 'display_name' );?><!--</a></li>-->
-<!--                <li>--><?php //$simplecatch_date_format = get_option( 'date_format' ); the_time( $simplecatch_date_format ); ?><!--</li>-->
-<!--                <li>--><?php //comments_popup_link( __( 'No Comments', 'simplecatch' ), __( '1 Comment', 'simplecatch' ), __( '% Comments', 'simplecatch' ) ); ?><!--</li>-->
-<!--            </ul>-->
-<!--			--><?//
-//			$tag = get_the_tags();
-//			if (! $tag ) { ?>
-<!--<!--				<div class='tags'>--><?php ////_e( 'Categories: ', 'simplecatch' ); ?><!--<!-- --><?php ////the_category(', '); ?><!--<!-- </div>-->
-<!--				<div class='tags'>-->
-<!--					--><?php
-////						$categoryList = get_the_category_list(' ');
-//					$tags = $wp_object_cache->get($post->ID, 'category_relationships');
-//					$output = '<ul class="category-list">';
-//					foreach($tags as $key => $tag) {
-//						if(!is_null($tag->category_settings)) {
-//							$categorySettings = unserialize($tag->category_settings);
-//						}
-//						$output .= '<li ' . (isset($categorySettings['class']) ? 'class="' . $categorySettings['class'] . '"' : '') . ' ><a  href="' . HTTP_HOST . '/category/' . $tag->slug . '">' . $tag->name . '</a></li>';
-//						unset($categorySettings);
-//					}
-//					$output .= '</ul>';
-//					echo $output;
-//					?>
-<!--				</div>-->
-<!--				--><?php //}
-//
-//			?>
             <?php
 			$fullContent = get_the_content(null, false);
 			$fullContent = apply_filters('the_content', $fullContent);
@@ -943,11 +884,7 @@ function simplecatch_loop() {
 			$content = substr($fullContent, $contentBegin);
 			?>
 			<div class="clear" style="height: 1px; width: 1px; "></div>
-<!--			<div style="text-align: center; ">-->
-<!--				<a href="--><?php //the_permalink(); ?><!--" title="--><?php //printf( esc_attr__( 'Permalink to %s', 'simplecatch' ), the_title_attribute( 'echo=0' ) ); ?><!--">--><?php //the_post_thumbnail( 'featured' ); ?><!--</a>-->
-<!--			</div>-->
 			<?
-//			$content = preg_replace('/<a/s', '<a rel="prettyPhoto"', $content);
 			echo $content ?>
 			<?
             // copy this <!--nextpage--> and paste at the post content where you want to break the page
