@@ -68,7 +68,7 @@
 
 
 
-        	<div id="content" class="col8" style="margin-left: 21px; margin-right: 250px; max-width: 1150px; ">
+        	<div id="content" class="col8 wd-full-post" style=" ">
 
 				<?php while ( have_posts() ):the_post();
 					if( function_exists( 'simplecatch_loop') ) simplecatch_loop(); 

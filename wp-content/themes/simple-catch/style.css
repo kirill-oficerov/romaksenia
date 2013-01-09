@@ -13,7 +13,7 @@ Tags: black, gray, silver, white, light, one-column, two-columns, left-sidebar, 
 /* =Import css
 ----------------------------------------------- */
 	@import url(css/978.css);
-	
+
 /* =Reset default browser CSS. Based on work by Eric Meyer: http://meyerweb.com/eric/tools/css/reset/index.html
 -------------------------------------------------------------- */
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
@@ -62,9 +62,16 @@ body {
 	color:#555;
 }
 a {
-	/*text-decoration:none;*/
+	text-decoration:none;
 	color: #000;
 	outline:none;
+}
+.wd-full-post a {
+	text-decoration: underline;
+}
+.entry-title.post-title a {
+	text-decoration:none;
+
 }
 a:hover {
 	color: #000;
@@ -1134,7 +1141,7 @@ input[type=submit] {
 	line-height:22px;
 	box-shadow: 0 2px 2px #e0e0e0 inset;
 }
-#commentform #submit, 
+#commentform #submit,
 .wpcf7-form .wpcf7-submit {
 	background:url(images/submit.jpg) center top no-repeat;
 	border: 0 none;
@@ -1154,7 +1161,7 @@ input[type=submit] {
 .wpcf7-form .wpcf7-submit {
     margin: 0;
 }
-#respond #commentform #submit:hover, 
+#respond #commentform #submit:hover,
 .wpcf7-form .wpcf7-submit:hover {
 	background-position:center bottom;
 	border:none;
@@ -1218,10 +1225,10 @@ img.alignright {
 	margin-left: 20px;
 	margin-bottom: 20px;
 }
-img.size-auto, 
-img.size-full, 
-img.size-large, 
-img.size-medium, 
+img.size-auto,
+img.size-full,
+img.size-large,
+img.size-medium,
 .attachment img {
 	max-width: 100%; /* When images are too wide for containing element, force them to fit. */
 	height: auto; /* Override height to match resized width for correct aspect ratio. */
@@ -1502,7 +1509,7 @@ img.size-medium,
 	color:#fff;
 	font-weight: normal;
 }
-/* Single pagination */ 
+/* Single pagination */
 .pagination {
 	clear: both;
 	text-align: right;
@@ -1532,7 +1539,7 @@ img.size-medium,
 .pagination a:hover span {
 	background: none repeat #ddd;
 }
-/* Default wp-page */ 
+/* Default wp-page */
 ul.default-wp-page  {
 	margin:0;
 	list-style: none outside;
@@ -1929,4 +1936,8 @@ div#main div#content.col8 h2.entry-title a, #sidebar .widget .page_item a.event-
 span.select-search-result {
 	background-color: yellow;
 	padding: 2px 5px;
+}
+
+.wd-full-post {
+	margin-left: 21px; margin-right: 250px; max-width: 1150px;
 }
