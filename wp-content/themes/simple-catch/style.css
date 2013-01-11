@@ -1941,3 +1941,7 @@ span.select-search-result {
 .wd-full-post {
 	margin-left: 21px; margin-right: 250px; max-width: 1150px;
 }
+
+.category-events {
+	min-width: 817px;
+}
