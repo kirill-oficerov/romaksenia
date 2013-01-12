@@ -916,6 +916,54 @@ function simplecatch_loop() {
 				(function($) {
 					$(function() {
 						wdPrettyPhoto();
+
+						var blockquoteList = $('blockquote');
+						if(blockquoteList.length > 0) {
+							var leftImages = $('.alignleft');
+							if(leftImages.length > 0) {
+								blockquoteList.each(function() {
+									var bq = $(this);
+									var bqHeight = bq.height();
+									var bqTop = bq.offset().top;
+									leftImages.each(function() {
+										var image = $(this);
+										var imageTop = image.offset().top;
+										var imageBottom = imageTop + image.height();
+
+										if(bqTop > imageTop && bqTop < (imageBottom + bqHeight)) {
+											// do the magic
+											var imageWidth = image.width();
+											bq.css({'margin-left':imageWidth + 30});
+										}
+									});
+								});
+							}
+
+							// right
+
+							var rightImages = $('.alignright');
+							if(rightImages.length > 0) {
+								blockquoteList.each(function() {
+									var bq = $(this);
+									var bqHeight = bq.height();
+									var bqTop = bq.offset().top;
+									rightImages.each(function() {
+										var image = $(this);
+										var imageTop = image.offset().top;
+										var imageBottom = imageTop + image.height();
+
+										if(bqTop > imageTop && bqTop < (imageBottom + bqHeight)) {
+											// do the magic
+											var imageWidth = image.width();
+											bq.css({'margin-right':imageWidth + 30});
+										}
+									});
+								});
+							}
+						}
+
+
+
 					});
 				})(jQuery);
 			</script>
