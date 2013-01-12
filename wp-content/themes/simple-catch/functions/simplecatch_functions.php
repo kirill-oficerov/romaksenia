@@ -800,13 +800,6 @@ function simplecatch_content() {
 
 
 
-?>
-
-
-
-
-<?
-
 
 
 
@@ -882,6 +875,8 @@ function simplecatch_loop() {
 			$fullContent = str_replace(']]>', ']]&gt;', $fullContent);
 			$contentBegin = strpos($fullContent, '<p style="" rel="begin-of-the-excerpt-text">');
 			$content = substr($fullContent, $contentBegin);
+//			$content = str_replace('<blockquote', '<div style=""><blockquote', $content);
+//			$content = str_replace('</blockquote>', '</blockquote></div>', $content);
 			?>
 			<div class="clear" style="height: 1px; width: 1px; "></div>
 			<?
