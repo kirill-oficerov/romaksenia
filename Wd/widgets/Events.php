@@ -13,7 +13,7 @@ class Wd_Widgets_Events extends WP_Widget {
 	}
 	function widget($args, $instance) {
 		// outputs the content of the widget
-		global $wp_object_cache;
+//		global $wp_object_cache;
 //		$cache = $wp_object_cache->cache;
 		global $wpdb;
 

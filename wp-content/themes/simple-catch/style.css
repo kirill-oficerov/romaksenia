@@ -1597,7 +1597,8 @@ ul.default-wp-page li.next a.right-arrow-icon {
 	color:#666;
 	font-size:13px;
 	padding-top:30px;
-	min-width: 1188px;
+	/*min-width: 1188px;*/
+	min-width: 1335px;
 	margin-top: -92px;
 }
 #footer span {
