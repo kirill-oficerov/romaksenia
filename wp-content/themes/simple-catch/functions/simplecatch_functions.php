@@ -851,8 +851,12 @@ function simplecatch_loop() {
 
 		?>
 		<div <?php post_class(); ?> >
-			<h2 class="entry-title"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
-       		<?php
+			<?
+			if(!is_single() && !is_page()) { ?>
+				<h2 class="entry-title"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
+			<? } else { ?>
+				<div style="height: 20px;"></div>
+       		<? }
 			the_content();
 			 wp_link_pages(array(
 					'before'			=> '<div class="pagination">Pages: ',
