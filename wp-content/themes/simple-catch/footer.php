@@ -68,6 +68,35 @@
 					}
 				});
 			});
+
+			// social fix
+			var intervalSocial = null;
+			var catchSocialLoaded = function() {
+				if($('.yashare-auto-init').length > 0) {
+					clearInterval(intervalSocial);
+					$('.yashare-auto-init').each(function() {
+						var yashareBlock = $(this);
+						var newTitle = encodeURIComponent(yashareBlock.siblings(':eq(0)').find('a').text());
+						var newHref = encodeURIComponent(yashareBlock.siblings(':eq(0)').find('a').attr('href'));
+						yashareBlock.find('a').each(function() {
+							var a = $(this);
+
+							a.attr({'href':
+								a.attr('href').replace(/url=http[^&]*/,'url=' + newHref).replace(/title=.*/, 'title=' + newTitle)
+							});
+						});
+
+
+//						$('.yashare-auto-init').eq(0).find('a').eq(0).attr('href').replace(/url=http[^&]*/,'url=http222222')
+// title
+// $('.yashare-auto-init:eq(0)').siblings(':eq(0)').find('a').text()
+						// href
+						// $('.yashare-auto-init:eq(0)').siblings(':eq(0)').find('a').attr('href')
+						// encodeURIComponent
+					});
+				}
+			};
+			var intervalSocial = setTimeout(catchSocialLoaded, 100);
 		});
 
 
