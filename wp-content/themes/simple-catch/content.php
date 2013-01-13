@@ -37,8 +37,10 @@ get_header();
 		                    continue;
 	                    }?>
                 <div <?php post_class(); ?> >
-	                    <div class="col8" style="min-width: 100%">
-                            <div style="float: left; margin-right: -150px; min-width: 100%; ">
+<!--	                    <div class="col8" style="min-width: 100%">-->
+	                    <div class="col8">
+<!--                            <div style="float: left; margin-right: -150px; min-width: 100%; ">-->
+                            <div style="float: left; margin-right: -150px; width: 100%; ">
 			                    <h2 class="entry-title" style="margin: 10px 150px 3px 0px; ">
 	                                <a href="<?php the_permalink() ?>" title="" rel="bookmark" ><?php the_title(); ?></a>
 	                            </h2>
@@ -64,36 +66,10 @@ get_header();
 //		                    $content = substr($excerpt, $contentBegin);
 		                    $content = substr($excerpt, 3);
 		                    $content = substr($content, 0, -5);
-//		                    echo '<script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
-//				<div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="none"
-//				data-yashareQuickServices="vkontakte,facebook,twitter,odnoklassniki,lj,gplus,pinterest"></div>'
+		                    echo '<script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
+				<div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="none"
+				data-yashareQuickServices="vkontakte,facebook,twitter,odnoklassniki,lj,gplus,pinterest"></div>'
 		                    ?>
-
-
-		                    <div class="yashare-auto-init" data-yasharel10n="ru" data-yasharetype="none" data-yasharequickservices="vkontakte,facebook,twitter,odnoklassniki,lj,gplus,pinterest">
-			                    <span class="b-share">
-				                    <a rel="nofollow" target="_blank" title="ВКонтакте" class="b-share__handle b-share__link" href="http://share.yandex.ru/go.xml?service=vkontakte&amp;url=http%3A%2F%2Fwedigital.dev%2F&amp;title=wedigital.by%20%7C%20Just%20another%20WordPress%20site" data-service="vkontakte">
-					                    <span class="b-share-icon b-share-icon_vkontakte"></span>
-				                    </a>
-				                    <a rel="nofollow" target="_blank" title="Facebook" class="b-share__handle b-share__link" href="http://share.yandex.ru/go.xml?service=facebook&amp;url=http%3A%2F%2Fwedigital.dev%2F&amp;title=wedigital.by%20%7C%20Just%20another%20WordPress%20site" data-service="facebook">
-					                    <span class="b-share-icon b-share-icon_facebook"></span>
-				                    </a>
-				                    <a rel="nofollow" target="_blank" title="Twitter" class="b-share__handle b-share__link" href="http://share.yandex.ru/go.xml?service=twitter&amp;url=http%3A%2F%2Fwedigital.dev%2F&amp;title=wedigital.by%20%7C%20Just%20another%20WordPress%20site" data-service="twitter">
-					                    <span class="b-share-icon b-share-icon_twitter"></span>
-				                    </a>
-				                    <a rel="nofollow" target="_blank" title="Одноклассники" class="b-share__handle b-share__link" href="http://share.yandex.ru/go.xml?service=odnoklassniki&amp;url=http%3A%2F%2Fwedigital.dev%2F&amp;title=wedigital.by%20%7C%20Just%20another%20WordPress%20site" data-service="odnoklassniki">
-					                    <span class="b-share-icon b-share-icon_odnoklassniki"></span>
-				                    </a>
-				                    <a rel="nofollow" target="_blank" title="LiveJournal" class="b-share__handle b-share__link" href="http://share.yandex.ru/go.xml?service=lj&amp;url=http%3A%2F%2Fwedigital.dev%2F&amp;title=wedigital.by%20%7C%20Just%20another%20WordPress%20site" data-service="lj">
-					                    <span class="b-share-icon b-share-icon_lj"></span>
-				                    </a>
-				                    <a rel="nofollow" target="_blank" title="Google Plus" class="b-share__handle b-share__link" href="http://share.yandex.ru/go.xml?service=gplus&amp;url=http%3A%2F%2Fwedigital.dev%2F&amp;title=wedigital.by%20%7C%20Just%20another%20WordPress%20site" data-service="gplus">
-					                    <span class="b-share-icon b-share-icon_gplus"></span>
-				                    </a>
-			                    </span>
-		                    </div>
-
-
 		                    <div class="clear" style="height: 1px; width: 1px; "></div>
 
 		                    <div style="text-align: right; float: right; margin: 0px 0px 0px 15px;">
