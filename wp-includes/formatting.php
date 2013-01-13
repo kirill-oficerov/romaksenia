@@ -2122,12 +2122,12 @@ function wp_trim_excerpt($text = '') {
 		$excerpt_more = apply_filters('excerpt_more', ' ' . '[...]');
 		$text = wp_trim_words( $text, $excerpt_length, $excerpt_more );
 		// @todo kirill 1234567890
-		if(strpos($text, '1234567890') !== false) {
+		if(($numbersPos = mb_strpos($text, '1234567890')) !== false) {
 			global $post;
 			$more_link_text = 'Далее';
 			$excerptMore = apply_filters( 'the_content_more_link', ' <a href="' . get_permalink() . "#more-{$post->ID}\" class=\"more-link\">$more_link_text</a>", $more_link_text );
 			$excerptMore = str_replace('more-link', 'readmore', $excerptMore);
-			$text = mb_substr($text, 0, mb_strlen($text) - 11, 'UTF-8');
+			$text = mb_substr($text, 0, $numbersPos, 'UTF-8');
 			$text = str_replace('&nbsp;', ' ', $text);
 			$text = rtrim($text, ' ') . '<br />' . $excerptMore;
 		}
@@ -2155,32 +2155,38 @@ function wp_trim_words( $text, $num_words = 55, $more = null ) {
 	$more = substr($more, 10);
 	$original_text = $text;
 	$text = wp_strip_all_tags( $text );
-	/* translators: If your word count is based on single characters (East Asian characters),
-	   enter 'characters'. Otherwise, enter 'words'. Do not translate into your own language. */
-	if ( 'characters' == _x( 'words', 'word count: words or characters?' ) && preg_match( '/^utf\-?8$/i', get_option( 'blog_charset' ) ) ) {
-		$text = trim( preg_replace( "/[\n\r\t ]+/", ' ', $text ), ' ' );
-		preg_match_all( '/./u', $text, $words_array );
-		$words_array = array_slice( $words_array[0], 0, $num_words + 1 );
-		$sep = '';
-	} else {
-		$words_array = preg_split( "/[\n\r\t ]+/", $text, $num_words + 1, PREG_SPLIT_NO_EMPTY );
-		$sep = ' ';
-	}
-	if ( count( $words_array ) > $num_words ) {
-		$textRest = array_pop( $words_array );
-		array_pop( $words_array );
-		$dotPos = strpos($textRest, '.');
-		$sentenceRest = $textRest;
-		if($dotPos) {
-			$sentenceRest = substr($textRest, 0, $dotPos);
+	if(($numbersPos = mb_strpos($text, '1234567890')) === false) {
+		/* translators: If your word count is based on single characters (East Asian characters),
+		   enter 'characters'. Otherwise, enter 'words'. Do not translate into your own language. */
+		if ( 'characters' == _x( 'words', 'word count: words or characters?' ) && preg_match( '/^utf\-?8$/i', get_option( 'blog_charset' ) ) ) {
+			$text = trim( preg_replace( "/[\n\r\t ]+/", ' ', $text ), ' ' );
+			preg_match_all( '/./u', $text, $words_array );
+			$words_array = array_slice( $words_array[0], 0, $num_words + 1 );
+			$sep = '';
+		} else {
+			$words_array = preg_split( "/[\n\r\t ]+/", $text, $num_words + 1, PREG_SPLIT_NO_EMPTY );
+			$sep = ' ';
 		}
-		$text = implode( $sep, $words_array );
-		// @todo kirill excerpt
-		$text = $text . $sentenceRest . '<br />' . $more;
-	} else {
-		$text = implode( $sep, $words_array );
+		if ( count( $words_array ) > $num_words ) {
+			$textRest = array_pop( $words_array );
+			array_pop( $words_array );
+			$dotPos = strpos($textRest, '.');
+			$sentenceRest = $textRest;
+			if($dotPos) {
+				$sentenceRest = substr($textRest, 0, $dotPos);
+			}
+			$text = implode( $sep, $words_array );
+			// @todo kirill excerpt
+			$text = $text . $sentenceRest;
+			if(mb_strpos($text, '1234567890') === false) {
+				$text .= '<br />' . $more;
+			}
+		} else {
+			$text = implode( $sep, $words_array );
+		}
 	}
 	return apply_filters( 'wp_trim_words', $text, $num_words, $more, $original_text );
+
 }
 
 /**
