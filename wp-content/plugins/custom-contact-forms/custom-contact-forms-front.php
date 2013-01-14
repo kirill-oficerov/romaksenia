@@ -138,18 +138,18 @@ if (!class_exists('CustomContactFormsFront')) {
 		
 		function contentFilter($content) {
 			// THIS NEEDS TO REPLACE THE SHORTCODE ONLY ONCE
-			$errors = $this->getAllFormErrors();
-			if (!empty($errors)) {
-				$admin_options = parent::getAdminOptions();
-				$out = '<div id="custom-contact-forms-errors"><p>'.esc_html($admin_options['default_form_error_header']).'</p><ul>' . "\n";
-				//$errors = $this->getAllFormErrors();
-				foreach ($errors as $error) {
-					$out .= '<li>'.esc_html($error).'</li>' . "\n";
-				}
-				$err_link = (!empty($this->error_return)) ? '<p><a href="'.esc_attr($this->error_return).'" title="'.__('Go Back', 'custom-contact-forms').'">&lt; ' . __('Go Back to Form.', 'custom-contact-forms') . '</a></p>' : '';
-				$this->emptyFormErrors();
-				return $out . '</ul>' . "\n" . $err_link . '</div>';
-			}
+//			$errors = $this->getAllFormErrors();
+//			if (!empty($errors)) {
+//				$admin_options = parent::getAdminOptions();
+//				$out = '<div id="custom-contact-forms-errors"><p>'.esc_html($admin_options['default_form_error_header']).'</p><ul>' . "\n";
+//				//$errors = $this->getAllFormErrors();
+//				foreach ($errors as $error) {
+//					$out .= '<li>'.esc_html($error).'</li>' . "\n";
+//				}
+//				$err_link = (!empty($this->error_return)) ? '<p><a href="'.esc_attr($this->error_return).'" title="'.__('Go Back', 'custom-contact-forms').'">&lt; ' . __('Go Back to Form.', 'custom-contact-forms') . '</a></p>' : '';
+//				$this->emptyFormErrors();
+//				return $out . '</ul>' . "\n" . $err_link . '</div>';
+//			}
 			return $content;
 		}
 		
@@ -234,6 +234,7 @@ if (!class_exists('CustomContactFormsFront')) {
 			$hiddens = '';
 			$code_type = ($admin_options['code_type'] == 'XHTML') ? ' /' : '';
 			$add_reset = '';
+			$errors = $this->getAllFormErrors();
 			foreach ($fields as $field_id) {
 				$field = parent::selectField($field_id, '');
 				$req = ($field->field_required == 1 or $field->field_slug == 'ishuman') ? '* ' : '';
@@ -263,7 +264,11 @@ if (!class_exists('CustomContactFormsFront')) {
 					$add_reset = ' <input type="reset" '.$instructions.' class="reset-button '.$field->field_class.' '.$tooltip_class.'" value="' . esc_attr($field->field_value) . '" />';
 				} elseif ($field->field_type == 'Text') {
 					$maxlength = (empty($field->field_maxlength) or $field->field_maxlength <= 0) ? '' : ' maxlength="'.esc_attr($field->field_maxlength).'"';
-					$out .= '<div>'."\n".'<label for="'.ccf_utils::decodeOption($field->field_slug, 1, 1).'">'. $req .ccf_utils::decodeOption($field->field_label, 1, 1).'</label>'."\n".'<input class="'.esc_attr($field->field_class).' '.$tooltip_class.'" '.$instructions.' '.$input_id.' type="text" name="'.ccf_utils::decodeOption($field->field_slug, 1, 1).'" value="'.$field_value.'"'.$maxlength.''.$code_type.'>'."\n".'</div>' . "\n";
+					$errorText = '';
+					if(isset($errors[$field->field_slug])) {
+						$errorText = '<div style="float:left; min-width:100px;">' . $errors[$field->field_slug] . '</div>';
+					}
+					$out .= '<div style="float:left;">'."\n".'<label for="'.ccf_utils::decodeOption($field->field_slug, 1, 1).'">'. $req .ccf_utils::decodeOption($field->field_label, 1, 1).'</label>'."\n".'<input class="'.esc_attr($field->field_class).' '.$tooltip_class.'" '.$instructions.' '.$input_id.' type="text" name="'.ccf_utils::decodeOption($field->field_slug, 1, 1).'" value="'.$field_value.'"'.$maxlength.''.$code_type.'>'. "\n".'</div>' . $errorText . '<div style="clear:both; margin:0px; padding:0px;"></div>' . "\n";
 				} elseif ($field->field_type == 'File') {
 					$file_upload_form = ' enctype="multipart/form-data" ';
 					$out .= '<div>'."\n".'<label for="'.ccf_utils::decodeOption($field->field_slug, 1, 1).'">'. $req .ccf_utils::decodeOption($field->field_label, 1, 1).'</label>'."\n".'<input class="'.esc_attr($field->field_class).' '.$tooltip_class.'" '.$instructions.' '.$input_id.' type="file" name="'.ccf_utils::decodeOption($field->field_slug, 1, 1).'" value="'.$field_value.'"'.$code_type.'>'."\n".'</div>' . "\n";
@@ -273,7 +278,7 @@ if (!class_exists('CustomContactFormsFront')) {
 				} elseif ($field->field_type == 'Hidden') {
 					$hiddens .= '<input type="hidden" name="'.ccf_utils::decodeOption($field->field_slug, 1, 1).'" value="'.$field_value.'" '.$input_id.''.$code_type.'>' . "\n";
 				} elseif ($field->field_type == 'Textarea') {
-					$out .= '<div>'."\n".'<label for="'.ccf_utils::decodeOption($field->field_slug, 1, 1).'">'. $req .ccf_utils::decodeOption($field->field_label, 1, 1).'</label>'."\n".'<textarea class="'.esc_attr($field->field_class).' '.$tooltip_class.'" '.$instructions.' '.$input_id.' rows="5" cols="40" name="'.ccf_utils::decodeOption($field->field_slug, 1, 1).'">'.$field_value.'</textarea>'."\n".'</div>' . "\n";
+					$out .= '<div style="float:left;">'."\n".'<label for="'.ccf_utils::decodeOption($field->field_slug, 1, 1).'">'. $req .ccf_utils::decodeOption($field->field_label, 1, 1).'</label>'."\n".'<textarea class="'.esc_attr($field->field_class).' '.$tooltip_class.'" '.$instructions.' '.$input_id.' rows="5" cols="40" name="'.ccf_utils::decodeOption($field->field_slug, 1, 1).'">'.$field_value.'</textarea>'."\n".'</div><div style="clear:both; margin:0px; padding:0px;"></div>' . "\n";
 				} elseif ($field->field_type == 'Dropdown') {
 					$field_options = '';
 					$options = parent::getAttachedFieldOptionsArray($field->id);
