@@ -248,7 +248,11 @@ if (!class_exists('CustomContactFormsFront')) {
 					if ($admin_options['remember_field_values'] == 1)
 						$field_value = $_SESSION['ccf_fields'][$field->field_slug];
 				} if ($field->field_slug == 'captcha') {
-					$out .= '<div>' . "\n" . $this->getCaptchaCode($field, $form->id) . "\n" . '</div>' . "\n";
+					$errorText = '';
+					if(isset($errors[$field->field_slug])) {
+						$errorText = '<div class="contact-form-error-captcha" >' . $errors[$field->field_slug] . '</div>';
+					}
+					$out .= '<div style="float:left;">' . "\n" . $this->getCaptchaCode($field, $form->id) . "\n" . '</div>' . $errorText . '<div style="clear:both; margin:0px; padding:0px;"></div>' . "\n";
 				} elseif ( $field->field_slug == 'recaptcha' ) {
 					$out .= '<div>' . "\n" . $this->getReCaptchaCode( $field, $form->id ) . "\n" . '</div>' . "\n";
 				} elseif ($field->field_slug == 'usaStates') {
@@ -264,9 +268,10 @@ if (!class_exists('CustomContactFormsFront')) {
 					$add_reset = ' <input type="reset" '.$instructions.' class="reset-button '.$field->field_class.' '.$tooltip_class.'" value="' . esc_attr($field->field_value) . '" />';
 				} elseif ($field->field_type == 'Text') {
 					$maxlength = (empty($field->field_maxlength) or $field->field_maxlength <= 0) ? '' : ' maxlength="'.esc_attr($field->field_maxlength).'"';
+					// todo kirill contact form
 					$errorText = '';
 					if(isset($errors[$field->field_slug])) {
-						$errorText = '<div style="float:left; min-width:100px;">' . $errors[$field->field_slug] . '</div>';
+						$errorText = '<div class="contact-form-error">' . $errors[$field->field_slug] . '</div>';
 					}
 					$out .= '<div style="float:left;">'."\n".'<label for="'.ccf_utils::decodeOption($field->field_slug, 1, 1).'">'. $req .ccf_utils::decodeOption($field->field_label, 1, 1).'</label>'."\n".'<input class="'.esc_attr($field->field_class).' '.$tooltip_class.'" '.$instructions.' '.$input_id.' type="text" name="'.ccf_utils::decodeOption($field->field_slug, 1, 1).'" value="'.$field_value.'"'.$maxlength.''.$code_type.'>'. "\n".'</div>' . $errorText . '<div style="clear:both; margin:0px; padding:0px;"></div>' . "\n";
 				} elseif ($field->field_type == 'File') {
@@ -278,7 +283,12 @@ if (!class_exists('CustomContactFormsFront')) {
 				} elseif ($field->field_type == 'Hidden') {
 					$hiddens .= '<input type="hidden" name="'.ccf_utils::decodeOption($field->field_slug, 1, 1).'" value="'.$field_value.'" '.$input_id.''.$code_type.'>' . "\n";
 				} elseif ($field->field_type == 'Textarea') {
-					$out .= '<div style="float:left;">'."\n".'<label for="'.ccf_utils::decodeOption($field->field_slug, 1, 1).'">'. $req .ccf_utils::decodeOption($field->field_label, 1, 1).'</label>'."\n".'<textarea class="'.esc_attr($field->field_class).' '.$tooltip_class.'" '.$instructions.' '.$input_id.' rows="5" cols="40" name="'.ccf_utils::decodeOption($field->field_slug, 1, 1).'">'.$field_value.'</textarea>'."\n".'</div><div style="clear:both; margin:0px; padding:0px;"></div>' . "\n";
+					// todo kirill contact form
+					$errorText = '';
+					if(isset($errors[$field->field_slug])) {
+						$errorText = '<div class="contact-form-error">' . $errors[$field->field_slug] . '</div>';
+					}
+					$out .= '<div style="float:left;">'."\n".'<label for="'.ccf_utils::decodeOption($field->field_slug, 1, 1).'">'. $req .ccf_utils::decodeOption($field->field_label, 1, 1).'</label>'."\n".'<textarea class=" contact-form-textarea '.esc_attr($field->field_class).' '.$tooltip_class.'" '.$instructions.' '.$input_id.' rows="5" cols="40" name="'.ccf_utils::decodeOption($field->field_slug, 1, 1).'">'.$field_value.'</textarea>'."\n".'</div>' . $errorText . '<div style="clear:both; margin:0px; padding:0px;"></div>' . "\n";
 				} elseif ($field->field_type == 'Dropdown') {
 					$field_options = '';
 					$options = parent::getAttachedFieldOptionsArray($field->id);

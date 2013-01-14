@@ -1,13 +1,14 @@
 /* Custom Contact Forms CSS */
 form.customcontactform, form.customcontactform-sidebar {
 	/*margin:8px;*/
-	width:95%;
-	width: 500px;
-	max-width:600px;
+	width:150%;
+	/*width: 500px;*/
+	/*max-width:600px;*/
 	/*padding:4px;*/
 	/* @todo kirill css custom_contact_forms */
 	margin: 10px 0px;
 }
+
 form.customcontactform-sidebar { width:100%; }
 form.customcontactform h4, form.customcontactform-sidebar h4 {
 	font-size:1.3em;
@@ -164,4 +165,20 @@ form.customcontactform-sidebar div select { width:auto; }
 #recaptcha_widget .help {
 	width:  25px;
 	height: 16px;
+}
+
+form.customcontactform .contact-form-error, form.customcontactform .contact-form-error-captcha {
+	float:left; min-width:100px; margin: 22px 0px 0px 10px;
+	color: #8A2E2E;
+	font-weight: bold;
+}
+form.customcontactform .contact-form-error-captcha {
+	margin-top: 58px;
+}
+.contact-form-textarea {
+	max-width: 1000px;
+}
+.customcontactform input, .customcontactform textarea {
+	color: black;
+
 }
