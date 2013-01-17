@@ -44,11 +44,6 @@ echo '<?xml version="1.0" encoding="'.get_option('blog_charset').'"?'.'>'; ?>
 		<description><![CDATA[<?php the_excerpt_rss() ?>]]></description>
 <?php else : ?>
 		<description><![CDATA[<?php the_excerpt_rss() ?>]]></description>
-	<?php if ( strlen( $post->post_content ) > 0 ) : ?>
-		<content:encoded><![CDATA[<?php the_content_feed('rss2') ?>]]></content:encoded>
-	<?php else : ?>
-		<content:encoded><![CDATA[<?php the_excerpt_rss() ?>]]></content:encoded>
-	<?php endif; ?>
 <?php endif; ?>
 		<wfw:commentRss><?php echo esc_url( get_post_comments_feed_link(null, 'rss2') ); ?></wfw:commentRss>
 		<slash:comments><?php echo get_comments_number(); ?></slash:comments>
