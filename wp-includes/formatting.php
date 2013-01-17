@@ -3156,7 +3156,7 @@ function normalize_whitespace( $str ) {
  */
 function wp_strip_all_tags($string, $remove_breaks = false) {
 	$string = preg_replace( '@<(script|style)[^>]*?>.*?</\\1>@si', '', $string );
-	$string = strip_tags($string);
+	$string = strip_tags($string, '<a> <strong>');
 
 	if ( $remove_breaks )
 		$string = preg_replace('/[\r\n\t ]+/', ' ', $string);

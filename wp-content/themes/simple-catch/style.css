@@ -317,6 +317,9 @@ a.readmore {
 	color:#000;
 	padding-top:8px;
 }
+#main .rubber-layout-keep-content #content .col8 .post-excerpt a.readmore {
+	text-decoration: none;
+}
 a.readmore:hover {
 	/*text-decoration:underline;*/
 	color: #999;
@@ -1947,4 +1950,7 @@ span.select-search-result {
 
 .category-events {
 	min-width: 817px;
+}
+#main .rubber-layout-keep-content #content .col8 .post-excerpt a {
+	text-decoration: underline;
 }
