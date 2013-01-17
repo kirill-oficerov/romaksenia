@@ -2129,7 +2129,19 @@ function wp_trim_excerpt($text = '') {
 			$excerptMore = str_replace('more-link', 'readmore', $excerptMore);
 			$text = mb_substr($text, 0, $numbersPos, 'UTF-8');
 			$text = str_replace('&nbsp;', ' ', $text);
-			$text = rtrim($text, ' ') . '<br />' . $excerptMore;
+			$text = rtrim($text, ' ');
+			if(($strongOpen = mb_strrpos($text, '<strong>',null, 'UTF-8')) !== false) {
+				if(($strongClose = mb_strrpos($text, '</strong>',null, 'UTF-8')) !== false) {
+					// found
+					if($strongOpen > $strongClose) {
+						$text .= '</strong>';
+					}
+				} else {
+					// not found, but there is a openTag in the $text, so we should close it
+					$text .= '</strong>';
+				}
+			}
+			$text .= '<br />' . $excerptMore;
 		}
 	}
 	return apply_filters('wp_trim_excerpt', $text, $raw_excerpt);
