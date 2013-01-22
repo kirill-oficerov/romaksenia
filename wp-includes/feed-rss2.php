@@ -40,10 +40,30 @@ echo '<?xml version="1.0" encoding="'.get_option('blog_charset').'"?'.'>'; ?>
 		<?php the_category_rss('rss2') ?>
 
 		<guid isPermaLink="false"><?php the_guid(); ?></guid>
+
+
+		<?
+		$picture = get_the_post_thumbnail( null, 'featured', '' );
+		if(!empty($picture)) {
+			$pictureSrc = array();
+			preg_match('/src="[^"]+"/', $picture, $pictureSrc);
+			$settings = unserialize($post->settings);
+			if($settings) {
+				$width = $settings['width'];
+				$height = $settings['height'];
+				$picture = str_replace('<img', '<img style="width:' . $width . 'px; height:' . $height . 'px;"', $picture);
+			}
+			$picture = '<p>' . $picture . '</p>';
+		} ?>
+
+
+
+
 <?php if (get_option('rss_use_excerpt')) : ?>
-		<description><![CDATA[<?php the_excerpt_rss() ?>]]></description>
+
+		<description><![CDATA[<?php echo $picture; the_excerpt_rss() ?>]]></description>
 <?php else : ?>
-		<description><![CDATA[<?php the_excerpt_rss() ?>]]></description>
+		<description><![CDATA[<?php echo $picture; the_excerpt_rss() ?>]]></description>
 <?php endif; ?>
 		<wfw:commentRss><?php echo esc_url( get_post_comments_feed_link(null, 'rss2') ); ?></wfw:commentRss>
 		<slash:comments><?php echo get_comments_number(); ?></slash:comments>
