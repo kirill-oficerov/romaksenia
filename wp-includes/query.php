@@ -2614,8 +2614,8 @@ class WP_Query {
 			$join .= ' LEFT JOIN wp_term_relationships ON wp_posts.ID = wp_term_relationships.object_id
 LEFT JOIN wp_term_taxonomy ON wp_term_relationships.term_taxonomy_id = wp_term_taxonomy.term_taxonomy_id
 LEFT JOIN wp_terms ON wp_term_taxonomy.term_id = wp_terms.term_id ';
-			$where .= ' AND (wp_terms.slug != "anonimka")
-AND NOT ((wp_terms.slug = "events" OR wp_terms.slug = "cases") AND (wp_posts.`settings` LIKE "%show_at_main\";i:0%" OR wp_posts.`settings` = ""))
+			$where .= ' AND (wp_terms.slug != "anonimka") AND (wp_terms.slug != "events")
+AND NOT (wp_terms.slug = "cases" AND (wp_posts.`settings` LIKE "%show_case_at_main\";i:0%" OR wp_posts.`settings` = ""))
 
 ';
 		}

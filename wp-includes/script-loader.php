@@ -311,6 +311,10 @@ function wp_default_scripts( &$scripts ) {
 	) );
 
 	if ( is_admin() ) {
+
+		// @todo kirill admin custom common
+		$scripts->add( 'custom_common', "/wp-admin/js/custom_common.js", array('jquery'), '', 1 );
+
 		$scripts->add( 'ajaxcat', "/wp-admin/js/cat$suffix.js", array( 'wp-lists' ) );
 		$scripts->add_data( 'ajaxcat', 'group', 1 );
 		did_action( 'init' ) && $scripts->localize( 'ajaxcat', 'catL10n', array(

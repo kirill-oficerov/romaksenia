@@ -232,6 +232,8 @@ if ( !in_array( $post->post_status, array('publish', 'future', 'private') ) || 0
 }
 
 // @todo kirill admin custom settings
+// should not be in WD - it is registered somewhere in a string way
+
 /**
  * Display custom settings.
  *
@@ -244,24 +246,30 @@ function post_custom_settings($post) {
 //LEFT JOIN wp_term_taxonomy wptt ON wptt.term_taxonomy_id = wptr.term_taxonomy_id
 //LEFT JOIN wp_terms wpt ON wpt.term_id = wptt.term_id
 //WHERE wpp.ID = " . $post->ID;
-	$showAtMain = false;
+	$showEventAtMain = false;
+	$showCaseAtMain = false;
 	if(isset($post->settings)) {
 		$postSettings = htmlspecialchars_decode($post->settings);
 		$postSettings = unserialize($postSettings);
-		$showAtMain = intval(isset($postSettings['show_at_main']) && $postSettings['show_at_main'] == 1);
+
+		if($GLOBALS['self'] == 'post-new.php') {
+			$showEventAtMain = false;
+		} else {
+			$showEventAtMain = $postSettings == '' || ( isset($postSettings['show_event_at_main']) && $postSettings['show_event_at_main'] == 1 ) ;
+		}
+		$showCaseAtMain = isset($postSettings['show_case_at_main']) && $postSettings['show_case_at_main'] == 1;
 	}
 //	$categories = $wpdb->get_results($query);
-//	$showCheckboxAtMain = false;
-//	foreach($categories as $slug) {
-//		if($slug->slug == 'events') {
-//			$showCheckboxAtMain = true;
-//			break;
-//		}
-//	}
 	 ?>
 		<div id="custom_settings">
-			<input id="show_at_main" name="show_at_main" type="checkbox" <?=$showAtMain ? 'checked="checked"' : ''?>>
-			<label for="show_at_main" style="position: relative; top: -1px;">Показывать ивент/кейс на главной</label>
+			<div class="cases">
+				<input id="show_case_at_main" name="show_case_at_main" type="checkbox" <?=$showCaseAtMain ? 'checked="checked"' : ''?>>
+				<label for="show_case_at_main" style="position: relative; top: -1px;">Показывать кейс на главной</label>
+			</div>
+			<div class="events" style="margin-top: 15px;">
+				<input id="show_event_at_main" name="show_event_at_main" type="checkbox" <?=$showEventAtMain ? 'checked="checked"' : ''?>>
+				<label for="show_event_at_main" style="position: relative; top: -1px;">Показывать ивент на главной</label>
+			</div>
 		</div>
 	<?
 }

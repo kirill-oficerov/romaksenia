@@ -33,6 +33,9 @@ if ( isset($_GET['import']) && !defined('WP_LOAD_IMPORTERS') )
 	define('WP_LOAD_IMPORTERS', true);
 
 require_once(dirname(dirname(__FILE__)) . '/wp-load.php');
+// @todo kirill admin custom settings
+wp_enqueue_script('jquery');
+wp_enqueue_script('custom_common', '/wp-admin/js/custom_common.js');
 
 if ( get_option('db_upgraded') ) {
 	flush_rewrite_rules();

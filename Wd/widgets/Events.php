@@ -21,7 +21,8 @@ class Wd_Widgets_Events extends WP_Widget {
 INNER JOIN wp_term_taxonomy ON wp_term_taxonomy.term_id = wp_terms.term_id
 INNER JOIN wp_term_relationships ON wp_term_relationships.term_taxonomy_id = wp_term_taxonomy.term_taxonomy_id
 INNER JOIN wp_posts ON wp_posts.ID = wp_term_relationships.object_id
-WHERE wp_terms.name = 'Ивенты' AND wp_posts.post_status = 'publish'
+WHERE wp_terms.slug = 'events' AND wp_posts.post_status = 'publish'
+AND (wp_posts.settings LIKE '%show_event_at_main\";i:1%' OR wp_posts.settings = '')
 ORDER BY post_date DESC";
 
 		$terms = $wpdb->get_results($query);

@@ -25,30 +25,30 @@ get_header();
 
 						<?php
 						global $post;
-						$tags = $wp_object_cache->get($post->ID, 'category_relationships');
-						$isEvent = false;
-						foreach($tags as $key=>$tag) {
-							if($tag->name == 'Анонимный блог') {
-								$isEvent = true;
-								break;
-							}
-							if($tag->name == 'Ивенты') {
-								if($post->settings) {
-									$postSettings = unserialize($post->settings);
-									if(isset($postSettings['show_at_main']) && $postSettings['show_at_main'] == 1) {
-
-									} else {
-										$isEvent = true;
-									}
-								} else {
-									$isEvent = true;
-								}
-								break;
-							}
-						}
-						if($isEvent) {
-							continue;
-						}
+//						$tags = $wp_object_cache->get($post->ID, 'category_relationships');
+//						$isEvent = false;
+//						foreach($tags as $key=>$tag) {
+//							if($tag->name == 'Анонимный блог') {
+//								$isEvent = true;
+//								break;
+//							}
+//							if($tag->name == 'Ивенты') {
+//								if($post->settings) {
+//									$postSettings = unserialize($post->settings);
+//									if(isset($postSettings['show_at_main']) && $postSettings['show_at_main'] == 1) {
+//
+//									} else {
+//										$isEvent = true;
+//									}
+//								} else {
+//									$isEvent = true;
+//								}
+//								break;
+//							}
+//						}
+//						if($isEvent) {
+//							continue;
+//						}
 
 					?>
 				<div <?php post_class(); ?> >

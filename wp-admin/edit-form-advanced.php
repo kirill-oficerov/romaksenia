@@ -103,18 +103,20 @@ $post_type_object = get_post_type_object($post_type);
 require_once('./includes/meta-boxes.php');
 
 add_meta_box('submitdiv', __('Publish'), 'post_submit_meta_box', null, 'side', 'core');
-// @todo kirill admin custom settings
-add_meta_box('custom_settings', __('Custom settings'), 'post_custom_settings', null, 'side', 'core');
 
 if ( current_theme_supports( 'post-formats' ) && post_type_supports( $post_type, 'post-formats' ) )
 	add_meta_box( 'formatdiv', _x( 'Format', 'post format' ), 'post_format_meta_box', null, 'side', 'core' );
 
 // all taxonomies
+$customSettingsShowed = 2;
 foreach ( get_object_taxonomies($post_type) as $tax_name ) {
 	$taxonomy = get_taxonomy($tax_name);
 	if ( ! $taxonomy->show_ui )
 		continue;
-
+	if(--$customSettingsShowed == 0) {
+		// @todo kirill admin custom settings
+		add_meta_box('custom_settings', __('Custom settings'), 'post_custom_settings', null, 'side', 'core');
+	}
 	$label = $taxonomy->labels->name;
 
 	if ( !is_taxonomy_hierarchical($tax_name) )
