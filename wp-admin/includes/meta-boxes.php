@@ -261,7 +261,7 @@ function post_custom_settings($post) {
 	 ?>
 		<div id="custom_settings">
 			<input id="show_at_main" name="show_at_main" type="checkbox" <?=$showAtMain ? 'checked="checked"' : ''?>>
-			<label for="show_at_main" style="position: relative; top: -1px;">Показывать ивент на главной</label>
+			<label for="show_at_main" style="position: relative; top: -1px;">Показывать ивент/кейс на главной</label>
 		</div>
 	<?
 }

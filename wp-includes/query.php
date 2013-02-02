@@ -2605,6 +2605,29 @@ class WP_Query {
 		if ( !$q['no_found_rows'] && !empty($limits) )
 			$found_rows = 'SQL_CALC_FOUND_ROWS';
 
+		// @todo kirill events
+		$filterObjectsPaths = array('/');
+		$removeObjectsPaths = array('/articles/');
+
+		if($found_rows == 'SQL_CALC_FOUND_ROWS' && in_array($_SERVER['REQUEST_URI'], $filterObjectsPaths )) {
+			$fields .= ' , wp_terms.slug as `term_slug` ';
+			$join .= ' LEFT JOIN wp_term_relationships ON wp_posts.ID = wp_term_relationships.object_id
+LEFT JOIN wp_term_taxonomy ON wp_term_relationships.term_taxonomy_id = wp_term_taxonomy.term_taxonomy_id
+LEFT JOIN wp_terms ON wp_term_taxonomy.term_id = wp_terms.term_id ';
+			$where .= ' AND (wp_terms.slug != "anonimka")
+AND NOT ((wp_terms.slug = "events" OR wp_terms.slug = "cases") AND (wp_posts.`settings` LIKE "%show_at_main\";i:0%" OR wp_posts.`settings` = ""))
+
+';
+		}
+
+		if($found_rows == 'SQL_CALC_FOUND_ROWS' && in_array($_SERVER['REQUEST_URI'], $removeObjectsPaths )) {
+			$fields .= ' , wp_terms.slug as `term_slug` ';
+			$join .= ' LEFT JOIN wp_term_relationships ON wp_posts.ID = wp_term_relationships.object_id
+LEFT JOIN wp_term_taxonomy ON wp_term_relationships.term_taxonomy_id = wp_term_taxonomy.term_taxonomy_id
+LEFT JOIN wp_terms ON wp_term_taxonomy.term_id = wp_terms.term_id ';
+			$where .= ' AND (wp_terms.slug != "anonimka") AND (wp_terms.slug != "events") AND (wp_terms.slug != "cases") ';
+		}
+
 		$this->request = $old_request = "SELECT $found_rows $distinct $fields FROM $wpdb->posts $join WHERE 1=1 $where $groupby $orderby $limits";
 
 		if ( !$q['suppress_filters'] ) {
