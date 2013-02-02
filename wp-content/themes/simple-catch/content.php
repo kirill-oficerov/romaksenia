@@ -28,8 +28,21 @@ get_header();
 						$tags = $wp_object_cache->get($post->ID, 'category_relationships');
 						$isEvent = false;
 						foreach($tags as $key=>$tag) {
-							if($tag->name == 'Ивенты' || $tag->name == 'Анонимный блог') {
+							if($tag->name == 'Анонимный блог') {
 								$isEvent = true;
+								break;
+							}
+							if($tag->name == 'Ивенты') {
+								if($post->settings) {
+									$postSettings = unserialize($post->settings);
+									if(isset($postSettings['show_at_main']) && $postSettings['show_at_main'] == 1) {
+
+									} else {
+										$isEvent = true;
+									}
+								} else {
+									$isEvent = true;
+								}
 								break;
 							}
 						}

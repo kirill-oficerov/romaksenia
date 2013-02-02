@@ -149,7 +149,15 @@ function edit_post( $post_data = null ) {
 	$post = get_post( $post_ID );
 	$post_data['post_type'] = $post->post_type;
 	$post_data['post_mime_type'] = $post->post_mime_type;
-
+	// @todo kirill admin custom settings
+	$showAtMain = intval(isset($post_data['show_at_main']));
+	if(!empty($post->settings)) {
+		$postSettings = unserialize($post->settings);
+		$postSettings['show_at_main'] = $showAtMain;
+		$post_data['settings'] = serialize($postSettings);
+	} else {
+		$post_data['settings'] = serialize(array('show_at_main' => $showAtMain));
+	}
 	$ptype = get_post_type_object($post_data['post_type']);
 	if ( !current_user_can( $ptype->cap->edit_post, $post_ID ) ) {
 		if ( 'page' == $post_data['post_type'] )

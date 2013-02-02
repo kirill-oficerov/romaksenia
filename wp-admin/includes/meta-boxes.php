@@ -231,6 +231,42 @@ if ( !in_array( $post->post_status, array('publish', 'future', 'private') ) || 0
 <?php
 }
 
+// @todo kirill admin custom settings
+/**
+ * Display custom settings.
+ *
+ * @param object $post
+ */
+function post_custom_settings($post) {
+//	global $wpdb;
+//	$query = "SELECT wpt.slug FROM `wp_posts` wpp
+//LEFT JOIN wp_term_relationships wptr ON wptr.object_id = wpp.ID
+//LEFT JOIN wp_term_taxonomy wptt ON wptt.term_taxonomy_id = wptr.term_taxonomy_id
+//LEFT JOIN wp_terms wpt ON wpt.term_id = wptt.term_id
+//WHERE wpp.ID = " . $post->ID;
+	$showAtMain = false;
+	if(isset($post->settings)) {
+		$postSettings = htmlspecialchars_decode($post->settings);
+		$postSettings = unserialize($postSettings);
+		$showAtMain = intval(isset($postSettings['show_at_main']) && $postSettings['show_at_main'] == 1);
+	}
+//	$categories = $wpdb->get_results($query);
+//	$showCheckboxAtMain = false;
+//	foreach($categories as $slug) {
+//		if($slug->slug == 'events') {
+//			$showCheckboxAtMain = true;
+//			break;
+//		}
+//	}
+	 ?>
+		<div id="custom_settings">
+			<input id="show_at_main" name="show_at_main" type="checkbox" <?=$showAtMain ? 'checked="checked"' : ''?>>
+			<label for="show_at_main" style="position: relative; top: -1px;">Показывать ивент на главной</label>
+		</div>
+	<?
+}
+
+
 /**
  * Display post format form elements.
  *
