@@ -108,7 +108,9 @@ function simplecatch_filter_wp_title( $title ) {
 	}
 	else {
 		// Prepend name
-		$filtered_title = $title .' &#124; '. $site_name;
+		// @todo kirill title
+//		 $filtered_title = $title .' &#124; '. $site_name;
+		 $filtered_title = $title;
 	}
 
 	// Add a page number if necessary:
