@@ -1954,3 +1954,6 @@ span.select-search-result {
 #main .rubber-layout-keep-content #content .col8 .post-excerpt a {
 	text-decoration: underline;
 }
+#content .col8 .post_date {
+	margin-bottom: 8px;
+}
