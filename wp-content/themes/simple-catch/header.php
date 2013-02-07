@@ -15,7 +15,8 @@
 <meta name="google-site-verification" content="COf4Fim1XzvA3mRfghLvHfOJLqMAvF7p6TYV92LzqO4" />
 <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
 <title><?php wp_title(''); ?></title>
-<link rel="stylesheet" type="text/css" media="all" href="<?php echo get_stylesheet_uri(); ?>" />
+<? global $wp_version; ?>
+<link rel="stylesheet" type="text/css" media="all" href="<?php echo get_stylesheet_uri(); echo '?ver=' . $wp_version?>" />
 <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 <?php
 	/* Always have wp_head() just before the closing </head>
