@@ -109,19 +109,15 @@ get_header();
 									<? } ?>
 							</div>
 							<div class="post-excerpt">
-<!--							--><?// echo $content ?>
 								<?
-//								echo "<pre>".print_r($content, true)."</pre>\n\n";
 								$matches = array();
 								preg_match('~<a[^>]+readmore[^>]*>Далее</a>~', $content, $matches);
-								$content = str_replace($matches[1], '', $content);
+								$content = str_replace($matches[0], '', $content);
 								echo $content;
-//								position: absolute;
-//								bottom: 0px;
-//								die();
-?>
+								?>
+								<br>
 							</div>
-							<?= $matches[1]?>
+							<?=$matches[0]?>
 						</div>
 						<div class="row-end"></div>
 					</div><!-- .post -->

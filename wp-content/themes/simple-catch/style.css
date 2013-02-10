@@ -316,6 +316,9 @@ a.readmore {
 	font-weight:bold;
 	color:#000;
 	padding-top:8px;
+
+}
+#content .post a.readmore {
 	position: absolute;
 	bottom: 0px;
 }
@@ -1479,8 +1482,9 @@ img.size-medium,
 /* =Pagination
 -------------------------------------------------------------- */
 #wp_page_numbers, #content .wp-pagenavi {
-	float:right;
-	padding-bottom:30px;
+	float: left;
+	padding-bottom: 30px;
+	padding-top: 10px;
 }
 #wp_page_numbers ul {
 	list-style:none;
@@ -1496,7 +1500,7 @@ img.size-medium,
 	border: none;
 	float:left;
 	height:32px;
-	background:#ddd;
+	/*background:#ddd;*/
 	color:#555;
 	text-align:center;
 	font-size:14px;
@@ -1517,6 +1521,11 @@ img.size-medium,
 	color:#fff;
 	font-weight: normal;
 }
+#wp_page_numbers ul li.active_page a, #content .wp-pagenavi .pages {
+	margin-left: 0px;
+	padding-left: 0px;
+}
+
 /* Single pagination */
 .pagination {
 	clear: both;

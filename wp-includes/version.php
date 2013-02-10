@@ -6,7 +6,7 @@
  */
 // @todo kirill version
 //$wp_version = '3.4.2';
-$wp_version = '1.004';
+$wp_version = '1.005';
 
 /**
  * Holds the WordPress DB revision, increments when changes are made to the WordPress DB schema.
