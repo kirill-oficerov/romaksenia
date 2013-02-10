@@ -43,5 +43,16 @@ if ( function_exists('get_site_option') ) {
 
 <div class="clear"></div></div><!-- wpwrap -->
 <script type="text/javascript">if(typeof wpOnload=='function')wpOnload();</script>
+<script type="text/javascript">
+
+(function($) {
+	$(function() {
+		var customCommon = new window.Admin_Custom_Common({
+			urlSaveCustomSettings: '<?=HTTP_HOST . '/wp-admin/custom.php'?>'
+		});
+		customCommon.init();
+	});
+})(jQuery);
+</script>
 </body>
 </html>

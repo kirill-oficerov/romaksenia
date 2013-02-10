@@ -426,17 +426,17 @@ function media_upload_form_handler() {
 		$send_id = (int) array_shift($keys);
 	}
 	// @todo kirill admin featured image
-	if(isset($_POST['featured_width']) && !empty($_POST['featured_width']) ||
-		isset($_POST['featured_height']) && !empty($_POST['featured_height'])
-	) {
-		$height = intval($_POST['featured_height']);
-		$width = intval($_POST['featured_width']);
-		$settings = serialize(array('width' => $width, 'height' => $height));
-		global $wpdb;
-		$query = 'UPDATE wp_posts SET settings = \'' . $settings . '\' WHERE ID=' . intval($_POST['post_id']);
-
-		$terms = $wpdb->get_results($query);
-	}
+//	if(isset($_POST['featured_width']) && !empty($_POST['featured_width']) ||
+//		isset($_POST['featured_height']) && !empty($_POST['featured_height'])
+//	) {
+//		$height = intval($_POST['featured_height']);
+//		$width = intval($_POST['featured_width']);
+//		$settings = serialize(array('width' => $width, 'height' => $height));
+//		global $wpdb;
+//		$query = 'UPDATE wp_posts SET settings = \'' . $settings . '\' WHERE ID=' . intval($_POST['post_id']);
+//
+//		$terms = $wpdb->get_results($query);
+//	}
 	if ( !empty($_POST['attachments']) ) foreach ( $_POST['attachments'] as $attachment_id => $attachment ) {
 		$post = $_post = get_post($attachment_id, ARRAY_A);
 		$post_type_object = get_post_type_object( $post[ 'post_type' ] );
@@ -1216,7 +1216,7 @@ function get_media_item( $attachment_id, $args = null ) {
 		$form_fields['featured_info'] = array( 'tr' => "\t\t<tr class='submit'>
 		<th valign='top' scope='row' class='label' style='font-size:13px; font-weight: bold;'><span style='cursor: pointer;' class='alignleft'>Featured settings</span><br class='clear'></th>
 		<td class='savesend' style='padding-top: 1px;'>
-			<span style='margin-top:5px;'>width:</span><input type='text' value='" . $width . "' class='text' style='width:60px;' name='featured_width'> &nbsp; <span style='margin-top:5px;'>height:</span><input type='text' value='" . $height . "' class='text' style='width:60px;' name='featured_height'>
+			<span style='margin-top:5px;'>width:</span><input type='text' value='" . $width . "' class='text' style='width:60px;' name='featured_width_" . $post->ID . "'> &nbsp; <span style='margin-top:5px;'>height:</span><input type='text' value='" . $height . "' class='text' style='width:60px;' name='featured_height_" . $post->ID . "'><input type='button' rel='" . $post->ID . "' class='button save_feature_settings' value='Save Feature Settings'><img src='" . HTTP_HOST . "/wp-admin/images/wpspin_light.gif' class='preloader' style='display:none; position: relative; top: 3px; left: 5px;'>
 		</td><td></td></tr>\n" );
 	}
 	$hidden_fields = array();
@@ -1300,6 +1300,13 @@ function get_media_item( $attachment_id, $args = null ) {
  */
 function media_upload_header() {
 	?>
+	<script type="text/javascript" src="/wp-admin/js/custom_common.js"></script>
+	<script type="text/javascript">
+		var adminCustomCommon = new window.Admin_Custom_Common({
+			urlSaveCustomSettings: '<?=HTTP_HOST . '/wp-admin/custom.php'?>'
+		});
+		adminCustomCommon.init();
+	</script>
 	<script type="text/javascript">post_id = <?php echo intval($_REQUEST['post_id']); ?>;</script>
 	<div id="media-upload-header">
 	<?php the_media_upload_tabs(); ?>
