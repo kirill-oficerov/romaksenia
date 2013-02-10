@@ -90,7 +90,14 @@ get_header();
 			                    </a>
 			                        <? } ?>
 		                    </div>
-		                    <? echo $content ?>
+		                    <?
+		                    $matches = array();
+		                    preg_match('~<a[^>]+readmore[^>]*>Далее</a>~', $content, $matches);
+		                    $content = str_replace($matches[0], '', $content);
+		                    echo $content;
+		                    ?>
+		                    <br>
+		                    <?=$matches[0]?>
 	                    </div>
                         <div class="row-end"></div>
                     </div><!-- .post -->
