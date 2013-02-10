@@ -2606,10 +2606,25 @@ class WP_Query {
 			$found_rows = 'SQL_CALC_FOUND_ROWS';
 
 		// @todo kirill events
-		$filterObjectsPaths = array('/');
-		$removeObjectsPaths = array('/articles/');
+		$filterObjectsPaths = array('~^/$~','~^/page/.*$~');
+		$removeObjectsPaths = array('~^/articles/$~');
+		$requestUri = $_SERVER['REQUEST_URI'];
+		$filterObjects = false;
+		foreach($filterObjectsPaths as $pattern) {
+			if(preg_match($pattern, $requestUri) === 1) {
+				$filterObjects = true;
+				break;
+			}
+		}
+		$removeObjects = false;
 
-		if($found_rows == 'SQL_CALC_FOUND_ROWS' && in_array($_SERVER['REQUEST_URI'], $filterObjectsPaths )) {
+		foreach($removeObjectsPaths as $pattern) {
+			if(preg_match($pattern, $requestUri) === 1) {
+				$removeObjects = true;
+				break;
+			}
+		}
+		if($found_rows == 'SQL_CALC_FOUND_ROWS' && $filterObjects) {
 			$fields .= ' , wp_terms.slug as `term_slug` ';
 			$join .= ' LEFT JOIN wp_term_relationships ON wp_posts.ID = wp_term_relationships.object_id
 LEFT JOIN wp_term_taxonomy ON wp_term_relationships.term_taxonomy_id = wp_term_taxonomy.term_taxonomy_id
@@ -2620,7 +2635,7 @@ AND NOT (wp_terms.slug = "cases" AND (wp_posts.`settings` LIKE "%show_case_at_ma
 ';
 		}
 
-		if($found_rows == 'SQL_CALC_FOUND_ROWS' && in_array($_SERVER['REQUEST_URI'], $removeObjectsPaths )) {
+		if($found_rows == 'SQL_CALC_FOUND_ROWS' && $removeObjects) {
 			$fields .= ' , wp_terms.slug as `term_slug` ';
 			$join .= ' LEFT JOIN wp_term_relationships ON wp_posts.ID = wp_term_relationships.object_id
 LEFT JOIN wp_term_taxonomy ON wp_term_relationships.term_taxonomy_id = wp_term_taxonomy.term_taxonomy_id
