@@ -316,6 +316,8 @@ a.readmore {
 	font-weight:bold;
 	color:#000;
 	padding-top:8px;
+	position: absolute;
+	bottom: 0px;
 }
 #main .rubber-layout-keep-content #content .col8 .post-excerpt a.readmore {
 	text-decoration: none;
@@ -817,7 +819,8 @@ h2#site-description {
 	min-height: 100%;
 }
 #main #content .post {
-	padding-bottom:30px;
+	/*padding-bottom:30px;*/
+	padding-bottom:9px;
 }
 #main #content .search-result-container .post {
 	padding-bottom:0px;
@@ -1944,6 +1947,7 @@ div#main div#content.col8 h2.entry-title a, #sidebar .widget .page_item a.event-
 	/*display: inline;*/
 	text-align: justify;
 	line-height: 1.5;
+	position: relative;
 }
 span.select-search-result {
 	background-color: yellow;
