@@ -2607,7 +2607,7 @@ class WP_Query {
 
 		// @todo kirill events
 		$filterObjectsPaths = array('~^/$~','~^/page/.*$~');
-		$removeObjectsPaths = array('~^/articles/$~');
+		$removeObjectsPaths = array('~^/articles/$~', '~^/articles/page/.*$~');
 		$requestUri = $_SERVER['REQUEST_URI'];
 		$filterObjects = false;
 		foreach($filterObjectsPaths as $pattern) {
