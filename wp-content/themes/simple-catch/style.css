@@ -1951,6 +1951,7 @@ div#main div#content.col8 h2.entry-title a, #sidebar .widget .page_item a.event-
 	text-align: justify;
 	line-height: 1.5;
 	position: relative;
+	width: 100%;
 }
 span.select-search-result {
 	background-color: yellow;
