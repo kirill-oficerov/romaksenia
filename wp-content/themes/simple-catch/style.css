@@ -1971,3 +1971,6 @@ span.select-search-result {
 #content .col8 .post_date {
 	margin-bottom: 8px;
 }
+.col8.rubber-layout-main {
+	width:72%;
+}
