@@ -887,6 +887,8 @@ function simplecatch_loop() {
 			<div class="clear" style="height: 1px; width: 1px; "></div>
 			<?
 			echo $content ?>
+			<div class="clear" style="height: 1px; width: 1px; "></div>
+
 			<div class="tags">
 				<div class="label">Теги:</div>
 				<ul>
