@@ -44,7 +44,6 @@ get_header();
 				<div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="none"
 				data-yashareQuickServices="vkontakte,facebook,twitter,odnoklassniki,lj,gplus,pinterest"></div>'
 							?>
-
 							<div class="clear" style="height: 1px; width: 1px; "></div>
 							<div class="post_date"><?=(date('d.m.Y', strtotime($post->post_date)))?></div>
 							<div class="clear" style="height: 1px; width: 1px; "></div>
