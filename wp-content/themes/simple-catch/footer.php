@@ -11,7 +11,7 @@
     	<div class="layout-978" style="float: left; min-width: 0px;">
 			<?php //Displaying footer logo ?>
             <div class="col7 copyright" style="margin-left: 21px;">
-	            Copyright &copy; <?php echo date("Y"); ?> <span><a href="http://wedigital.by"><?php bloginfo('name')?></span></a>&nbsp;All Right Reserved.
+	            <noindex>Copyright &copy; <?php echo date("Y"); ?> <span><a href="http://wedigital.by"><?php bloginfo('name')?></span></a>&nbsp;All Right Reserved.</noindex>
             </div><!-- .col7 -->
 		    <!--Akavita counter start-->
 <!--		    <script type="text/javascript">var AC_ID=56808;var AC_TR=false;-->
