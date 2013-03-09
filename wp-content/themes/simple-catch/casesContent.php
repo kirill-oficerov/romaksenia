@@ -25,17 +25,7 @@ get_header();
 
                         <?php
 	                    global $post;
-//	                    $tags = $wp_object_cache->get($post->ID, 'category_relationships');
-//	                    $isEvent = false;
-//	                    foreach($tags as $key=>$tag) {
-//		                    if($tag->name == 'Ивенты') {
-//			                    $isEvent = true;
-//			                    break;
-//		                    }
-//	                    }
-//	                    if($isEvent) {
-//		                    continue;
-//	                    }
+
 	                ?>
                 <div <?php post_class(); ?> >
 	                    <div class="col8">
@@ -45,18 +35,6 @@ get_header();
 	                            </h2>
                             </div>
 <!--	                --><?//
-//                    // tags
-//					$tags = $wp_object_cache->get($post->ID, 'category_relationships');
-//                    $output = '<ul class="category-list tags">';
-//                    foreach($tags as $key => $tag) {
-//	                    if(!is_null($tag->category_settings)) {
-//							$categorySettings = unserialize($tag->category_settings);
-//	                    }
-//	                    $output .= '<li ' . (isset($categorySettings['class']) ? 'class="' . $categorySettings['class'] . '"' : '') . ' ><a  href="' . HTTP_HOST . '/category/' . $tag->slug . '">' . $tag->name . '</a></li>';
-//	                    unset($categorySettings);
-//                    }
-//                    $output .= '</ul>';
-//	                echo $output;
 //	                ?>
 
 
@@ -70,7 +48,8 @@ get_header();
 				data-yashareQuickServices="vkontakte,facebook,twitter,odnoklassniki,lj,gplus,pinterest"></div>'
 		                    ?>
 		                    <div class="clear" style="height: 1px; width: 1px; "></div>
-
+		                    <div class="post_date"><?=(date('d.m.Y', strtotime($post->post_date)))?></div>
+		                    <div class="clear" style="height: 1px; width: 1px; "></div>
 		                    <div style="text-align: right; float: right; margin: 0px 0px 0px 15px;">
 			                    <?
 			                        $picture = get_the_post_thumbnail( null, 'featured', '' );
