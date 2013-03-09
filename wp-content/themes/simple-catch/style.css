@@ -890,7 +890,7 @@ h2.entry-title
 }
 /* Tags */
 #main #content .tags {
-	padding-bottom: 15px;
+	/*padding-bottom: 15px;*/
 }
 #main #content .tags a {
 	color:#999;
@@ -1973,4 +1973,21 @@ span.select-search-result {
 }
 .col8.rubber-layout-main {
 	width:72%;
+}
+.tags {
+	margin-bottom: 10px;
+}
+.tags .label{
+	display: block;
+	float: left;
+}
+.tags ul {
+	list-style: none;
+	display: block;
+	float: left;
+	margin: 0px 0px 0px 5px;
+}
+.tags ul li {
+	float: left;
+	margin-right: 5px;
 }

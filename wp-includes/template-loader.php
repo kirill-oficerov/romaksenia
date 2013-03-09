@@ -3,8 +3,9 @@
  * Loads the correct template based on the visitor's url
  * @package WordPress
  */
-if ( defined('WP_USE_THEMES') && WP_USE_THEMES )
+if ( defined('WP_USE_THEMES') && WP_USE_THEMES ) {
 	do_action('template_redirect');
+}
 
 // Process feeds and trackbacks even if not using themes.
 if ( is_robots() ) :
@@ -20,7 +21,9 @@ endif;
 
 if ( defined('WP_USE_THEMES') && WP_USE_THEMES ) :
 	$template = false;
-	if     ( is_404()            && $template = get_404_template()            ) :
+	// @todo kirill tags
+	if     ( Wd::is_page_tag()   && $template = get_index_template()          ) :
+	elseif ( is_404()            && $template = get_404_template()            ) :
 	elseif ( is_search()         && $template = get_search_template()         ) :
 	elseif ( is_tax()            && $template = get_taxonomy_template()       ) :
 	elseif ( is_front_page()     && $template = get_front_page_template()     ) :

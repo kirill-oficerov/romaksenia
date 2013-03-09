@@ -1,6 +1,6 @@
 <?php
 /**
- * This is the template that displays content for index and archive page
+ * This is the template that displays content for cases page
  *
  * @package Catch Themes
  * @subpackage Simple_Catch

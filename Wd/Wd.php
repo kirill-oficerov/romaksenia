@@ -1,8 +1,9 @@
 <?php
 class Wd {
 
-	protected static $_cache = array();
+	const TAGS_URL = '/tags';
 
+	protected static $_cache = array();
 
 	public static function get($key) {
 		if(!isset(self::$_cache[$key])) {
@@ -40,5 +41,16 @@ class Wd {
 		if(file_exists(DOCUMENT_ROOT . '/Wd/' . implode('/', $parts) . '/' . $fileName . '.php')) {
 			require_once DOCUMENT_ROOT . '/Wd/' . implode('/', $parts) . '/' . $fileName . '.php';
 		}
+	}
+	public static function is_page_tag() {
+		return strpos($_SERVER['REQUEST_URI'], self::TAGS_URL) === 0;
+	}
+
+	public static function get_tags_template() {
+//		return SIMPLE_CATCH_DIR . 'tagsContent.php';
+		return 'tagsContent';
+	}
+	public static function get_tag() {
+		return mysql_real_escape_string(substr($_SERVER['REQUEST_URI'], strlen(self::TAGS_URL) + 1) );
 	}
 }

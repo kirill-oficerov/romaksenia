@@ -25,60 +25,19 @@ get_header();
 
 						<?php
 						global $post;
-//						$tags = $wp_object_cache->get($post->ID, 'category_relationships');
-//						$isEvent = false;
-//						foreach($tags as $key=>$tag) {
-//							if($tag->name == 'Анонимный блог') {
-//								$isEvent = true;
-//								break;
-//							}
-//							if($tag->name == 'Ивенты') {
-//								if($post->settings) {
-//									$postSettings = unserialize($post->settings);
-//									if(isset($postSettings['show_at_main']) && $postSettings['show_at_main'] == 1) {
-//
-//									} else {
-//										$isEvent = true;
-//									}
-//								} else {
-//									$isEvent = true;
-//								}
-//								break;
-//							}
-//						}
-//						if($isEvent) {
-//							continue;
-//						}
+
 
 					?>
 				<div <?php post_class(); ?> >
-<!--	                    <div class="col8" style="min-width: 100%">-->
 						<div class="col8">
-<!--                            <div style="float: left; margin-right: -150px; min-width: 100%; ">-->
 							<div style="float: left; margin-right: -150px; width: 100%; ">
 								<h2 class="entry-title" style="margin: 10px 150px 3px 0px; ">
 									<a href="<?php the_permalink() ?>" title="" rel="bookmark" ><?php the_title(); ?></a>
 								</h2>
 							</div>
-<!--	                --><?//
-//                    // tags
-//					$tags = $wp_object_cache->get($post->ID, 'category_relationships');
-//                    $output = '<ul class="category-list tags">';
-//                    foreach($tags as $key => $tag) {
-//	                    if(!is_null($tag->category_settings)) {
-//							$categorySettings = unserialize($tag->category_settings);
-//	                    }
-//	                    $output .= '<li ' . (isset($categorySettings['class']) ? 'class="' . $categorySettings['class'] . '"' : '') . ' ><a  href="' . HTTP_HOST . '/category/' . $tag->slug . '">' . $tag->name . '</a></li>';
-//	                    unset($categorySettings);
-//                    }
-//                    $output .= '</ul>';
-//	                echo $output;
-//	                ?>
 
 
 						<?php $excerpt = the_excerpt(false);
-//		                    $contentBegin = strrpos($excerpt, '<p style="" rel="begin-of-the-excerpt-text">');
-//		                    $content = substr($excerpt, $contentBegin);
 							$content = substr($excerpt, 3);
 							$content = substr($content, 0, -5);
 							echo '<script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>

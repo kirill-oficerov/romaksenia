@@ -19,8 +19,13 @@ get_header();
 	if( function_exists( 'simplecatch_display_div' ) ) {
 		$themeoption_layout = simplecatch_display_div();
 	}
-		
-    get_template_part('content'); ?>
+	// @todo kirill tags
+	if(Wd::is_page_tag()) {
+		get_template_part(Wd::get_tags_template());
+	} else {
+		get_template_part('content');
+	}
+?>
     </div> <!-- keep content -->
 	</div><!-- #content -->
             

@@ -2095,8 +2095,8 @@ class WP_Query {
 			} //end foreach
 			unset($ptype_obj);
 		}
-
-		if ( '' != $q['name'] ) {
+		// @todo kirill tags
+		if ( '' != $q['name'] && !Wd::is_page_tag()) {
 			$q['name'] = sanitize_title_for_query( $q['name'] );
 			$where .= " AND $wpdb->posts.post_name = '" . $q['name'] . "'";
 		} elseif ( '' != $q['pagename'] ) {
@@ -2625,7 +2625,8 @@ class WP_Query {
 			}
 		}
 		if($found_rows == 'SQL_CALC_FOUND_ROWS' && $filterObjects) {
-			$fields .= ' , wp_terms.slug as `term_slug` ';
+//			$fields .= ' , wp_terms.slug as `term_slug` ';
+			$found_rows = ' DISTINCT ' . $found_rows;
 			$join .= ' LEFT JOIN wp_term_relationships ON wp_posts.ID = wp_term_relationships.object_id
 LEFT JOIN wp_term_taxonomy ON wp_term_relationships.term_taxonomy_id = wp_term_taxonomy.term_taxonomy_id
 LEFT JOIN wp_terms ON wp_term_taxonomy.term_id = wp_terms.term_id ';
@@ -2636,15 +2637,27 @@ AND NOT (wp_terms.slug = "cases" AND (wp_posts.`settings` LIKE "%show_case_at_ma
 		}
 
 		if($found_rows == 'SQL_CALC_FOUND_ROWS' && $removeObjects) {
-			$fields .= ' , wp_terms.slug as `term_slug` ';
+//			$fields .= ' , wp_terms.slug as `term_slug` ';
+			$found_rows = ' DISTINCT ' . $found_rows;
+
 			$join .= ' LEFT JOIN wp_term_relationships ON wp_posts.ID = wp_term_relationships.object_id
 LEFT JOIN wp_term_taxonomy ON wp_term_relationships.term_taxonomy_id = wp_term_taxonomy.term_taxonomy_id
 LEFT JOIN wp_terms ON wp_term_taxonomy.term_id = wp_terms.term_id ';
 			$where .= ' AND (wp_terms.slug != "anonimka") AND (wp_terms.slug != "events") AND (wp_terms.slug != "cases") ';
 		}
+		// @todo kirill tags query
+		if(Wd::is_page_tag() && strpos($where, 'nav_menu_item') === false) {
+			$where = strtr($where, array('AND 0 = 1' => ''));
+			$fields .= ' , wp_terms.slug as `term_slug` ';
+			$join .= ' LEFT JOIN wp_term_relationships ON wp_posts.ID = wp_term_relationships.object_id
+LEFT JOIN wp_term_taxonomy ON wp_term_relationships.term_taxonomy_id = wp_term_taxonomy.term_taxonomy_id
+LEFT JOIN wp_terms ON wp_term_taxonomy.term_id = wp_terms.term_id ';
+			$where .= ' AND wp_terms.slug = "' . Wd::get_tag() . '" ';
+		}
 
 		$this->request = $old_request = "SELECT $found_rows $distinct $fields FROM $wpdb->posts $join WHERE 1=1 $where $groupby $orderby $limits";
-
+//		echo "<pre>".print_r($old_request, true)."</pre>\n\n";
+//		die();
 		if ( !$q['suppress_filters'] ) {
 			$this->request = apply_filters_ref_array( 'posts_request', array( $this->request, &$this ) );
 		}
@@ -3455,6 +3468,10 @@ LEFT JOIN wp_terms ON wp_term_taxonomy.term_id = wp_terms.term_id ';
 	 * @return bool
 	 */
 	function is_single( $post = '' ) {
+		// @todo kirill tags is_single
+		if ( Wd::is_page_tag() )
+			return false;
+
 		if ( !$this->is_single )
 			return false;
 

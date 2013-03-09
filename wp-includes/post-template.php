@@ -413,10 +413,10 @@ function get_body_class( $class = '' ) {
 
 	if ( is_rtl() )
 		$classes[] = 'rtl';
-
-	if ( is_front_page() )
+	// @todo kirill tags
+	if ( is_front_page() || Wd::is_page_tag())
 		$classes[] = 'home';
-	if ( is_home() )
+	if ( is_home() || Wd::is_page_tag())
 		$classes[] = 'blog';
 	if ( is_archive() )
 		$classes[] = 'archive';
