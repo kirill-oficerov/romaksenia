@@ -825,9 +825,6 @@ h2#site-description {
 	/*padding-bottom:30px;*/
 	padding-bottom:9px;
 }
-#main #content .search-result-container .post {
-	padding-bottom:0px;
-}
 
 #main #content .post h1,
 h2.entry-title

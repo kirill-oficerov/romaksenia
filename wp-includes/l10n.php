@@ -66,7 +66,8 @@ function get_locale() {
  */
 function translate( $text, $domain = 'default' ) {
 	$translations = &get_translations_for_domain( $domain );
-	return apply_filters( 'gettext', $translations->translate( $text ), $text, $domain );
+	$tmp = apply_filters( 'gettext', $translations->translate( $text ), $text, $domain );
+	return $tmp;
 }
 
 function before_last_bar( $string ) {
@@ -95,9 +96,13 @@ function translate_with_gettext_context( $text, $context, $domain = 'default' ) 
  */
 function __( $text, $domain = 'default' ) {
 
-	return $text;
+//	return $text;
 //	@todo kirill try make faster translate __
-//	return translate( $text, $domain );
+//	echo "<pre>".print_r($text, true)."</pre>\n\n";
+//	echo "<pre>".print_r(gettext('123'), true)."</pre>\n\n";
+//	echo "<pre>".print_r(gettext('Search Results %1$s %2$s'), true)."</pre>\n\n";
+//	die();
+	return translate( $text, $domain );
 }
 
 /**

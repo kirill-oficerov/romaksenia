@@ -14,25 +14,31 @@ class Wd_Pages_Search {
 			$excerptsWords = preg_split( "/[\n\r\t ]+/", $excerpt, null, PREG_SPLIT_NO_EMPTY );
 			array_pop( $excerptsWords );
 			if(self::findArrayInArray($searchWords, $excerptsWords) !== false) {
-				$output = '';
+				$toReturn = apply_filters('get_the_excerpt', '');
+				$toReturn = '<div class="post-excerpt">' . $toReturn;
+				$matches = array();
+				preg_match('~<br />.{1,2}<a[^>]+readmore[^>]*>Далее</a>~', $toReturn, $matches);
+				$toReturn = Wd::mb_str_replace($matches[0], '</div>' . $matches[0], $toReturn);
 			} else {
 				$firstSearchResultIndex = self::findArrayInArray($searchWords, $contentWords);
 				$endEllipsis = count($contentWords) < $firstSearchResultIndex + $wordsAmount ? '' : '...';
 				$contentWords = array_slice($contentWords, $firstSearchResultIndex - $wordsAmount / 2, $wordsAmount);
-				$output = '...' . implode(' ', $contentWords) . $endEllipsis;
+				$output = '<div class="post-excerpt">';
+				$output .= '...' . implode(' ', $contentWords) . $endEllipsis;
 				$excerpt_length = apply_filters('excerpt_length', 55);
 				$excerpt_more = apply_filters('excerpt_more', ' ' . '[...]');
-				$output .= '<br />' . substr($excerpt_more, 10);
+				$output .= '</div><br />' . substr($excerpt_more, 10);
+				$toReturn = apply_filters('get_the_excerpt', $output);
 			}
 		} else {
-			$output = '';
+//			$toReturn = apply_filters('get_the_excerpt', '');
+//			$toReturn = '<div class="post-excerpt">' . $toReturn . '</div>';
 		}
 		if ( post_password_required($post) ) {
 			$output = __('There is no excerpt because this is a protected post.');
 			return $output;
 		}
 
-		$toReturn = apply_filters('get_the_excerpt', $output);
 //		$toReturn = wp_trim_excerpt($toReturn);
 		return $toReturn;
 	}
@@ -45,7 +51,7 @@ class Wd_Pages_Search {
 			$firstSearchResultIndex = false;
 			$iAdditional = 0;
 			for($j = 0; $j < $needleLength; $j++) {
-				if(strpos($haystack[$i + $iAdditional], $needle[$j]) !== false) {
+				if(mb_strpos(mb_strtolower($haystack[$i + $iAdditional]), mb_strtolower($needle[$j]), null, 'UTF-8') !== false) {
 					if($j + 1 == $needleLength) {
 						$firstSearchResultIndex = $i;
 						break;
