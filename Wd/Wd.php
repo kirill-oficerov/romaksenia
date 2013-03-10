@@ -41,4 +41,11 @@ class Wd {
 			require_once DOCUMENT_ROOT . '/Wd/' . implode('/', $parts) . '/' . $fileName . '.php';
 		}
 	}
+	public static function mb_str_replace($search, $replace, $subject) {
+		$searchPosition = mb_strpos($subject, $search, null, 'UTF-8');
+		$leftPart = mb_substr($subject, 0, $searchPosition);
+		$rightPart = mb_substr($subject, $searchPosition + mb_strlen($search));
+		return $leftPart . $replace . $rightPart;
+	}
+
 }

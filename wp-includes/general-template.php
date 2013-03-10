@@ -587,7 +587,8 @@ function wp_title($sep = '&raquo;', $display = true, $seplocation = '') {
 	// If it's a search
 	if ( is_search() ) {
 		/* translators: 1: separator, 2: search phrase */
-		$title = sprintf(__('Search Results %1$s %2$s'), $t_sep, strip_tags($search));
+//		$title = sprintf(__('Search Results %1$s %2$s'), $t_sep, strip_tags($search));
+		$title = sprintf(__('Результаты поиска %1$s %2$s'), $t_sep, strip_tags($search));
 	}
 
 	// If it's a 404 page

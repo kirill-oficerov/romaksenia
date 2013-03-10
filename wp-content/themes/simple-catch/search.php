@@ -19,29 +19,32 @@ get_header();
 		<?php while (have_posts()) : the_post(); ?>
 		
 			<div <?php post_class();?>>
-				
-				<h3 style="padding-top: 10px;"><a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( get_the_title() ); ?>">
+				<div class="col8">
+					<h3 style="padding-top: 10px;"><a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( get_the_title() ); ?>">
+						<?php
+							$search = get_search_query();
+							$search = htmlspecialchars_decode($search);
+							$title = get_the_title();
+							echo Wd_Pages_Search::highlightString($search, $title);
+	//						echo str_ireplace($search, '<span class="select-search-result">' . $search . '</span>', $title)
+
+						?></a></h3>
 					<?php
-						$search = get_search_query();
-						$search = htmlspecialchars_decode($search);
-						$title = get_the_title();
-						echo Wd_Pages_Search::highlightString($search, $title);
-//						echo str_ireplace($search, '<span class="select-search-result">' . $search . '</span>', $title)
+	//					$excerpt = get_the_excerpt();
+	//					@todo kirill search get_the_excerpt
+						$excerpt = Wd_Pages_Search::getExcerpt($search);
+						echo Wd_Pages_Search::highlightString($search, $excerpt);
 
-					?></a></h3>
-				<?php
-//					$excerpt = get_the_excerpt();
-//					@todo kirill search get_the_excerpt
-					$excerpt = Wd_Pages_Search::getExcerpt($search);
-					echo Wd_Pages_Search::highlightString($search, $excerpt);
-
-//					echo str_replace($search, '<span class="select-search-result">' . $search . '</span>', $excerpt)
-				?>
+	//					echo str_replace($search, '<span class="select-search-result">' . $search . '</span>', $excerpt)
+					?>
+				</div>
 				<div class="row-end"></div>
 			</div> <!-- .post -->
-		<hr style="padding-top: 20px;"/>
+		<hr />
+		<?php endwhile; ?>
 		</div>
-		<?php endwhile; 
+
+		<?
 			// Checking WP Page Numbers plugin exist
 			if ( function_exists('wp_pagenavi' ) ) : 
 				wp_pagenavi();
@@ -65,14 +68,6 @@ get_header();
 		</h2>
 	<a style="text-transform: uppercase; font-size: 12px; font-family: ProximaNovaReg; margin-left: 2px;" href="<?=HTTP_HOST . '/' . 'sitemap'?>">Карта сайта</a>
 
-<!--		<div class="post">-->
-<!--			<h5>--><?php //_e( 'A few suggestions', 'simplecatch' ); ?><!--</h5>-->
-<!--			<ul>-->
-<!--				<li>--><?php //_e( 'Make sure all words are spelled correctly', 'simplecatch' ); ?><!--</li>-->
-<!--				<li>--><?php //_e( 'Try different keywords', 'simplecatch' ); ?><!--</li>-->
-<!--				<li>--><?php //_e( 'Try more general keywords', 'simplecatch' ); ?><!--</li>-->
-<!--			</ul> -->
-<!--		</div> -->
 	<!-- .post -->
 		
 <?php endif; ?>
