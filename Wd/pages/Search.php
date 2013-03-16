@@ -17,7 +17,7 @@ class Wd_Pages_Search {
 				$toReturn = apply_filters('get_the_excerpt', '');
 				$toReturn = '<div class="post-excerpt">' . $toReturn;
 				$matches = array();
-				preg_match('~<br />.{1,2}<a[^>]+readmore[^>]*>Далее</a>~', $toReturn, $matches);
+				preg_match('~<br />.{0,2}<a[^>]+readmore[^>]*>Далее</a>~', $toReturn, $matches);
 				$toReturn = Wd::mb_str_replace($matches[0], '</div>' . $matches[0], $toReturn);
 			} else {
 				$firstSearchResultIndex = self::findArrayInArray($searchWords, $contentWords);
