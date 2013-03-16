@@ -889,26 +889,26 @@ function simplecatch_loop() {
 			echo $content ?>
 			<div class="clear" style="height: 1px; width: 1px; "></div>
 
-			<div class="tags">
-				<div class="label">Теги:</div>
-				<ul>
-					<?
-					$tags = get_the_tags();
-					$tags_output = '';
-					$tagsAmount = count($tags);
-					$tagsCounter = 0;
-					foreach($tags as $tag) {
-						$tagsCounter++;
-						$tags_output .= '<li><a href="' . HTTP_HOST . '/tags/' . $tag->slug . '">' . $tag->name . '</a>' . ( $tagsCounter < $tagsAmount ? ',' : '')  . '</li>';
-					}
-//					$tags_output = substr($tags_output, 0, strlen($tags_output) - 1);
-					echo $tags_output;
-					?>					
-				</ul>
-				<div class="clear" style="height: 1px; width: 1px; "></div>
-			</div>
-
 			<?
+			$tags = get_the_tags();
+			if($tags !== false) {
+				$tagsAmount = count($tags);
+				$tags_output = '<div class="tags">
+					<div class="label">Теги:</div>
+					<ul>';
+				$tagsCounter = 0;
+				foreach($tags as $tag) {
+					$tagsCounter++;
+					$tags_output .= '<li><a href="' . HTTP_HOST . '/tags/' . $tag->slug . '">' . $tag->name . '</a>' . ( $tagsCounter < $tagsAmount ? ',' : '')  . '</li>';
+				}
+				$tags_output .= '</ul>
+					<div class="clear" style="height: 1px; width: 1px; "></div>
+				</div>';
+
+				//					$tags_output = substr($tags_output, 0, strlen($tags_output) - 1);
+				echo $tags_output;
+				?>
+			<? }
 
             // copy this <!--nextpage--> and paste at the post content where you want to break the page
 			wp_link_pages(array(
