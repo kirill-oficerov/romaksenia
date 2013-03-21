@@ -13,8 +13,6 @@ class Wd_Widgets_Events extends WP_Widget {
 	}
 	function widget($args, $instance) {
 		// outputs the content of the widget
-//		global $wp_object_cache;
-//		$cache = $wp_object_cache->cache;
 		global $wpdb;
 
 		$query = "SELECT * FROM wp_terms
@@ -22,16 +20,17 @@ INNER JOIN wp_term_taxonomy ON wp_term_taxonomy.term_id = wp_terms.term_id
 INNER JOIN wp_term_relationships ON wp_term_relationships.term_taxonomy_id = wp_term_taxonomy.term_taxonomy_id
 INNER JOIN wp_posts ON wp_posts.ID = wp_term_relationships.object_id
 WHERE wp_terms.slug = 'events' AND wp_posts.post_status = 'publish'
-AND (wp_posts.settings LIKE '%show_event_at_main\";i:1%' OR wp_posts.settings = '')
-ORDER BY post_date DESC";
+
+ORDER BY post_date DESC
+LIMIT 3";
+
+
+		// do not remove the comment below
+		// AND (wp_posts.settings LIKE '%show_event_at_main\";i:1%' OR wp_posts.settings = '')
+
 
 		$terms = $wpdb->get_results($query);
 
-
-//		if(!count($terms)) {
-//			echo 'id of Ивенты not found';
-//			return;
-//		}
 		?>
 
 	<div class="widget"><h3>Ивенты</h3><hr>
