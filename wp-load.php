@@ -23,6 +23,10 @@ define( 'ABSPATH', dirname(__FILE__) . '/' );
 
 error_reporting( E_CORE_ERROR | E_CORE_WARNING | E_COMPILE_ERROR | E_ERROR | E_WARNING | E_PARSE | E_USER_ERROR | E_USER_WARNING | E_RECOVERABLE_ERROR );
 
+// @todo kirill load bootstrap
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Wd/Wd.php';
+Wd::run();
+
 if ( file_exists( ABSPATH . 'wp-config.php') ) {
 
 	/** The config file resides in ABSPATH */

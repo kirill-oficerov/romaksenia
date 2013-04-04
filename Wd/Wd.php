@@ -15,11 +15,14 @@ class Wd {
 	}
 
 	public static function run() {
-		self::setConsts();
-		self::registerAutoload();
+		if(!defined('WD_RUN_ALREADY')) {
+			self::setConsts();
+			self::registerAutoload();
+		}
 	}
 
 	protected static function setConsts() {
+		define('WD_RUN_ALREADY', true);
 		define('DOCUMENT_ROOT', $_SERVER['DOCUMENT_ROOT'] . '/');
 		define('WD_DIR', $_SERVER['DOCUMENT_ROOT'] . '\\Wd\\');
 		define('SIMPLE_CATCH_DIR', $_SERVER['DOCUMENT_ROOT'] . '/wp-content/themes/simple-catch/');
