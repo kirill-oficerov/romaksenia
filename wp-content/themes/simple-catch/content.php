@@ -38,8 +38,8 @@ get_header();
 
 
 						<?php $excerpt = the_excerpt(false);
-							$content = substr($excerpt, 3);
-							$content = substr($content, 0, -5);
+							$content = mb_substr($excerpt, 3);
+							$content = mb_substr($content, 0, -5);
 							echo '<script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
 				<div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="none"
 				data-yashareQuickServices="vkontakte,facebook,twitter,odnoklassniki,lj,gplus,pinterest"></div>'

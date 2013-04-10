@@ -64,5 +64,22 @@ class Wd {
 		$rightPart = mb_substr($subject, $searchPosition + mb_strlen($search));
 		return $leftPart . $replace . $rightPart;
 	}
+	public static function get_first_dot($text) {
+		$length = mb_strlen($text, 'UTF-8');
+		$dotPosition = -1;
+		$tagOpened = false;
+		for($i = 0; $i < $length; $i++) {
+			$current = mb_substr($text, $i, 1, 'UTF-8');
+			if($current == '.' && !$tagOpened) {
+				$dotPosition = $i;
+				break;
+			} elseif($current == '<') {
+				$tagOpened = true;
+			} elseif($current == '>') {
+				$tagOpened = false;
+			}
+		}
+		return $dotPosition;
+	}
 
 }

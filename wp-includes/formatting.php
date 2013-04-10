@@ -2181,15 +2181,15 @@ function wp_trim_words( $text, $num_words = 55, $more = null ) {
 		}
 		if ( count( $words_array ) > $num_words ) {
 			$textRest = array_pop( $words_array );
-			array_pop( $words_array );
-			$dotPos = strpos($textRest, '.');
+//			array_pop( $words_array ); // @todo why remove the last word?
+			$dotPos = Wd::get_first_dot($textRest);
 			$sentenceRest = $textRest;
 			if($dotPos) {
-				$sentenceRest = substr($textRest, 0, $dotPos);
+				$sentenceRest = mb_substr($textRest, 0, $dotPos);
 			}
 			$text = implode( $sep, $words_array );
 			// @todo kirill excerpt
-			$text = $text . $sentenceRest;
+			$text = $text . ' ' . $sentenceRest;
 			if(mb_strpos($text, '1234567890') === false) {
 				$text .= '<br />' . $more;
 			}
