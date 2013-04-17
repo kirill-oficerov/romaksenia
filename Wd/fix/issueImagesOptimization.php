@@ -24,8 +24,7 @@ while($result = mysql_fetch_assoc($query)) {
 			}
 
 		}
-		$token = new DateTime($result['wpp_token']);
-		$token = $token->getTimestamp();
+		$token = strtotime($result['wpp_token']);
 		Wd_Parts_Images::CreateImageByPath(
 			SERVER_IMAGES_UPLOAD_DIR . $result['meta_value'],
 			Wd_Parts_Images::SIZE_FRONT,
