@@ -54,14 +54,18 @@ get_header();
 										$pictureSrc = array();
 										preg_match('/src="[^"]+"/', $picture, $pictureSrc);
 										$settings = unserialize($post->settings);
+										$fullSizeImage = substr($pictureSrc[0], 4);
 										if($settings) {
 											$width = $settings['width'];
 											$height = $settings['height'];
 											$picture = str_replace('<img', '<img style="width:' . $width . 'px; height:' . $height . 'px;"', $picture);
+											$matches = array();
+											preg_match('/"(.*wp-content.uploads).*$/', $fullSizeImage, $matches);
+											$thumbnailSrc = $matches[1] . $settings['featuredImageName'];
+											$picture = str_replace($fullSizeImage, '"' . $thumbnailSrc . '"', $picture);
 										}
 										?>
-									<a rel="prettyPhoto" href=<?=substr($pictureSrc[0], 4)?> title="<?php the_title_attribute( 'echo=0' ) ?>">
-<!--				                    --><?php // the_post_thumbnail( 'featured' ); ?>
+									<a rel="prettyPhoto" href=<?=$fullSizeImage?> title="<?php the_title_attribute( 'echo=0' ) ?>">
 									<?php echo $picture ?>
 								</a>
 									<? } ?>

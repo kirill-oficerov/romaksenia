@@ -1,8 +1,6 @@
 <?php
 class Wd {
 
-	const TAGS_URL = '/tags';
-
 	protected static $_cache = array();
 
 	public static function get($key) {
@@ -29,6 +27,8 @@ class Wd {
 
 		define('HTTP_HOST', 'http://' . $_SERVER['HTTP_HOST']);
 		define('HTTP_IMAGES_DIR', HTTP_HOST . '/wp-content/themes/simple-catch/images/');
+		define('HTTP_IMAGES_UPLOAD_DIR', HTTP_HOST . '/wp-content/uploads/');
+		define('SERVER_IMAGES_UPLOAD_DIR', DOCUMENT_ROOT . '/wp-content/uploads/');
 	}
 
 	protected static function registerAutoload() {
@@ -46,24 +46,13 @@ class Wd {
 		}
 	}
 
-	public static function is_page_tag() {
-		return strpos($_SERVER['REQUEST_URI'], self::TAGS_URL) === 0;
-	}
-
-	public static function get_tags_template() {
-//		return SIMPLE_CATCH_DIR . 'tagsContent.php';
-		return 'tagsContent';
-	}
-	public static function get_tag() {
-		return mysql_real_escape_string(substr($_SERVER['REQUEST_URI'], strlen(self::TAGS_URL) + 1) );
-	}
-
 	public static function mb_str_replace($search, $replace, $subject) {
 		$searchPosition = mb_strpos($subject, $search, null, 'UTF-8');
 		$leftPart = mb_substr($subject, 0, $searchPosition);
 		$rightPart = mb_substr($subject, $searchPosition + mb_strlen($search));
 		return $leftPart . $replace . $rightPart;
 	}
+
 	public static function get_first_dot($text) {
 		$length = mb_strlen($text, 'UTF-8');
 		$dotPosition = -1;

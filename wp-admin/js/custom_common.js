@@ -38,7 +38,8 @@ window.Admin_Custom_Common = function(options) {
 				featuredWidth: featuredWidth,
 				featuredHeight: featuredHeight,
 				id: post_id,
-				settingName: 'feature-settings'
+				settingName: 'feature-settings',
+				imageId: id
 			},
 			beforeSend: function() {
 				preloader.show();
