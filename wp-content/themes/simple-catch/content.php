@@ -61,7 +61,7 @@ get_header();
 											$picture = str_replace('<img', '<img style="width:' . $width . 'px; height:' . $height . 'px;"', $picture);
 											$matches = array();
 											preg_match('/"(.*wp-content.uploads).*$/', $fullSizeImage, $matches);
-											$thumbnailSrc = $matches[1] . $settings['featuredImageName'];
+											$thumbnailSrc = $matches[1] . '/' . $settings['featuredImageName'];
 											$picture = str_replace($fullSizeImage, '"' . $thumbnailSrc . '"', $picture);
 										}
 										?>

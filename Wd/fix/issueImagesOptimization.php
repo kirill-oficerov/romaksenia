@@ -4,17 +4,29 @@ Wd::run();
 $connection = mysql_connect('127.0.0.1', 'root', '');
 mysql_select_db('santanam_wp1', $connection);
 $query = mysql_query('
-SELECT wpp.settings as wpp_settings, wpp.post_modified as wpp_token, "<-wpp wppm->", wppm.* FROM wp_posts wpp
-INNER JOIN wp_postmeta wppm ON wppm.post_id = wpp.ID
+SELECT
 
-WHERE wppm.meta_key = "_wp_attached_file"
+wpp.ID AS wpp_post_id,
+wpp.settings AS wpp_settings,
+"||||",
+UNIX_TIMESTAMP(wpp2.post_modified) as wpp2_token,
+wpp2.ID as image_id,
+wpp2.guid as image_name
+
+FROM wp_posts wpp
+INNER JOIN wp_postmeta wppm ON wppm.post_id = wpp.ID
+INNER JOIN wp_posts wpp2 ON wppm.meta_value = wpp2.ID
+WHERE wppm.meta_key =  "_thumbnail_id"
+
 ', $connection);
 
 
 while($result = mysql_fetch_assoc($query)) {
-//	echo "<pre>".print_r($result, true)."</pre>\n\n";
-//	echo "<pre>".print_r(SERVER_IMAGES_UPLOAD_DIR . $result['meta_value'], true)."</pre>\n\n";
-	if(file_exists(SERVER_IMAGES_UPLOAD_DIR . $result['meta_value'])) {
+	$matches = array();
+	preg_match('/wp-content.uploads(.*)$/', $result['image_name'], $matches);
+
+	$imageName = SERVER_IMAGES_UPLOAD_DIR . $matches[1];
+	if(file_exists($imageName)) {
 		$dimensions = null;
 		if(isset($result['wpp_settings']) && !empty($result['wpp_settings'])) {
 			$settings = unserialize($result['wpp_settings']);
@@ -24,14 +36,36 @@ while($result = mysql_fetch_assoc($query)) {
 			}
 
 		}
-		$token = strtotime($result['wpp_token']);
-		Wd_Parts_Images::CreateImageByPath(
-			SERVER_IMAGES_UPLOAD_DIR . $result['meta_value'],
+		$token = $result['wpp2_token'];
+		$newImageName = Wd_Parts_Images::CreateImageByPath(
+			$imageName,
 			Wd_Parts_Images::SIZE_FRONT,
 			$dimensions,
 			$token
 		);
-		echo "<pre>".print_r(SERVER_IMAGES_UPLOAD_DIR . $result['meta_value'] . ' exists', true)."</pre>\n\n";
+		saveSettings($result['wpp_post_id'], array('featuredImageName' => $newImageName));
+		echo "<pre>".print_r($imageName . ' exists', true)."</pre>\n\n";
 	}
 	
+}
+
+function saveSettings($postId, array $newSettings) {
+
+
+	$connection = mysql_connect('127.0.0.1', 'root', '');
+	mysql_select_db('santanam_wp1', $connection);
+	$query = mysql_query(
+		'SELECT settings FROM wp_posts WHERE ID=' . intval($postId), $connection
+	);
+
+	$postSettings = mysql_fetch_assoc($query);
+	$postSettings = $postSettings['settings'];
+	$postSettings = unserialize($postSettings);
+	if($postSettings) {
+		$postSettings = array_merge($postSettings, $newSettings);
+	} else {
+		$postSettings = $newSettings;
+	}
+	$query = 'UPDATE wp_posts SET settings=\'' . serialize($postSettings) . '\' WHERE ID=' . intval($postId);
+	mysql_query($query);
 }

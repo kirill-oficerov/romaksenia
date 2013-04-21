@@ -50,7 +50,7 @@ class Wd_Parts_Images {
 		$newImage->clear();
 		// make a relative path
 		$matches = array();
-		preg_match('/wp-content.uploads(.*)$/', $newImagePath, $matches);
-		return $matches[1];
+		preg_match('/wp-content.uploads\/(.*)$/', $newImagePath, $matches);
+		return ltrim($matches[1], '/');
 	}
 }
