@@ -76,6 +76,9 @@ get_header();
 								preg_match('~<a[^>]+readmore[^>]*>Далее</a>~', $content, $matches);
 								$content = str_replace($matches[0], '', $content);
 								echo $content;
+								if(strpos(substr($content, -10, 10), '<br />') === false) {
+									echo "<br />";
+								}
 								?>
 								<br>
 							</div>
