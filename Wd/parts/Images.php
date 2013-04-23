@@ -23,7 +23,7 @@ class Wd_Parts_Images {
 	public static function CreateImageByPath($imagePath, $sizeName, $dimensions, $token) {
 		$originImage = new Imagick();
 		$originImage->readimage($imagePath);
-		$originImageSize = $originImage->getimagesize();
+		$originImageSize = $originImage->getimagelength();
 		if(is_null($dimensions)) {
 			$dimensions['height'] = $originImage->getimageheight();
 			$dimensions['width'] = $originImage->getimagewidth();
@@ -43,7 +43,7 @@ class Wd_Parts_Images {
 		// check if a new file is bigger than old file. In the case replace a new file with the old one
 		$newImage = new Imagick();
 		$newImage->readimage($newImagePath);
-		if($newImage->getimagesize() > $originImageSize) {
+		if($newImage->getimagelength() > $originImageSize) {
 			copy($imagePath, $newImagePath);
 		}
 		$originImage->clear();

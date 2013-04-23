@@ -3,6 +3,8 @@ require_once('../Wd.php');
 Wd::run();
 $connection = mysql_connect('127.0.0.1', 'root', '');
 mysql_select_db('santanam_wp1', $connection);
+mysql_query('SET NAMES "utf8";');
+
 $query = mysql_query('
 SELECT
 
@@ -19,7 +21,7 @@ INNER JOIN wp_posts wpp2 ON wppm.meta_value = wpp2.ID
 WHERE wppm.meta_key =  "_thumbnail_id"
 
 ', $connection);
-
+ini_set('error_reporting', 32767);
 
 while($result = mysql_fetch_assoc($query)) {
 	$matches = array();
@@ -45,8 +47,11 @@ while($result = mysql_fetch_assoc($query)) {
 		);
 		saveSettings($result['wpp_post_id'], array('featuredImageName' => $newImageName));
 		echo "<pre>".print_r($imageName . ' exists', true)."</pre>\n\n";
+	} else {
+		echo "<pre>".print_r($imageName . ' does not exist', true)."</pre>\n\n";
 	}
-	
+
+
 }
 
 function saveSettings($postId, array $newSettings) {
@@ -54,6 +59,7 @@ function saveSettings($postId, array $newSettings) {
 
 	$connection = mysql_connect('127.0.0.1', 'root', '');
 	mysql_select_db('santanam_wp1', $connection);
+	mysql_query('SET NAMES "utf8";');
 	$query = mysql_query(
 		'SELECT settings FROM wp_posts WHERE ID=' . intval($postId), $connection
 	);
