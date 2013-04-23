@@ -55,7 +55,7 @@ get_header();
 										preg_match('/src="[^"]+"/', $picture, $pictureSrc);
 										$settings = unserialize($post->settings);
 										$fullSizeImage = substr($pictureSrc[0], 4);
-										if($settings) {
+										if($settings && isset($settings['width']) && $settings['height']) {
 											$width = $settings['width'];
 											$height = $settings['height'];
 											$picture = str_replace('<img', '<img style="width:' . $width . 'px; height:' . $height . 'px;"', $picture);
