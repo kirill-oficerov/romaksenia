@@ -22,7 +22,7 @@ class Wd_Parts_Post {
 			$postSettings = array_pop($postSettings);
 			$postSettings = unserialize($postSettings->settings);
 			if($postSettings) {
-				$postSettings = array_merge_recursive($postSettings, $newSettings);
+				$postSettings = array_merge($postSettings, $newSettings);
 			} else {
 				$postSettings = $newSettings;
 			}
@@ -30,4 +30,10 @@ class Wd_Parts_Post {
 			$wpdb->get_results($query);
 		}
 	}
+	public static function AdminCreateFeaturedImage($postId, $thumbnailId) {
+		$newImageName = Wd_Parts_Image::CreateThumbnailFromImage($thumbnailId, Wd_Parts_Image::SIZE_FRONT, array());
+		Wd_Parts_Post::SaveSettings($postId, array('featuredImageName' => $newImageName));
+
+	}
+
 }

@@ -37,7 +37,7 @@
 function redirect_canonical( $requested_url = null, $do_redirect = true ) {
 	global $wp_rewrite, $is_IIS, $wp_query, $wpdb;
 	// @todo kirill tags
-	if ( is_trackback() || is_search() || is_comments_popup() || is_admin() || !empty($_POST) || is_preview() || is_robots() || $is_IIS || Wd_Parts_Tags::is_page_tag())
+	if ( is_trackback() || is_search() || is_comments_popup() || is_admin() || !empty($_POST) || is_preview() || is_robots() || $is_IIS || Wd_Parts_Tag::is_page_tag())
 		return;
 
 	if ( !$requested_url ) {

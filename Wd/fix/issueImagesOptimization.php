@@ -39,9 +39,9 @@ while($result = mysql_fetch_assoc($query)) {
 
 		}
 		$token = $result['wpp2_token'];
-		$newImageName = Wd_Parts_Images::CreateImageByPath(
+		$newImageName = Wd_Parts_Image::CreateImageByPath(
 			$imageName,
-			Wd_Parts_Images::SIZE_FRONT,
+			Wd_Parts_Image::SIZE_FRONT,
 			$dimensions,
 			$token
 		);

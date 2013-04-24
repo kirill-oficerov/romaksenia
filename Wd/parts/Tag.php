@@ -5,7 +5,7 @@
  * Date: 13.04.13
  */
 
-class Wd_Parts_Tags {
+class Wd_Parts_Tag {
 
 	const TAGS_URL = '/tags';
 	const TAGS_TEMPLATE = 'tagsContent';

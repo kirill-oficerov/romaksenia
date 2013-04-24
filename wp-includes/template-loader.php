@@ -22,7 +22,7 @@ endif;
 if ( defined('WP_USE_THEMES') && WP_USE_THEMES ) :
 	$template = false;
 	// @todo kirill tags
-	if     ( Wd_Parts_Tags::is_page_tag()   && $template = get_index_template()          ) :
+	if     ( Wd_Parts_Tag::is_page_tag()   && $template = get_index_template()          ) :
 	elseif ( is_404()            && $template = get_404_template()            ) :
 	elseif ( is_search()         && $template = get_search_template()         ) :
 	elseif ( is_tax()            && $template = get_taxonomy_template()       ) :

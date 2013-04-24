@@ -414,9 +414,9 @@ function get_body_class( $class = '' ) {
 	if ( is_rtl() )
 		$classes[] = 'rtl';
 	// @todo kirill tags
-	if ( is_front_page() || Wd_Parts_Tags::is_page_tag())
+	if ( is_front_page() || Wd_Parts_Tag::is_page_tag())
 		$classes[] = 'home';
-	if ( is_home() || Wd_Parts_Tags::is_page_tag())
+	if ( is_home() || Wd_Parts_Tag::is_page_tag())
 		$classes[] = 'blog';
 	if ( is_archive() )
 		$classes[] = 'archive';

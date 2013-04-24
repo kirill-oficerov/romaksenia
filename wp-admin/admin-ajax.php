@@ -65,6 +65,13 @@ if ( ! empty( $_POST['action'] ) && in_array( $_POST['action'], $core_actions_po
 
 add_action( 'wp_ajax_nopriv_autosave', 'wp_ajax_nopriv_autosave', 1 );
 
+// @todo admin featured image
+if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'set-post-thumbnail' &&
+	isset($_REQUEST['thumbnail_id']) && $_REQUEST['thumbnail_id'] != '-1') {
+	Wd_Parts_Post::AdminCreateFeaturedImage($_REQUEST['post_id'], $_REQUEST['thumbnail_id']);
+}
+
+
 if ( is_user_logged_in() )
 	do_action( 'wp_ajax_' . $_REQUEST['action'] ); // Authenticated actions
 else

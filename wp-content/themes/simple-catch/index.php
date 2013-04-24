@@ -20,8 +20,8 @@ get_header();
 		$themeoption_layout = simplecatch_display_div();
 	}
 	// @todo kirill tags
-	if(Wd_Parts_Tags::is_page_tag()) {
-		get_template_part(Wd_Parts_Tags::get_tags_template());
+	if(Wd_Parts_Tag::is_page_tag()) {
+		get_template_part(Wd_Parts_Tag::get_tags_template());
 	} else {
 		get_template_part('content');
 	}
