@@ -1200,15 +1200,24 @@ function get_media_item( $attachment_id, $args = null ) {
 		$width = '';
 		$height = '';
 		if(isset($_GET['post_id']) && !empty($_GET['post_id'])) {
-			$query = 'SELECT settings FROM wp_posts WHERE ID=' . intval($_GET['post_id']);
 			global $wpdb;
-			$settings = $wpdb->get_results($query);
-			if($settings) {
-				$settings = array_pop($settings);
-				$settings = unserialize($settings->settings);
+			if(!isset($_REQUEST['temporaryAttachmentId'])) {
+				$query = 'SELECT meta_value FROM `wp_postmeta`
+					WHERE meta_key = "_thumbnail_id"
+					AND post_id = ' . intval($_GET['post_id']);
+				$result = $wpdb->get_results($query);
+				$_REQUEST['temporaryAttachmentId'] = count($result) ? $result[0]->meta_value : '';
+			}
+			if(!empty($_REQUEST['temporaryAttachmentId']) && $_REQUEST['temporaryAttachmentId'] == $attachment_id) {
+				$query = 'SELECT settings FROM wp_posts WHERE ID=' . intval($_GET['post_id']);
+				$settings = $wpdb->get_results($query);
 				if($settings) {
-					$width = $settings['width'];
-					$height = $settings['height'];
+					$settings = array_pop($settings);
+					$settings = unserialize($settings->settings);
+					if($settings) {
+						$width = $settings['width'];
+						$height = $settings['height'];
+					}
 				}
 			}
 		}

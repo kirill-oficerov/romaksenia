@@ -11,8 +11,8 @@ if(!isset($inputData['settingName'])) {
 	if($inputData['settingName'] == 'feature-settings') {
 		try {
 			Wd_Parts_Post::SaveSettings($inputData['id'], array(
-				'height' => $data['featuredHeight'],
-				'width' => $data['featuredWidth']
+				'height' => $inputData['featuredHeight'],
+				'width' => $inputData['featuredWidth']
 			));
 			$newImageName = Wd_Parts_Image::CreateThumbnailFromImage($inputData['imageId'], Wd_Parts_Image::SIZE_FRONT, array(
 				'width' => $inputData['featuredWidth'],
