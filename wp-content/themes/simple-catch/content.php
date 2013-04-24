@@ -56,9 +56,11 @@ get_header();
 										$settings = unserialize($post->settings);
 										$fullSizeImage = substr($pictureSrc[0], 4);
 										if($settings) {
-											$width = $settings['width'];
-											$height = $settings['height'];
-											$picture = str_replace('<img', '<img style="width:' . $width . 'px; height:' . $height . 'px;"', $picture);
+											if(isset($settings['width']) && isset($settings['height'])) {
+												$width = $settings['width'];
+												$height = $settings['height'];
+												$picture = str_replace('<img', '<img style="width:' . $width . 'px; height:' . $height . 'px;"', $picture);
+											}
 											$matches = array();
 											preg_match('/"(.*wp-content.uploads).*$/', $fullSizeImage, $matches);
 											$thumbnailSrc = $matches[1] . '/' . $settings['featuredImageName'];
