@@ -25,17 +25,6 @@ get_header();
 
                         <?php
 	                    global $post;
-//	                    $tags = $wp_object_cache->get($post->ID, 'category_relationships');
-//	                    $isEvent = false;
-//	                    foreach($tags as $key=>$tag) {
-//		                    if($tag->name == 'Ивенты') {
-//			                    $isEvent = true;
-//			                    break;
-//		                    }
-//	                    }
-//	                    if($isEvent) {
-//		                    continue;
-//	                    }
 	                ?>
                 <div <?php post_class(); ?> >
 	                    <div class="col8">
@@ -44,25 +33,7 @@ get_header();
 	                                <a href="<?php the_permalink() ?>" title="" rel="bookmark" ><?php the_title(); ?></a>
 	                            </h2>
                             </div>
-<!--	                --><?//
-//                    // tags
-//					$tags = $wp_object_cache->get($post->ID, 'category_relationships');
-//                    $output = '<ul class="category-list tags">';
-//                    foreach($tags as $key => $tag) {
-//	                    if(!is_null($tag->category_settings)) {
-//							$categorySettings = unserialize($tag->category_settings);
-//	                    }
-//	                    $output .= '<li ' . (isset($categorySettings['class']) ? 'class="' . $categorySettings['class'] . '"' : '') . ' ><a  href="' . HTTP_HOST . '/category/' . $tag->slug . '">' . $tag->name . '</a></li>';
-//	                    unset($categorySettings);
-//                    }
-//                    $output .= '</ul>';
-//	                echo $output;
-//	                ?>
-
-
 	                    <?php $excerpt = the_excerpt(false);
-//		                    $contentBegin = strrpos($excerpt, '<p style="" rel="begin-of-the-excerpt-text">');
-//		                    $content = substr($excerpt, $contentBegin);
 		                    $content = substr($excerpt, 3);
 		                    $content = substr($content, 0, -5);
 		                    echo '<script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
@@ -78,14 +49,20 @@ get_header();
 					                    $pictureSrc = array();
 					                    preg_match('/src="[^"]+"/', $picture, $pictureSrc);
 					                    $settings = unserialize($post->settings);
+					                    $fullSizeImage = substr($pictureSrc[0], 4);
 					                    if($settings) {
-						                    $width = $settings['width'];
-						                    $height = $settings['height'];
-						                    $picture = str_replace('<img', '<img style="width:' . $width . 'px; height:' . $height . 'px;"', $picture);
+						                    if(isset($settings['width']) && isset($settings['height'])) {
+							                    $width = $settings['width'];
+							                    $height = $settings['height'];
+							                    $picture = str_replace('<img', '<img style="width:' . $width . 'px; height:' . $height . 'px;"', $picture);
+						                    }
+						                    $matches = array();
+						                    preg_match('/"(.*wp-content.uploads).*$/', $fullSizeImage, $matches);
+						                    $thumbnailSrc = $matches[1] . '/' . $settings['featuredImageName'];
+						                    $picture = str_replace($fullSizeImage, '"' . $thumbnailSrc . '"', $picture);
 					                    }
 					                    ?>
                                     <a rel="prettyPhoto" href=<?=substr($pictureSrc[0], 4)?> title="<?php the_title_attribute( 'echo=0' ) ?>">
-<!--				                    --><?php // the_post_thumbnail( 'featured' ); ?>
 				                    <?php echo $picture ?>
 			                    </a>
 			                        <? } ?>

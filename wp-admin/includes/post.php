@@ -163,6 +163,9 @@ function edit_post( $post_data = null ) {
 			'show_case_at_main' => $showCaseAtMain
 		));
 	}
+	// @todo kirill admin custom optimize images
+	Wd_Parts_Post::AdminCreateFrontContentImage($post_data);
+
 	$ptype = get_post_type_object($post_data['post_type']);
 	if ( !current_user_can( $ptype->cap->edit_post, $post_ID ) ) {
 		if ( 'page' == $post_data['post_type'] )

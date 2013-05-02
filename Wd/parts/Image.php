@@ -8,9 +8,11 @@
 class Wd_Parts_Image {
 
 	const SIZE_FRONT = 'size_front';
+	const SIZE_FRONT_CONTENT = 'size_front_content';
 
 	public static $_sizes = array(
-		self::SIZE_FRONT => 0
+		self::SIZE_FRONT => 0,
+		self::SIZE_FRONT_CONTENT => 1
 	);
 
 	/**
@@ -37,7 +39,8 @@ class Wd_Parts_Image {
 			$originImage->setimagecompression(imagick::COMPRESSION_JPEG);
 			$originImage->setimagecompressionquality(80);
 		}
-		$newImagePath = implode('.', $newImagePathParts) . '_' . Wd_Parts_Image::$_sizes[$sizeName] . '_' . $token . '.' . $originExtension;
+		$newImagePath = implode('.', $newImagePathParts) . '_' . Wd_Parts_Image::$_sizes[$sizeName] .
+			(empty($token) ? '' : ('_' . $token)) . '.' . $originExtension;
 		$originImage->stripImage();
 		$originImage->writeImage($newImagePath);
 		// check if a new file is bigger than old file. In the case replace a new file with the old one
@@ -54,7 +57,7 @@ class Wd_Parts_Image {
 		return ltrim($matches[1], '/');
 	}
 
-	public function CreateThumbnailFromImage($imageId, $sizeName, $dimensions) {
+	public static function CreateThumbnailFromImage($imageId, $sizeName, $dimensions) {
 		global $wpdb;
 		$query = 'SELECT * FROM wp_posts WHERE ID=' . intval($imageId);
 		$image = $wpdb->get_results($query);

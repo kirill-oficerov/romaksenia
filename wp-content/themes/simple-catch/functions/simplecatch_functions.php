@@ -881,8 +881,22 @@ function simplecatch_loop() {
 			$fullContent = str_replace(']]>', ']]&gt;', $fullContent);
 			$contentBegin = strpos($fullContent, '<p style="" rel="begin-of-the-excerpt-text">');
 			$content = substr($fullContent, $contentBegin);
-//			$content = str_replace('<blockquote', '<div style=""><blockquote', $content);
-//			$content = str_replace('</blockquote>', '</blockquote></div>', $content);
+			// deal with optimized images
+			$matches = array();
+			// $matches[1] - image path
+			// $matches[2] - image width
+			// $matches[3] - image height
+			preg_match_all('/<a.+href="([^"]+)"[^<]+<img.+src="([^"]+)"[^>]+>/', $content, $matches);
+			foreach($matches[1] as $key => $httpPath) {
+				$httpPathParts = explode('wp-content/uploads/', $httpPath);
+				if(isset($httpPathParts[1])) {
+					$realpath = HTTP_IMAGES_UPLOAD_DIR . $httpPathParts[1];
+					$pathInfo = pathinfo($realpath);
+					$newFile = $pathInfo['dirname'] . '/' . $pathInfo['filename'] . '_' . Wd_Parts_Image::$_sizes[Wd_Parts_Image::SIZE_FRONT_CONTENT] .
+						'.' . $pathInfo['extension'];
+					$content = str_replace($matches[2][$key], $newFile, $content);
+				}
+			}
 			?>
 			<div class="clear" style="height: 1px; width: 1px; "></div>
 			<?
@@ -905,7 +919,6 @@ function simplecatch_loop() {
 					<div class="clear" style="height: 1px; width: 1px; "></div>
 				</div>';
 
-				//					$tags_output = substr($tags_output, 0, strlen($tags_output) - 1);
 				echo $tags_output;
 				?>
 			<? }
