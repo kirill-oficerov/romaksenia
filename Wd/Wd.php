@@ -28,7 +28,7 @@ class Wd {
 		define('HTTP_HOST', 'http://' . $_SERVER['HTTP_HOST']); // wedigital.by
 		define('HTTP_IMAGES_DIR', HTTP_HOST . '/wp-content/themes/simple-catch/images/');
 		define('HTTP_IMAGES_UPLOAD_DIR', HTTP_HOST . '/wp-content/uploads/');
-		define('SERVER_IMAGES_UPLOAD_DIR', DOCUMENT_ROOT . 'wp-content/uploads/');
+		define('SERVER_IMAGES_UPLOAD_DIR', DOCUMENT_ROOT . '/wp-content/uploads/');
 	}
 
 	protected static function registerAutoload() {
