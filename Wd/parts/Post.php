@@ -50,7 +50,7 @@ class Wd_Parts_Post {
 			if(isset($httpPathParts[1])) {
 				$realpath = SERVER_IMAGES_UPLOAD_DIR . $httpPathParts[1];
 				if(file_exists($realpath)) {
-					$pathInfo = pathinfo($realpath);
+					$pathInfo = Wd::pathinfo_utf($realpath);
 					$newFile = $pathInfo['dirname'] . '/' . $pathInfo['filename'] . '_' . Wd_Parts_Image::$_sizes[Wd_Parts_Image::SIZE_FRONT_CONTENT] .
 						'.' . $pathInfo['extension'];
 					if(!file_exists($newFile)) {

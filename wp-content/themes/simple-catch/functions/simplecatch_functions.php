@@ -891,7 +891,7 @@ function simplecatch_loop() {
 				$httpPathParts = explode('wp-content/uploads/', $httpPath);
 				if(isset($httpPathParts[1])) {
 					$realpath = HTTP_IMAGES_UPLOAD_DIR . $httpPathParts[1];
-					$pathInfo = pathinfo($realpath);
+					$pathInfo = Wd::pathinfo_utf($realpath);
 					$newFile = $pathInfo['dirname'] . '/' . $pathInfo['filename'] . '_' . Wd_Parts_Image::$_sizes[Wd_Parts_Image::SIZE_FRONT_CONTENT] .
 						'.' . $pathInfo['extension'];
 					$content = str_replace($matches[2][$key], $newFile, $content);
