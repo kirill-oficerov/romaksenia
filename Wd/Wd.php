@@ -22,8 +22,8 @@ class Wd {
 	protected static function setConsts() {
 		define('WD_RUN_ALREADY', true);
 		define('DOCUMENT_ROOT', $_SERVER['DOCUMENT_ROOT']); // "../wedigital/www/"
-		define('WD_DIR', $_SERVER['DOCUMENT_ROOT'] . '\\Wd\\');
-		define('SIMPLE_CATCH_DIR', $_SERVER['DOCUMENT_ROOT'] . 'wp-content/themes/simple-catch/');
+		define('WD_DIR', DOCUMENT_ROOT . '\\Wd\\');
+		define('SIMPLE_CATCH_DIR', DOCUMENT_ROOT . '/wp-content/themes/simple-catch/');
 
 		define('HTTP_HOST', 'http://' . $_SERVER['HTTP_HOST']); // wedigital.by
 		define('HTTP_IMAGES_DIR', HTTP_HOST . '/wp-content/themes/simple-catch/images/');
