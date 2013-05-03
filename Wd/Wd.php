@@ -73,18 +73,19 @@ class Wd {
 
 	public static function pathinfo_utf($path) {
 
-		if (strpos($path, '/') !== false)
+		if (strpos($path, '/') !== false) {
 			$basename = end(explode('/', $path));
-		elseif (strpos($path, '\\') !== false)
+		} elseif (strpos($path, '\\') !== false) {
 			$basename = end(explode('\\', $path));
-		else
+		} else {
 			return false;
+		}
 
-		if (!$basename)
+		if (!$basename) {
 			return false;
+		}
 
-		$dirname = substr($path, 0,
-			strlen($path) - strlen($basename) - 1);
+		$dirname = substr($path, 0, strlen($path) - strlen($basename) - 1);
 
 		if (strpos($basename, '.') !== false) {
 			$extension = end(explode('.', $path));

@@ -886,14 +886,14 @@ function simplecatch_loop() {
 			// $matches[1] - image path
 			// $matches[2] - image width
 			// $matches[3] - image height
-			preg_match_all('/<a.+href="([^"]+)"[^<]+<img.+src="([^"]+)"[^>]+>/', $content, $matches);
+			preg_match_all('/<a.+href="([^"]+)"[^<]+<img.+src="([^"]+)".+width="(\d+)".+height="(\d+)"[^>]+>/', $content, $matches);
 			foreach($matches[1] as $key => $httpPath) {
 				$httpPathParts = explode('wp-content/uploads/', $httpPath);
 				if(isset($httpPathParts[1])) {
 					$realpath = HTTP_IMAGES_UPLOAD_DIR . $httpPathParts[1];
 					$pathInfo = Wd::pathinfo_utf($realpath);
 					$newFile = $pathInfo['dirname'] . '/' . $pathInfo['filename'] . '_' . Wd_Parts_Image::$_sizes[Wd_Parts_Image::SIZE_FRONT_CONTENT] .
-						'.' . $pathInfo['extension'];
+						'__' . $matches[3][$key] . 'x' . $matches[4][$key] . '.' . $pathInfo['extension'];
 					$content = str_replace($matches[2][$key], $newFile, $content);
 				}
 			}

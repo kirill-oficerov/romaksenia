@@ -22,7 +22,7 @@ class Wd_Parts_Image {
 	 * @param $token string|int 01339324934
 	 * @return mixed
 	 */
-	public static function CreateImageByPath($imagePath, $sizeName, $dimensions, $token) {
+	public static function CreateImageByPath($imagePath, $sizeName, $dimensions, $token, $appendDimensions = false) {
 		$originImage = new Imagick();
 		$originImage->readimage($imagePath);
 		$originImageSize = $originImage->getimagelength();
@@ -40,7 +40,7 @@ class Wd_Parts_Image {
 			$originImage->setimagecompressionquality(80);
 		}
 		$newImagePath = implode('.', $newImagePathParts) . '_' . Wd_Parts_Image::$_sizes[$sizeName] .
-			(empty($token) ? '' : ('_' . $token)) . '.' . $originExtension;
+			(empty($token) ? '' : ('_' . $token)) . ($appendDimensions ? ('__' . $dimensions['width'] . 'x' . $dimensions['height']) : '') . '.' . $originExtension;
 		$originImage->stripImage();
 		$originImage->writeImage($newImagePath);
 		// check if a new file is bigger than old file. In the case replace a new file with the old one

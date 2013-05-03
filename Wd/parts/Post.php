@@ -52,12 +52,12 @@ class Wd_Parts_Post {
 				if(file_exists($realpath)) {
 					$pathInfo = Wd::pathinfo_utf($realpath);
 					$newFile = $pathInfo['dirname'] . '/' . $pathInfo['filename'] . '_' . Wd_Parts_Image::$_sizes[Wd_Parts_Image::SIZE_FRONT_CONTENT] .
-						'.' . $pathInfo['extension'];
+						'__' . $matches[2][$key] . 'x' . $matches[3][$key] . '.' . $pathInfo['extension'];
 					if(!file_exists($newFile)) {
 						Wd_Parts_Image::CreateImageByPath($realpath, Wd_Parts_Image::SIZE_FRONT_CONTENT, array(
 							'width' => $matches[2][$key],
-							'height' => $matches[3][$key]
-						), '');
+							'height' => $matches[3][$key],
+						), '', true);
 					}
 				}
 			}
