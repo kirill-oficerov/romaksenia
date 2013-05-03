@@ -894,7 +894,10 @@ function simplecatch_loop() {
 					$pathInfo = Wd::pathinfo_utf($realpath);
 					$newFile = $pathInfo['dirname'] . '/' . $pathInfo['filename'] . '_' . Wd_Parts_Image::$_sizes[Wd_Parts_Image::SIZE_FRONT_CONTENT] .
 						'__' . $matches[3][$key] . 'x' . $matches[4][$key] . '.' . $pathInfo['extension'];
-					$content = str_replace($matches[2][$key], $newFile, $content);
+//					$content = str_replace($matches[2][$key], $newFile, $content);
+
+
+					$content = str_replace('src="' . $matches[2][$key] . '"', 'src="' . $newFile . '"', $content);
 				}
 			}
 			?>

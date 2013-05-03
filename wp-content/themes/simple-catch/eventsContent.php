@@ -59,7 +59,7 @@ get_header();
 						                    $matches = array();
 						                    preg_match('/"(.*wp-content.uploads).*$/', $fullSizeImage, $matches);
 						                    $thumbnailSrc = $matches[1] . '/' . $settings['featuredImageName'];
-						                    $picture = str_replace('src="' . $fullSizeImage . '"', 'src="' . $thumbnailSrc . '"', $picture);
+						                    $picture = str_replace($fullSizeImage, '"' . $thumbnailSrc . '"', $picture);
 					                    }
 					                    ?>
                                     <a rel="prettyPhoto" href=<?=substr($pictureSrc[0], 4)?> title="<?php the_title_attribute( 'echo=0' ) ?>">
