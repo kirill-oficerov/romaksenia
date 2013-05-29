@@ -19,6 +19,9 @@ class Wd {
 		}
 	}
 
+	/**
+	 * Should run once. Sets constants for WD
+	 */
 	protected static function setConsts() {
 		define('WD_RUN_ALREADY', true);
 		define('DOCUMENT_ROOT', $_SERVER['DOCUMENT_ROOT']); // "../wedigital/www/"
@@ -53,6 +56,10 @@ class Wd {
 		return $leftPart . $replace . $rightPart;
 	}
 
+	/**
+	 * @param $text
+	 * @return int position of the first dot of the specified parameter $text
+	 */
 	public static function get_first_dot($text) {
 		$length = mb_strlen($text, 'UTF-8');
 		$dotPosition = -1;
@@ -71,6 +78,10 @@ class Wd {
 		return $dotPosition;
 	}
 
+	/**
+	 * @param $path
+	 * @return array|bool it's like function pathinfo() but works with urf paths
+	 */
 	public static function pathinfo_utf($path) {
 
 		if (strpos($path, '/') !== false) {
@@ -102,5 +113,35 @@ class Wd {
 			'extension' => $extension,
 			'filename' => $filename
 		);
+	}
+
+	/**
+	 * @param $date like '04.05.2013'
+	 * @return bool|string
+	 *      false on error or '4 may 2013'
+	 */
+	public static function getReadableDate($date) {
+		$date = str_replace(array('/', '-', ' '), '.', $date);
+		$dateParts = explode('.', $date);
+		if(count($dateParts) != 3) {
+			return false;
+		}
+		$days = ltrim($dateParts[0], '0');
+		$month = '';
+		switch(intval($dateParts[1])) {
+			case 1: $month = 'января'; break;
+			case 2: $month = 'февраля'; break;
+			case 3: $month = 'марта'; break;
+			case 4: $month = 'апреля'; break;
+			case 5: $month = 'мая'; break;
+			case 6: $month = 'июня'; break;
+			case 7: $month = 'июля'; break;
+			case 8: $month = 'августа'; break;
+			case 9: $month = 'сентября'; break;
+			case 10: $month = 'октября'; break;
+			case 11: $month = 'ноября'; break;
+			case 12: $month = 'декабря'; break;
+		}
+		return $days . ' ' . $month . ($dateParts[2] != date('Y') ? (' ' . $dateParts[2]) : '');
 	}
 }

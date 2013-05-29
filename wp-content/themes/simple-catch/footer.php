@@ -7,49 +7,20 @@
  * @since Simple Catch 1.0
  */
 ?>
-	<div id="footer">
-    	<div class="layout-978" style="float: left; min-width: 0px;">
-			<?php //Displaying footer logo ?>
-            <div class="col7 copyright" style="margin-left: 21px;">
-	            <noindex>Copyright &copy; <?php echo date("Y"); ?> <span><a href="http://wedigital.by"><?php bloginfo('name')?></span></a>&nbsp;All Right Reserved.</noindex>
-            </div><!-- .col7 -->
-		    <!--Akavita counter start-->
-<!--		    <script type="text/javascript">var AC_ID=56808;var AC_TR=false;-->
-<!--		    (function(){var l='http://adlik.akavita.com/acode.js'; var t='text/javascript';-->
-<!--			    try {var h=document.getElementsByTagName('head')[0];-->
-<!--				    var s=document.createElement('script'); s.src=l;s.type=t;h.appendChild(s);}catch(e){-->
-<!--				    [removed](unescape('%3Cscript src="'+l+'" type="'+t+'"%3E%3C/script%3E'));}})();-->
-<!--		    </script><span id="AC_Image"></span>-->
-<!--		    <noscript><a target='_blank' href='http://www.akavita.by/'>-->
-<!--			    <img src='http://adlik.akavita.com/bin/lik?id=56808&it=1'-->
-<!--			         border='0' height='1' width='1' alt='Akavita'/>-->
-<!--		    </a></noscript>-->
-		    <!--Akavita counter end-->
-           <?php do_action( 'simplecatch_credits' ); ?>
-            
-		</div><!-- .layout-978 -->
-		<div style="float: right; margin-right: 50px; color: #999;">
-			<div style="float: left; width: 43px;">
-				RSS:
-				<div style="clear: both;"></div>
-				<a href="<?=HTTP_HOST?>/feed" target="_blank" class="icons rss" style="margin-top: 7px;"></a>
-				<div style="clear: both;"></div>
+<div class="footer">
+	<div class="left">
+		<div class="icons logo"></div>
+		<div class="copyright">© 2013. Перепечатка материалов с указанием ссылки приветствуется.</div>
+	</div>
+	<div class="right">
+		<div class="design">
+			<div class="icons n97"></div>
+			<div class="n97_link">
+				Дизайн: <a href="#">Nineseven</a>
 			</div>
-			<div style="float: left; ">
-				Мы в соцсетях:
-				<div style="clear: both;"></div>
-				<a href="http://www.facebook.com/wedigitalby" target="_blank" class="icons facebook" style="margin-top: 7px;"></a>
-				<a href="https://twitter.com/wedigitalby" target="_blank" class="icons twitter" style="margin-top: 7px;"></a>
-				<div style="clear: both;"></div>
-			</div>
-			<div style="float: left; margin-left:8px;">
-			Электронная почта:
-			<div style="clear: both;"></div>
-				<a href="mailto://info@wedigital.by">info@wedigital.by</a>
-			<div style="clear: both;"></div>
 		</div>
-		</div>
-	</div><!-- #footer -->      
+	</div>
+</div> <!-- my footer -->
 <?php wp_footer(); ?>
 <script type="text/javascript">
 	(function($) {

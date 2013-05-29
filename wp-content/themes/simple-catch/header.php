@@ -30,7 +30,7 @@
 		wp_enqueue_script('jquery');
 		wp_enqueue_script('prettyPhoto', '/Wd/js/prettyPhoto/js/jquery.prettyPhoto.js');
 		wp_enqueue_style('prettyPhoto', '/Wd/js/prettyPhoto/css/prettyPhoto.css');
-
+//		wp_enqueue_style('wd_layout', '/wp-content/themes/simple-catch/style.css');
 		//  post
 //		wp_enqueue_script('post', '/Wd/js/post.js');
 
@@ -39,4 +39,9 @@
 	wp_head();
 ?>
 </head>
+<?
+/*
 <body <?php body_class(); ?>>
+*/
+?>
+<body>

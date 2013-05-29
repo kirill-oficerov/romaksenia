@@ -68,9 +68,9 @@ setup_postdata($post);
 //		                    $content = substr($excerpt, $contentBegin);
 		$content = substr($excerpt, 3);
 		$content = substr($content, 0, -5);
-		echo '<script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
-				<div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="none"
-				data-yashareQuickServices="vkontakte,facebook,twitter,odnoklassniki,lj,gplus,pinterest"></div>'
+//		echo '<script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
+//				<div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="none"
+//				data-yashareQuickServices="vkontakte,facebook,twitter,odnoklassniki,lj,gplus,pinterest"></div>'
 		?>
 		<div class="clear" style="height: 1px; width: 1px; "></div>
 

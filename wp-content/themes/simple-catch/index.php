@@ -26,14 +26,21 @@ get_header();
 		get_template_part('content');
 	}
 ?>
-    </div> <!-- keep content -->
-	</div><!-- #content -->
-            
-	<?php 
-    if( $themeoption_layout == 'right-sidebar' ) {
-        get_sidebar(); 
-    }?>
-            
-	</div><!-- #main -->
+	</div>
+	<div class="clear">&nbsp;</div>
 
-<?php get_footer(); ?>
+	<div class="events">
+		<? Wd_Parts_Event::get_content(); ?>
+	</div>
+	<div class="cases">
+		<? Wd_Parts_Case::get_content(); ?>
+	</div>
+	<div class="clear">&nbsp;</div>
+
+	<?php 
+//    if( $themeoption_layout == 'right-sidebar' ) {
+//        get_sidebar();
+//    }?>
+            
+
+<? get_footer(); ?>

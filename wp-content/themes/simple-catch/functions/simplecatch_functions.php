@@ -1022,77 +1022,65 @@ function simplecatch_loop() {
 function simplecatch_display_div() {
 	// @todo kirill header
 	?>
-	<div id="main" class="layout-978">
-	<div id="header">
-	<div class="top-bg"></div>
-	<div class="layout-978">
-	<?php
-		// Funcition to show the header logo, site title and site description
-	if ( function_exists( 'simplecatch_headerdetails' ) ) :
-	simplecatch_headerdetails();
-	endif;
-	?>
-			<div id="mainmenu">
-			    <?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
-			</div><!-- #mainmenu-->
+	<div class="main">
+		<div class="header">
+			<div class="top">
+				<div class="logo">
+					<img src="wp-content\themes\simple-catch\images\logo.png" />
+				</div>
+				<div class="header_info">
+					<div class="about">
+						<a href="#">О проекте</a>
+					</div>
+					<div class="contacts">
+						<a href="#">Контактная информация</a>
+					</div>
+				</div>
+			</div>
+			<div class="clear">&nbsp;</div>
+			<div class="grey_line">
+				<div class="menu">
+					<ul>
+						<li class="icons articles"><a href="#"><span>Статьи</span></a></li>
+						<li class="icons cases"><a href="#"><span>Кейсы</span></a></li>
+						<li class="icons events"><a href="#"><span>События</span></a></li>
+					</ul>
 
-			<div class="social-search">
-				<?php
-		// simplecatch_headersocialnetworks displays social links given from theme option in header
-		if ( function_exists( 'simplecatch_headersocialnetworks' ) ) :
-		simplecatch_headersocialnetworks();
-		endif;
-		// get search form
-		get_search_form();
-		global $wpdb;
-		$query = "SELECT * FROM wp_posts WHERE post_title IN ('Контакты') AND post_type IN ('page', 'post')";
-		$terms = $wpdb->get_results($query);
-		?>
-        	</div><!-- .social-search -->
-			  <div class="header-icons-container">
-				  <a class="icons home-icon" href="<?= HTTP_HOST . '/'?>">&nbsp;</a>
-				  <a class="icons contacts-icon" href="<?= HTTP_HOST . '/' . $terms[0]->post_name?>"></a>
-				  <a class="icons sitemap-icon" href="<?= HTTP_HOST . '/sitemap'?>">&nbsp;</a>
-			  </div>
-    		<div class="row-end"></div>
-            <div class="row-end"></div>
+				</div>
+				<div class="menu_right">
+					<div class="send_news">
+						<a href="#">Прислать новость</a>
+					</div>
+					<div class="search">
+						<div class="background">
+							<input type="text" value="Искать тут">
+						</div>
+						<div class="icons button">
 
-        <?php
-//		@todo kirill try make faster header
-		// This function passes the value of slider effect to js file
+						</div>
+					</div>
+				</div>
 
-//	if( function_exists( 'simplecatch_pass_slider_value' ) ) {
-//	simplecatch_pass_slider_value();
-//	}
-			// Display slider in home page and breadcrumb in other pages
-//			if ( function_exists( 'simplecatch_sliderbreadcrumb' ) ) :
-//				simplecatch_sliderbreadcrumb();
-//			endif;
-		?>
-	</div><!-- .layout-978 -->
-</div><!-- #header -->
+			</div>
+		</div><!-- #header -->
 
 
 
 
+
+	<div class="slider">
+
+	</div>
+	<div class="articles">
+		<div class="header">
+			<div class="label">
+				Статьи
+			</div>
+			<div class="hr"></div>
+		</div>
 
 	<?
-	global $simplecatch_options_settings;
-    $options = $simplecatch_options_settings;
-
-	$themeoption_layout = $options['sidebar_layout'];
-
-	if( $themeoption_layout == 'left-sidebar' ) {
-		get_sidebar();
-		echo '<div class="rubber-layout-keep-content"><div id="content" class="col8 rubber-layout-main">';
-	}
-	elseif( $themeoption_layout == 'right-sidebar' ) {
-		echo '<div class="rubber-layout-keep-content"><div id="content" class="col8 no-margin-left rubber-layout-main">';
-	}
-	else {
-		echo '<div class="rubber-layout-keep-content"><div id="content" class="col8 rubber-layout-main">';
-	}
-	return $themeoption_layout;
+	return 'right-sidebar';
 }
 
 /**
