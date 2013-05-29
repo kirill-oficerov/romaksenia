@@ -36,6 +36,7 @@ body {
 }
 .main .header .header_info {
 	float: right;
+	margin: 20px 0px 0px 0px;
 }
 .main .header .header_info a {
 	text-decoration: none;
@@ -85,7 +86,7 @@ li.cases span {
 	margin: 0px 0px 0px -12px;
 }
 li.events span {
-	margin: 0px 0px 0px -17px;
+	margin: 0px 0px 0px -12px;
 }
 .main .header .grey_line .menu a {
 	color: #fff;
@@ -163,7 +164,7 @@ li.events span {
 	font-size: 30px;
 	float: left;
 	font-family: ptsansbold;
-
+	cursor: pointer;
 }
 .main .articles .header .label:hover {
 	color: #3579c6;
@@ -200,6 +201,9 @@ li.events span {
 }
 .main > .articles .content ul.articles li.first {
 	margin-left: 0px;
+}
+.main > .articles .content ul.articles .image_container {
+	text-align: center;
 }
 .main > .articles .content ul.articles .featured_image {
 	width: 300px;
@@ -289,6 +293,8 @@ li.events span {
 	font-size: 30px;
 	float: left;
 	font-family: ptsansbold;
+	cursor: pointer;
+
 }
 .main .cases .header .label:hover {
 	color: #3579c6;

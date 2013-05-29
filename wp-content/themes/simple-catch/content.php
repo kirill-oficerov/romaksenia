@@ -38,7 +38,7 @@ get_header();
 					<li <?=$first ? 'class="first"' : ''?>>
 					<?$first = false;?>
 						<div>
-							<div>
+							<div class="image_container">
 								<?
 								$picture = get_the_post_thumbnail( null, 'featured', '' );
 								if(!empty($picture)) {
