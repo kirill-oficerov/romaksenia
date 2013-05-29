@@ -79,30 +79,8 @@ get_header();
 						</div>
 					</li>
 
-					<?php }
-
-					// Checking WP Page Numbers plugin exist
-					if ( function_exists('wp_pagenavi' ) ) {
-//						wp_pagenavi();
-					}
-					// Checking WP-PageNaviplugin exist
-					elseif ( function_exists('wp_page_numbers' ) ) {
-						wp_page_numbers();
-
-					} else {
-						global $wp_query;
-						if ( $wp_query->max_num_pages > 1 ) { ?>
-							<ul class="default-wp-page">
-								<li class="previous"><? next_posts_link( 'Предыдущие' );?></li>
-								<li class="next"><? previous_posts_link('Следующие'); ?></li>
-								<div class="clear" style="margin-bottom: 10px;"></div>
-							</ul>
-						<?}
-					};
-					?>
-
-
-			<?php } else { ?>
+					<? }
+			} else { ?>
 					<div class="post">
 						<h2>К сожалению, в этой категории ещё нет статей. Но будут обязательно!</h2>
 					</div><!-- .post -->
