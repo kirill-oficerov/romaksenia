@@ -1,11 +1,11 @@
 <?php
-class Wd_Widgets_Events extends WP_Widget {
-	function Wd_Widgets_Events() {
-		parent::WP_Widget(false, 'Events');
+class Wd_Widgets_Event extends WP_Widget {
+	function Wd_Widgets_Event() {
+		parent::WP_Widget(false, 'Event');
 	}
 	function form($instance) {
 		// outputs the options form on admin
-		echo "<pre>".print_r('outputs the options form on admin', true)."</pre>\n\n";
+		echo 'outputs the options form on admin';
 	}
 	function update($new_instance, $old_instance) {
 		// processes widget options to be saved

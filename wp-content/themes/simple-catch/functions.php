@@ -92,10 +92,11 @@ function simplecatch_setup() {
 	register_nav_menu( 'primary', __( 'Primary Menu', 'simplecatch' ) );
 
 	// @todo kirill menu
-	register_nav_menu( 'custom_menu_0', __( 'Custom menu 0', 'simplecatch' ) );
+//	register_nav_menu( 'custom_menu_0', __( 'Custom menu 0', 'simplecatch' ) );
 //	update_site_option('remove_site_title', 1);
 	// widgets
-	register_widget('Wd_Widgets_Events');
+	register_widget('Wd_Widgets_Event');
+	register_widget('Wd_Widgets_Slider');
 
 	//	add_filter( 'get_the_excerpt', 'simplecatch_custom_excerpt_add_thumbnail', 20 );
 
