@@ -5,6 +5,7 @@
 window.Admin_Custom_Common = function(options) {
 	var me = this;
 	me.ajaxSaveFeaturedSettings = null;
+	me.ajaxSaveSliderSettings = null;
 	me.options = $.extend(me.options, options);
 
 
@@ -12,6 +13,14 @@ window.Admin_Custom_Common = function(options) {
 		jQuery('.save_feature_settings').live('click', function(e) {
 			me.onClickSaveFeatureSettings(e);
 		});
+		jQuery('#save_slider_settings').live('click', function(e) {
+			me.onClickSaveSliderSettings(e);
+		});
+		jQuery('#show_image_in_slider').live('change', function(e) {
+			me.onChangeShowImageInSlider(e);
+		});
+
+
 		$('#categorydiv label.selectit:contains("Ивенты") input').bind('change', function() {
 			if(this.checked) {
 				jQuery('#show_event_at_main').attr('checked','checked');
@@ -45,7 +54,6 @@ window.Admin_Custom_Common = function(options) {
 				preloader.show();
 			},
 			success: function(data) {
-				console.debug(data);
 				if(data != undefined) {
 					if(data.errors != undefined) {
 						alert(data.errors);
@@ -61,6 +69,88 @@ window.Admin_Custom_Common = function(options) {
 			}
 		});
 
+	},
+	me.onClickSaveSliderSettings = function(event) {
+		if(me.ajaxSaveSliderSettings) {
+			alert('Последний запрос в обработке');
+			return;
+		}
+		var text = jQuery('#slider_text').val();
+		var order = jQuery('#slider_order').val();
+		var preloader = jQuery('.slider_settings .preloader');
+		me.ajaxSaveSliderSettings = jQuery.ajax({
+			url: me.options.urlSaveCustomSettings,
+			type: 'post',
+			data: {
+				text: text,
+				order: order,
+				id: post_id,
+				settingName: 'slider-settings'
+			},
+			beforeSend: function() {
+				preloader.show();
+			},
+			success: function(data) {
+				if(data != undefined) {
+					if(data.errors != undefined) {
+						alert(data.errors);
+					}
+				}
+			},
+			error: function() {
+				alert('server error');
+			},
+			complete: function() {
+				preloader.hide();
+				me.ajaxSaveSliderSettings = null;
+			}
+		});
+	},
+	me.onChangeShowImageInSlider = function(event) {
+		if(me.ajaxSaveSliderSettings) {
+			alert('Последний запрос в обработке');
+			return;
+		}
+		var checkbox = jQuery(event.currentTarget);
+		var state = checkbox.get(0).checked;
+		var imageId = checkbox.parents('[id^=media-item-]').attr('id');
+		imageId = imageId.split('-');
+		imageId = imageId[2];
+		var preloader = jQuery('#media-item-' + imageId + ' .slider_settings.submit .preloader');
+		me.ajaxSaveSliderSettings = jQuery.ajax({
+			url: me.options.urlSaveCustomSettings,
+			type: 'post',
+			data: {
+				imageId: imageId,
+				state: state ? 1 : 0,
+				id: post_id,
+				settingName: 'slider-settings'
+			},
+			beforeSend: function() {
+				preloader.show();
+			},
+			success: function(data) {
+				if(data != undefined) {
+					if(data.errors != undefined) {
+						alert(data.errors);
+					}
+					if(data.slider_image_src != undefined) {
+						if(data.slider_image_src == '') {
+							jQuery('#slider_image img').hide().removeAttr('src');
+						} else {
+							jQuery('#slider_image img').show().attr('src', data.slider_image_src);
+						}
+					}
+				}
+			},
+			error: function() {
+				alert('server error');
+			},
+			complete: function() {
+				preloader.hide();
+				me.ajaxSaveSliderSettings = null;
+			}
+		});
 	}
 
 };

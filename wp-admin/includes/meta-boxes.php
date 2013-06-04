@@ -261,16 +261,33 @@ function post_custom_settings($post) {
 	}
 //	$categories = $wpdb->get_results($query);
 	 ?>
-		<div id="custom_settings">
-			<div class="cases">
-				<input id="show_case_at_main" name="show_case_at_main" type="checkbox" <?=$showCaseAtMain ? 'checked="checked"' : ''?>>
-				<label for="show_case_at_main" style="position: relative; top: -1px;">Показывать кейс на главной</label>
-			</div>
-			<div class="events" style="margin-top: 15px;">
-				<input id="show_event_at_main" name="show_event_at_main" type="checkbox" <?=$showEventAtMain ? 'checked="checked"' : ''?>>
-				<label for="show_event_at_main" style="position: relative; top: -1px;">Показывать ивент на главной</label>
+	<div id="custom_settings">
+		<div style="margin: 10px 0px 0px 0px;">
+			<div>Общие</div>
+			<div style="border: 1px solid #dfdfdf; -webkit-border-radius: 3px; border-radius: 3px;">
+				<div class="cases" style="margin: 5px;">
+					<input id="show_case_at_main" name="show_case_at_main" type="checkbox" <?=$showCaseAtMain ? 'checked="checked"' : ''?> >
+					<label for="show_case_at_main" style="position: relative; top: -1px;">Показывать кейс на главной</label>
+				</div>
+				<div class="events" style="margin: 8px 5px 5px 5px;">
+					<input id="show_event_at_main" name="show_event_at_main" type="checkbox" <?=$showEventAtMain ? 'checked="checked"' : ''?> >
+					<label for="show_event_at_main" style="position: relative; top: -1px;">Показывать ивент на главной</label>
+				</div>
 			</div>
 		</div>
+
+		<div style="margin: 15px 0px 0px 0px;">
+			<div>Слайдер на главной</div>
+			<div style="border: 1px solid #dfdfdf; -webkit-border-radius: 3px; border-radius: 3px;">
+				<div style="margin: 4px;">
+					<input id="show_at_slider" name="show_at_slider" type="checkbox">
+					<label for="show_at_slider" style="position: relative; top: -1px;">Отображать в слайдере</label>
+				</div>
+				<a title="Настройки слайдера" href="http://wedigital.dev/wp-admin/media-upload.php?post_id=1679&type=image&slider_settings=1&TB_iframe=1&width=1070&height=323" class="thickbox" style="display: block; margin: 4px; ">Настройки</a>
+			</div>
+		</div>
+	</div>
+
 	<?
 }
 

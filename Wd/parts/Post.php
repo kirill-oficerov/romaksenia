@@ -22,7 +22,7 @@ class Wd_Parts_Post {
 			$postSettings = array_pop($postSettings);
 			$postSettings = unserialize($postSettings->settings);
 			if($postSettings) {
-				$postSettings = array_merge($postSettings, $newSettings);
+				self::_recursiveSave($postSettings, $newSettings);
 			} else {
 				$postSettings = $newSettings;
 			}
@@ -30,6 +30,21 @@ class Wd_Parts_Post {
 			$wpdb->get_results($query);
 		}
 	}
+
+	private static function _recursiveSave(&$postSettings, $newSettings) {
+		foreach($newSettings as $settingsKey => $settingsValue) {
+			if(gettype($settingsValue) == 'array') {
+				if(isset($postSettings[$settingsKey])) {
+					self::_recursiveSave($postSettings[$settingsKey], $settingsValue);
+				} else {
+					$postSettings[$settingsKey] = $settingsValue;
+				}
+			} else {
+				$postSettings[$settingsKey] = $settingsValue;
+			}
+		}
+	}
+
 	public static function AdminCreateFeaturedImage($postId, $thumbnailId) {
 		$newImageName = Wd_Parts_Image::CreateThumbnailFromImage($thumbnailId, Wd_Parts_Image::SIZE_FRONT, array());
 		Wd_Parts_Post::SaveSettings($postId, array('featuredImageName' => $newImageName));

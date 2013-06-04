@@ -1,0 +1,1 @@
+ALTER TABLE  `wp_posts` ADD  `show_at_slider` INT NULL DEFAULT NULL;

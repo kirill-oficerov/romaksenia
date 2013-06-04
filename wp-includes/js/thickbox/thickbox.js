@@ -34,7 +34,7 @@ function tb_click(){
 	this.blur();
 	return false;
 }
-
+document.slider_width = 0;
 function tb_show(caption, url, imageGroup) {//function called when the user clicks on a thickbox link
 
 	try {
@@ -129,7 +129,6 @@ function tb_show(caption, url, imageGroup) {//function called when the user clic
 				}
 			}
 			// End Resizing
-
 			TB_WIDTH = imageWidth + 30;
 			TB_HEIGHT = imageHeight + 60;
 			jQuery("#TB_window").append("<a href='' id='TB_ImageOff' title='"+thickboxL10n.close+"'><img id='TB_Image' src='"+url+"' width='"+imageWidth+"' height='"+imageHeight+"' alt='"+caption+"'/></a>" + "<div id='TB_caption'>"+caption+"<div id='TB_secondLine'>" + TB_imageCount + TB_PrevHTML + TB_NextHTML + "</div></div><div id='TB_closeWindow'><a href='#' id='TB_closeWindowButton' title='"+thickboxL10n.close+"'><img src='" + tb_closeImage + "' /></a></div>");
@@ -190,12 +189,15 @@ function tb_show(caption, url, imageGroup) {//function called when the user clic
 
 			var queryString = url.replace(/^[^\?]+\??/,'');
 			var params = tb_parseQuery( queryString );
-
+			if(params['slider_settings'] != undefined) {
+				document.slider_width = params['width'] * 1;
+			} else {
+				document.slider_width = 0;
+			}
 			TB_WIDTH = (params['width']*1) + 30 || 630; //defaults to 630 if no paramaters were added to URL
 			TB_HEIGHT = (params['height']*1) + 40 || 440; //defaults to 440 if no paramaters were added to URL
 			ajaxContentW = TB_WIDTH - 30;
 			ajaxContentH = TB_HEIGHT - 45;
-
 			if(url.indexOf('TB_iframe') != -1){// either iframe or ajax window
 					urlNoQuery = url.split('TB_');
 					jQuery("#TB_iframeContent").remove();
