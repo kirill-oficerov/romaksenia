@@ -10,7 +10,7 @@
 body {
 	font-family: ptsans;
 	margin: 0px;
-	background: #000;
+	background: #fff;
 }
 .clear {
 	float: none;
@@ -213,7 +213,7 @@ li.events span {
 	text-align: left;
 	font-size: 12px;
 	color: #6c696a;
-	margin: 8px 0px 3px 0px;
+	margin: 21px 0px 3px 0px;
 }
 .main > .articles .content ul.articles .title {
 	font-size: 18px;
@@ -233,14 +233,15 @@ li.events span {
 	font-size: 14px;
 	text-align: left;
 	margin: 10px 0px 0px 0px;
-
+	line-height: 20px;
 }
 /* events */
 .main > .events {
 	width: 100%;
 	background-color: #dfdcce;
-	height: 130px;
+	min-height: 50px;
 	margin: 20px 0px 0px 0px;
+	padding: 0px 0px 20px 0px;
 }
 .main > .events ul {
 	list-style-type: none;
@@ -249,7 +250,7 @@ li.events span {
 .main > .events ul li {
 	float: left;
 	display: block;
-	min-height: 100px;
+	/*min-height: 100px;*/
 	min-width: 200px;
 	max-width: 275px;
 	margin: 0px 0px 0px 18px;

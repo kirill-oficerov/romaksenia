@@ -33,7 +33,8 @@ LIMIT 3";
 				</div>
 			</li>';
 		}
-		echo '</ul>';
+		echo '</ul>
+		<div class="clear">&nbsp;</div>';
 
 	}
 
