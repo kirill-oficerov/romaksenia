@@ -24,7 +24,6 @@ get_header();
 	})(jQuery);
 </script>
 			<?
-			$first = true;
 			if ( have_posts() ) {
 				while( have_posts() ) {
 					the_post();
@@ -35,8 +34,7 @@ get_header();
 					$content = mb_substr($content, 0, -5);
 					?>
 
-					<li <?=$first ? 'class="first"' : ''?>>
-					<?$first = false;?>
+					<li>
 						<div>
 							<div class="image_container">
 								<?

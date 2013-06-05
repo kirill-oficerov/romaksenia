@@ -1041,7 +1041,7 @@ function simplecatch_display_div() {
 			<div class="grey_line">
 				<div class="menu">
 					<ul>
-						<li class="icons articles"><a href="#"><span>Статьи</span></a></li>
+						<li class="icons articles"><a href="http://<?=$_SERVER['HTTP_HOST']?>/articles/"><span>Статьи</span></a></li>
 						<li class="icons cases"><a href="#"><span>Кейсы</span></a></li>
 						<li class="icons events"><a href="#"><span>События</span></a></li>
 					</ul>
@@ -1062,15 +1062,13 @@ function simplecatch_display_div() {
 				</div>
 
 			</div>
-		</div><!-- #header -->
-
-
-
-
-
+		</div>
+	<? if($_SERVER[REQUEST_URI] === '/') { ?>
 	<div class="slider">
 
 	</div>
+	<? } ?>
+
 	<div class="articles">
 		<div class="header">
 			<div class="label">
@@ -1078,6 +1076,8 @@ function simplecatch_display_div() {
 			</div>
 			<div class="hr"></div>
 		</div>
+		<div class="clear">&nbsp;</div>
+
 
 	<?
 	return 'right-sidebar';

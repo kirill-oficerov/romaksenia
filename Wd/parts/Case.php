@@ -27,12 +27,11 @@ LIMIT 3";
 			</div>
 			<div class="hr"></div>
 		</div>
+	    <div class="clear">&nbsp;</div>
 		<div class="content">
 			<ul class="cases">';
-		$firstLi = true;
 		foreach($terms as $post) {
-			echo '<li' . ($firstLi ? (' class="first"') : '') . '>';
-			$firstLi = false;
+			echo '<li>';
 			setup_postdata((object)$post);
 			$picture = get_the_post_thumbnail($post->ID, 'featured', '' );
 			if(!empty($picture)) {
@@ -68,28 +67,6 @@ LIMIT 3";
 		echo '
 			</ul>
 		</div>';
-
-
-//<div class="header">
-//	<div class="label">
-//		Кейсы
-//	</div>
-//	<div class="hr"></div>
-//</div>
-//<div class="content">
-//	<ul class="cases">
-//		<li class="first">
-//			<div>
-//				<img class="featured_image" src="images/orderino_stumb.png">
-//				<div class="public_date">19 марта</div>
-//				<div class="title"><a href="#">Никита Обухович: Уже более года работаю в Abiatec и ничуть не жалею</a></div>
-//			</div>
-//		</li>
-//
-//	</ul>
-//</div>
-
-
 
 	}
 

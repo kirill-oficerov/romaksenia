@@ -38,11 +38,13 @@ query_posts($query);
 //add_action('pre_get_posts', 'gloss_remove_glossary_cat' );
 
 get_template_part('content'); ?>
-</div> <!-- keep content -->
-</div><!-- #content -->
+</div> <!-- articles -->
+<div class="clear">&nbsp;</div>
+
+<?php get_footer(); ?>
+</div>
 
 
 
 </div><!-- #main -->
 
-<?php get_footer(); ?>
