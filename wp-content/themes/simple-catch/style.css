@@ -169,6 +169,7 @@ li.events span {
 
 .main .articles .header .label a {
 	text-decoration: none;
+	color: #2e2a2b;
 }
 .main .articles .header .label a:visited {
 	color: #2e2a2b;
@@ -304,6 +305,7 @@ li.events span {
 
 .main .cases .header .label a {
 	text-decoration: none;
+	color: #2e2a2b;
 }
 .main .cases .header .label a:visited {
 	color: #2e2a2b;
