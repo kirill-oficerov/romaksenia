@@ -23,7 +23,7 @@ LIMIT 3";
 		echo '
 		<div class="header">
 			<div class="label">
-				Кейсы
+					<a href="http://' . $_SERVER['HTTP_HOST'] . '/cases/">Кейсы</a>
 			</div>
 			<div class="hr"></div>
 		</div>

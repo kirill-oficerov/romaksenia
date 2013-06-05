@@ -16,34 +16,89 @@
 
 get_header();
 
-if( function_exists( 'simplecatch_display_div' ) ) {
-	$themeoption_layout = simplecatch_display_div();
-}
+// @todo kirill header
+?>
+	<div class="main">
+		<div class="header">
+			<div class="top">
+				<div class="logo">
+					<img src="/wp-content/themes/simple-catch/images/logo.png" />
+				</div>
+				<div class="header_info">
+					<div class="about">
+						<a href="#">О проекте</a>
+					</div>
+					<div class="contacts">
+						<a href="#">Контактная информация</a>
+					</div>
+				</div>
+			</div>
+			<div class="clear">&nbsp;</div>
+			<div class="grey_line">
+				<div class="menu">
+					<ul>
+						<li class="icons articles"><a href="http://<?=$_SERVER['HTTP_HOST']?>/articles/"><span>Статьи</span></a></li>
+						<li class="icons cases"><a href="http://<?=$_SERVER['HTTP_HOST']?>/cases/"><span>Кейсы</span></a></li>
+						<li class="icons events"><a href="#"><span>События</span></a></li>
+					</ul>
+
+				</div>
+				<div class="menu_right">
+					<div class="send_news">
+						<a href="#">Прислать новость</a>
+					</div>
+					<div class="search">
+						<div class="background">
+							<input type="text" value="Искать тут">
+						</div>
+						<div class="icons button">
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="cases">
+			<div class="header">
+				<div class="label">
+					<a href="http://<?=$_SERVER['HTTP_HOST']?>/cases/">Кейсы</a>
+				</div>
+				<div class="hr"></div>
+			</div>
+			<div class="clear">&nbsp;</div>
+
+
+			<?
 
 
 
 
-//set_query_var('pagename', '');
-//set_query_var('name', '');
-//wp_reset_query();
-//function gloss_remove_glossary_cat($wp_query) {
-//	set_query_var('pagename', 'кейсы');
 $query = array('category_name' => 'cases');
 $paged = get_query_var('paged');
 if($paged) {
 	$query['paged'] = $paged;
 }
 query_posts($query);
-//query_posts('category_name=events');
-//}
-//add_action('pre_get_posts', 'gloss_remove_glossary_cat' );
 
 get_template_part('casesContent'); ?>
-</div> <!-- keep content -->
-</div><!-- #content -->
+</div> <!-- cases -->
+<div class="clear">&nbsp;</div>
+<script type="text/javascript">
+	if($ == undefined) {
+		var $ = jQuery;
+	}
+	(function($) {
+		$(function() {
+			wdPrettyPhoto();
+		});
+	})(jQuery);
+</script>
+<?php get_footer(); ?>
+</div>
 
 
 
 </div><!-- #main -->
 
-<?php get_footer(); ?>

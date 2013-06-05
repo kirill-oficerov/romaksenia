@@ -41,6 +41,15 @@ get_header();
 //    if( $themeoption_layout == 'right-sidebar' ) {
 //        get_sidebar();
 //    }?>
-            
 
+<script type="text/javascript">
+	if($ == undefined) {
+		var $ = jQuery;
+	}
+	(function($) {
+		$(function() {
+			wdPrettyPhoto();
+		});
+	})(jQuery);
+</script>
 <? get_footer(); ?>

@@ -1042,7 +1042,7 @@ function simplecatch_display_div() {
 				<div class="menu">
 					<ul>
 						<li class="icons articles"><a href="http://<?=$_SERVER['HTTP_HOST']?>/articles/"><span>Статьи</span></a></li>
-						<li class="icons cases"><a href="#"><span>Кейсы</span></a></li>
+						<li class="icons cases"><a href="http://<?=$_SERVER['HTTP_HOST']?>/cases/"><span>Кейсы</span></a></li>
 						<li class="icons events"><a href="#"><span>События</span></a></li>
 					</ul>
 
@@ -1063,7 +1063,7 @@ function simplecatch_display_div() {
 
 			</div>
 		</div>
-	<? if($_SERVER[REQUEST_URI] === '/') { ?>
+	<? if($_SERVER['REQUEST_URI'] === '/') { ?>
 	<div class="slider">
 
 	</div>
@@ -1072,7 +1072,7 @@ function simplecatch_display_div() {
 	<div class="articles">
 		<div class="header">
 			<div class="label">
-				Статьи
+				<a href="http://<?=$_SERVER['HTTP_HOST']?>/articles/">Статьи</a>
 			</div>
 			<div class="hr"></div>
 		</div>

@@ -160,13 +160,20 @@ li.events span {
 	height: 35px;
 }
 .main .articles .header .label {
-	#color: #2e2a2b;
+	color: #2e2a2b;
 	font-size: 30px;
 	float: left;
 	font-family: ptsansbold;
 	cursor: pointer;
 }
-.main .articles .header .label:hover {
+
+.main .articles .header .label a {
+	text-decoration: none;
+}
+.main .articles .header .label a:visited {
+	color: #2e2a2b;
+}
+.main .articles .header .label a:hover {
 	color: #3579c6;
 }
 .main .articles .header .hr {
@@ -288,7 +295,7 @@ li.events span {
 	height: 35px;
 }
 .main .cases .header .label {
-	#color: #2e2a2b;
+	color: #2e2a2b;
 	font-size: 30px;
 	float: left;
 	font-family: ptsansbold;
@@ -296,6 +303,15 @@ li.events span {
 
 }
 .main .cases .header .label:hover {
+	color: #3579c6;
+}
+.main .cases .header .label a {
+	text-decoration: none;
+}
+.main .cases .header .label a:visited {
+	color: #2e2a2b;
+}
+.main .cases .header .label a:hover {
 	color: #3579c6;
 }
 
@@ -360,7 +376,7 @@ li.events span {
 	font-size: 14px;
 	text-align: left;
 	margin: 10px 0 0 0;
-
+	line-height: 20px;
 }
 /* footer */
 

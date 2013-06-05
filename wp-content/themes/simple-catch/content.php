@@ -13,16 +13,7 @@ get_header();
 	<div class="content">
 		<ul class="articles">
 
-<script type="text/javascript">
-	if($ == undefined) {
-		var $ = jQuery;
-	}
-	(function($) {
-		$(function() {
-			wdPrettyPhoto();
-		});
-	})(jQuery);
-</script>
+
 			<?
 			if ( have_posts() ) {
 				while( have_posts() ) {
@@ -84,7 +75,5 @@ get_header();
 					</div><!-- .post -->
 
 			<?php } ?>
-
-
 		</ul>
 	</div>
