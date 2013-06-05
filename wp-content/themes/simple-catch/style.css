@@ -300,11 +300,8 @@ li.events span {
 	float: left;
 	font-family: ptsansbold;
 	cursor: pointer;
+}
 
-}
-.main .cases .header .label:hover {
-	color: #3579c6;
-}
 .main .cases .header .label a {
 	text-decoration: none;
 }

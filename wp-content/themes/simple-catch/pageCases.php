@@ -22,7 +22,7 @@ get_header();
 		<div class="header">
 			<div class="top">
 				<div class="logo">
-					<img src="/wp-content/themes/simple-catch/images/logo.png" />
+					<a href="http://<?=$_SERVER['HTTP_HOST']?>"><img src="/wp-content/themes/simple-catch/images/logo.png" /></a>
 				</div>
 				<div class="header_info">
 					<div class="about">
