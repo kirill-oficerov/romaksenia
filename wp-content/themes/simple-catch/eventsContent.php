@@ -15,7 +15,7 @@ get_header();
 	}
 	(function($) {
 		$(function() {
-			wdPrettyPhoto();
+//			wdPrettyPhoto();
 		});
 	})(jQuery);
 </script>
@@ -42,7 +42,7 @@ get_header();
 		                    ?>
 		                    <div class="clear" style="height: 1px; width: 1px; "></div>
 
-		                    <div style="text-align: right; float: right; margin: 0px 0px 0px 15px;">
+		                    <div style="text-align: right; float: left; margin: 0 15px 0 0;">
 			                    <?
 			                        $picture = get_the_post_thumbnail( null, 'featured', '' );
 				                    if(!empty($picture)) {
@@ -62,18 +62,24 @@ get_header();
 						                    $picture = str_replace($fullSizeImage, '"' . $thumbnailSrc . '"', $picture);
 					                    }
 					                    ?>
-                                    <a rel="prettyPhoto" href=<?=substr($pictureSrc[0], 4)?> title="<?php the_title_attribute( 'echo=0' ) ?>">
-				                    <?php echo $picture ?>
-			                    </a>
+<!--                                    <a rel="prettyPhoto" href=--><?//=substr($pictureSrc[0], 4)?><!-- title="--><?php //the_title_attribute( 'echo=0' ) ?><!--">-->
+			                    <a href="<?php the_permalink() ?>"><?php echo $picture ?></a>
+<!--			                        </a>-->
 			                        <? } ?>
 		                    </div>
-		                    <?
-		                    $matches = array();
-		                    preg_match('~<a[^>]+readmore[^>]*>Далее</a>~', $content, $matches);
-		                    $content = str_replace($matches[0], '', $content);
-		                    echo $content;
-		                    ?>
+		                    <div class="post-excerpt" style="margin: 5px 0 0 0; overflow: hidden; font-size: 16px;">
+			                    <div class="post_date"><?=(date('d.m.Y', strtotime($post->post_date)))?></div>
+			                    <?
+			                    $matches = array();
+			                    preg_match('~<a[^>]+readmore[^>]*>Далее</a>~', $content, $matches);
+			                    $content = str_replace($matches[0], '', $content);
+			                    echo $content;
+			                    if(strpos(substr($content, -10, 10), '<br />') === false) {
+				                    echo "<br />";
+			                    }
+			                    ?>
 		                    <br>
+		                    </div>
 		                    <?=$matches[0]?>
 	                    </div>
                         <div class="row-end"></div>
