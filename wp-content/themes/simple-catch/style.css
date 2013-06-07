@@ -320,7 +320,8 @@ a.readmore {
 }
 #content .post a.readmore {
 	position: absolute;
-	bottom: 0px;
+	bottom: 0;
+	right: 0;
 }
 #main .rubber-layout-keep-content #content .col8 .post-excerpt a.readmore {
 	text-decoration: none;
@@ -1989,3 +1990,14 @@ span.select-search-result {
 	float: left;
 	margin-right: 5px;
 }
+#main #content .post a {
+	color: #8e2344;
+}
+#main #content .post a:hover {
+	color: #8e2344;
+	text-decoration: underline;
+}
+
+/*#main #content .wp-pagenavi a {*/
+	/*color: #fff;*/
+/*}*/
