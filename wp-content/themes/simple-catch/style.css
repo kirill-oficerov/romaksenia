@@ -1990,14 +1990,11 @@ span.select-search-result {
 	float: left;
 	margin-right: 5px;
 }
-#main #content .post a {
+#main #content .post a, #main #sidebar .widget a {
 	color: #8e2344;
 }
-#main #content .post a:hover {
+#main #content .post a:hover, #main #sidebar .widget a:hover {
 	color: #8e2344;
 	text-decoration: underline;
 }
 
-/*#main #content .wp-pagenavi a {*/
-	/*color: #fff;*/
-/*}*/
