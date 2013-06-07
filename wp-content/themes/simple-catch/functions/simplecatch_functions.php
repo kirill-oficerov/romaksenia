@@ -1068,10 +1068,8 @@ function simplecatch_display_div() {
 
 
 
-	<div class="slider">
-		<? Wd_Parts_Slider::get_content(); ?>
+	<? Wd_Parts_Slider::get_content(); ?>
 
-	</div>
 	<div class="articles">
 		<div class="header">
 			<div class="label">
