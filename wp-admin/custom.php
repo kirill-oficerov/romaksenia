@@ -31,29 +31,26 @@ if(!isset($inputData['settingName'])) {
 						'order' => mysql_real_escape_string($inputData['order'])
 					)
 				));
-			} elseif(isset($inputData['imageId'])) {
-				$src = '';
+			} elseif(isset($inputData['removeImage'])) {
 				global $wpdb;
-				if(!$inputData['state']) {
-					Wd_Parts_Post::SaveSettings($inputData['id'], array(
-						'slider' => array(
-							'src' => $src,
-						)
-					));
-					$query = 'UPDATE wp_posts SET show_at_slider = NULL WHERE ID=' . intval($inputData['id']);
-				} else {
+				$query = 'UPDATE wp_posts SET show_at_slider = NULL WHERE ID=' . intval($inputData['id']);
+				$wpdb->get_results($query);
+				echo json_encode(array('slider_image_removed' => 1));
+
+			} elseif(isset($inputData['imageId'])) {
+				$toReturn = array('slider_image_set' => $inputData['state']);
+				global $wpdb;
+				if($inputData['state']) {
+					$query = 'UPDATE wp_posts SET show_at_slider=' . intval($inputData['imageId']) . ' WHERE ID=' . intval($inputData['id']);
+					$wpdb->get_results($query);
 					$query = 'SELECT guid FROM wp_posts WHERE ID=' . intval($inputData['imageId']);
 					$src = array_pop($wpdb->get_results($query));
-					$src = mb_substr($src->guid, strlen($_SERVER['HTTP_ORIGIN']), mb_strlen($src->guid), 'UTF-8');
-					Wd_Parts_Post::SaveSettings($inputData['id'], array(
-						'slider' => array(
-							'src' => mysql_real_escape_string($src),
-						)
-					));
-					$query = 'UPDATE wp_posts SET show_at_slider=' . intval($inputData['imageId']) . ' WHERE ID=' . intval($inputData['id']);
+					$toReturn['slider_image_src'] = $src->guid;
+				} else {
+					$query = 'UPDATE wp_posts SET show_at_slider = NULL WHERE ID=' . intval($inputData['id']);
+					$wpdb->get_results($query);
 				}
-				$wpdb->get_results($query);
-				echo json_encode(array('slider_image_src' => $src));
+				echo json_encode($toReturn); // 1 or 0
 			}
 		} catch(Exception $e) {
 			echo json_encode(array('errors' => $e->getMessage()));

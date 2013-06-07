@@ -1236,7 +1236,7 @@ function get_media_item( $attachment_id, $args = null ) {
 			$form_fields['slider_settings'] = array( 'tr' => "\t\t<tr class='submit slider_settings'>
 			<th valign='top' scope='row' class='label' style='font-size:13px; font-weight: bold;'><span style='cursor: pointer; margin: 2px 0px 0px 0px;' class='alignleft'>Slider settings</span><br class='clear'></th>
 			<td class='savesend' style='padding: 6px 0px 0px 0px;'>
-				<div style='margin: 3px 0px 0px 0px; float: left;'><label style='position: relative; top: -1px;'><input type='checkbox' id='show_image_in_slider' " . ($_GLOBAL['postBeingEdited']->show_at_slider == $post->ID ? 'checked="checked"' : '') . " >Показывать эту картинку в слайдере</label></div>
+				<div style='margin: 3px 0px 0px 0px; float: left;'><label style='position: relative; top: -1px;'><input type='checkbox' class='show_image_in_slider' " . ($_GLOBAL['postBeingEdited']->show_at_slider == $post->ID ? 'checked="checked"' : '') . " >Показывать эту картинку в слайдере</label></div>
 <img src='/wp-admin/images/wpspin_light.gif' class='preloader' style='display:none; position: relative; top: 3px; left: 5px;'>
 			</td><td></td></tr>\n" );
 		}
@@ -1327,7 +1327,7 @@ function media_upload_header() {
 	<script type="text/javascript" src="/wp-admin/js/custom_common.js"></script>
 	<script type="text/javascript">
 		var adminCustomCommon = new window.Admin_Custom_Common({
-			urlSaveCustomSettings: '<?=HTTP_HOST . '/wp-admin/custom.php'?>'
+			urlCustomAjax: '<?=HTTP_HOST . '/wp-admin/custom.php'?>'
 		});
 		adminCustomCommon.init();
 	</script>
@@ -1347,8 +1347,13 @@ function media_upload_header() {
 				if(isset($postSettings['slider']['order'])) {
 					$order = $postSettings['slider']['order'];
 				}
-				if(isset($postSettings['slider']['src'])) {
-					$imageSrc = $postSettings['slider']['src'];
+				if($post->show_at_slider){
+					global $wpdb;
+					$query = 'SELECT * FROM wp_posts WHERE ID=' . $post->show_at_slider;
+					$imageData = $wpdb->get_results($query);
+					if(count($imageData)) {
+						$imageSrc = $imageData[0]->guid;
+					}
 				}
 			}
 		}
@@ -1363,7 +1368,7 @@ function media_upload_header() {
 			<input type="text" id="slider_order" style="width: 30px;" value="<?=$order?>"/>
 		</div>
 		<div id="slider_image" style="margin: 4px;">
-			<img style="width: 990px; height: 310px; <?=!$imageSrc ? 'display: none;' : '' ?>" src="<?=$imageSrc?>">
+			<img style="width: 750px; height: 300px; <?=!$imageSrc ? 'display: none;' : '' ?>" src="<?=$imageSrc?>">
 		</div>
 		<div class="slider_settings" style="margin: 4px;">
 			<input type="submit" name="save_slider_settings" id="save_slider_settings" value="Сохранить" class="button" attr="<?=$post->ID?>">

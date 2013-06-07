@@ -6,6 +6,7 @@ window.Admin_Custom_Common = function(options) {
 	var me = this;
 	me.ajaxSaveFeaturedSettings = null;
 	me.ajaxSaveSliderSettings = null;
+	me.ajaxRemoveSliderImage = null;
 	me.options = $.extend(me.options, options);
 
 
@@ -16,9 +17,12 @@ window.Admin_Custom_Common = function(options) {
 		jQuery('#save_slider_settings').live('click', function(e) {
 			me.onClickSaveSliderSettings(e);
 		});
-		jQuery('#show_image_in_slider').live('change', function(e) {
-			me.onChangeShowImageInSlider(e);
+		jQuery('#remove_slider_image').live('click', function(e) {
+			me.onClickRemoveSliderImage(e);
 		});
+			jQuery('.show_image_in_slider').live('change', function(e) {
+				me.onChangeShowImageInSlider(e);
+			});
 
 
 		$('#categorydiv label.selectit:contains("Ивенты") input').bind('change', function() {
@@ -41,7 +45,7 @@ window.Admin_Custom_Common = function(options) {
 		var featuredHeight = jQuery('[name="featured_height_' + id + '"]').val();
 		var preloader = jQuery('.savesend .preloader');
 		me.ajaxSaveFeaturedSettings = jQuery.ajax({
-			url: me.options.urlSaveCustomSettings,
+			url: me.options.urlCustomAjax,
 			type: 'post',
 			data: {
 				featuredWidth: featuredWidth,
@@ -79,7 +83,7 @@ window.Admin_Custom_Common = function(options) {
 		var order = jQuery('#slider_order').val();
 		var preloader = jQuery('.slider_settings .preloader');
 		me.ajaxSaveSliderSettings = jQuery.ajax({
-			url: me.options.urlSaveCustomSettings,
+			url: me.options.urlCustomAjax,
 			type: 'post',
 			data: {
 				text: text,
@@ -106,6 +110,42 @@ window.Admin_Custom_Common = function(options) {
 			}
 		});
 	},
+	me.onClickRemoveSliderImage = function(event) {
+		if(me.ajaxRemoveSliderImage) {
+			alert('Последний запрос в обработке');
+			return;
+		}
+		jQuery('#remove_slider_image').css('opacity', '0.5');
+		var post_id = jQuery('#post_ID').val();
+		me.ajaxRemoveSliderImage = jQuery.ajax({
+			url: me.options.urlCustomAjax,
+			type: 'post',
+			data: {
+				id: post_id,
+				removeImage: 1,
+				settingName: 'slider-settings'
+			},
+			beforeSend: function() {
+			},
+			success: function(data) {
+				if(data != undefined) {
+					if(data.errors != undefined) {
+						alert(data.errors);
+					}
+					if(data.slider_image_removed == 1) {
+						jQuery('#slider_image_preview_small').hide().removeAttr('src');
+						jQuery('#remove_slider_image').css('opacity', '1').hide();
+					}
+				}
+			},
+			error: function() {
+				alert('server error');
+			},
+			complete: function() {
+				me.ajaxRemoveSliderImage = null;
+			}
+		});
+	},
 	me.onChangeShowImageInSlider = function(event) {
 		if(me.ajaxSaveSliderSettings) {
 			alert('Последний запрос в обработке');
@@ -118,8 +158,9 @@ window.Admin_Custom_Common = function(options) {
 		imageId = imageId[2];
 		var preloader = jQuery('#media-item-' + imageId + ' .slider_settings.submit .preloader');
 		me.ajaxSaveSliderSettings = jQuery.ajax({
-			url: me.options.urlSaveCustomSettings,
+			url: me.options.urlCustomAjax,
 			type: 'post',
+			dataType: 'json',
 			data: {
 				imageId: imageId,
 				state: state ? 1 : 0,
@@ -134,11 +175,18 @@ window.Admin_Custom_Common = function(options) {
 					if(data.errors != undefined) {
 						alert(data.errors);
 					}
-					if(data.slider_image_src != undefined) {
-						if(data.slider_image_src == '') {
-							jQuery('#slider_image img').hide().removeAttr('src');
-						} else {
+					if(data.slider_image_set != undefined) {
+						if(data.slider_image_set == '1') {
 							jQuery('#slider_image img').show().attr('src', data.slider_image_src);
+							jQuery('#slider_image_preview_small', window.parent.document).show().attr('src', data.slider_image_src);
+							jQuery('#remove_slider_image', window.parent.document).show();
+							jQuery('.show_image_in_slider:not(#media-item-' + imageId  + ' .show_image_in_slider)').each(function() {
+								this.checked = false;
+							});
+						} else {
+							jQuery('#slider_image img').hide().removeAttr('src');
+							jQuery('#slider_image_preview_small', window.parent.document).hide().removeAttr('src');
+							jQuery('#remove_slider_image', window.parent.document).hide();
 						}
 					}
 				}
