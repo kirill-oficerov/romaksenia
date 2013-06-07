@@ -1991,10 +1991,10 @@ span.select-search-result {
 	margin-right: 5px;
 }
 #main #content .post a, #main #sidebar .widget a {
-	color: #8e2344;
+	/*color: #8e2344;*/
 }
 #main #content .post a:hover, #main #sidebar .widget a:hover {
-	color: #8e2344;
+	/*color: #8e2344;*/
 	text-decoration: underline;
 }
 
