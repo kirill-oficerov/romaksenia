@@ -1994,7 +1994,7 @@ span.select-search-result {
 	/*color: #8e2344;*/
 }
 #main #content .post a:hover, #main #sidebar .widget a:hover {
-	/*color: #8e2344;*/
+	color: #999;
 	text-decoration: underline;
 }
 
