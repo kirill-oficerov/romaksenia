@@ -48,7 +48,7 @@ if ( function_exists('get_site_option') ) {
 (function($) {
 	$(function() {
 		var customCommon = new window.Admin_Custom_Common({
-			urlSaveCustomSettings: '<?=HTTP_HOST . '/wp-admin/custom.php'?>'
+			urlCustomAjax: '<?=HTTP_HOST . '/wp-admin/custom.php'?>'
 		});
 		customCommon.init();
 	});

@@ -1227,6 +1227,20 @@ function get_media_item( $attachment_id, $args = null ) {
 		<td class='savesend' style='padding-top: 1px;'>
 			<span style='margin-top:5px;'>width:</span><input type='text' value='" . $width . "' class='text' style='width:60px;' name='featured_width_" . $post->ID . "'> &nbsp; <span style='margin-top:5px;'>height:</span><input type='text' value='" . $height . "' class='text' style='width:60px;' name='featured_height_" . $post->ID . "'><input type='button' rel='" . $post->ID . "' class='button save_feature_settings' value='Save Feature Settings'><img src='" . HTTP_HOST . "/wp-admin/images/wpspin_light.gif' class='preloader' style='display:none; position: relative; top: 3px; left: 5px;'>
 		</td><td></td></tr>\n" );
+		if(isset($_GET['slider_settings'])) {
+			if(!isset($_GLOBAL['postBeingEdited'])) {
+				global $wpdb;
+				$query = 'SELECT * FROM wp_posts WHERE ID=' . intval($_GET['post_id']);
+				$_GLOBAL['postBeingEdited'] = array_pop($wpdb->get_results($query));
+			}
+			$form_fields['slider_settings'] = array( 'tr' => "\t\t<tr class='submit slider_settings'>
+			<th valign='top' scope='row' class='label' style='font-size:13px; font-weight: bold;'><span style='cursor: pointer; margin: 2px 0px 0px 0px;' class='alignleft'>Slider settings</span><br class='clear'></th>
+			<td class='savesend' style='padding: 6px 0px 0px 0px;'>
+				<div style='margin: 3px 0px 0px 0px; float: left;'><label style='position: relative; top: -1px;'><input type='checkbox' class='show_image_in_slider' " . ($_GLOBAL['postBeingEdited']->show_at_slider == $post->ID ? 'checked="checked"' : '') . " >Показывать эту картинку в слайдере</label></div>
+<img src='/wp-admin/images/wpspin_light.gif' class='preloader' style='display:none; position: relative; top: 3px; left: 5px;'>
+			</td><td></td></tr>\n" );
+		}
+
 	}
 	$hidden_fields = array();
 
@@ -1307,16 +1321,62 @@ function get_media_item( $attachment_id, $args = null ) {
  *
  * @since 2.5.0
  */
+// @todo kirill admin upload images
 function media_upload_header() {
 	?>
 	<script type="text/javascript" src="/wp-admin/js/custom_common.js"></script>
 	<script type="text/javascript">
 		var adminCustomCommon = new window.Admin_Custom_Common({
-			urlSaveCustomSettings: '<?=HTTP_HOST . '/wp-admin/custom.php'?>'
+			urlCustomAjax: '<?=HTTP_HOST . '/wp-admin/custom.php'?>'
 		});
 		adminCustomCommon.init();
 	</script>
 	<script type="text/javascript">post_id = <?php echo intval($_REQUEST['post_id']); ?>;</script>
+	<? if(isset($_GET['slider_settings'])) { ?>
+	<?
+		$post = get_post(intval($_GET['post_id']));
+		$postSettings = unserialize($post->settings);
+		$text = '';
+		$order = '';
+		$imageSrc = '';
+		if($postSettings) {
+			if(isset($postSettings['slider'])) {
+				if(isset($postSettings['slider']['text'])) {
+					$text = $postSettings['slider']['text'];
+				}
+				if(isset($postSettings['slider']['order'])) {
+					$order = $postSettings['slider']['order'];
+				}
+				if($post->show_at_slider){
+					global $wpdb;
+					$query = 'SELECT * FROM wp_posts WHERE ID=' . $post->show_at_slider;
+					$imageData = $wpdb->get_results($query);
+					if(count($imageData)) {
+						$imageSrc = $imageData[0]->guid;
+					}
+				}
+			}
+		}
+	?>
+	<div>
+		<div style="margin: 4px;">
+			<label for="slider_text">Надпись на картинке:</label>
+			<input type="text" id="slider_text" style="width: 400px;" value="<?=$text?>"/>
+		</div>
+		<div style="margin: 4px;">
+			<label for="slider_order">Порядковый номер (0 или 1):</label>
+			<input type="text" id="slider_order" style="width: 30px;" value="<?=$order?>"/>
+		</div>
+		<div id="slider_image" style="margin: 4px;">
+			<img style="width: 750px; height: 300px; <?=!$imageSrc ? 'display: none;' : '' ?>" src="<?=$imageSrc?>">
+		</div>
+		<div class="slider_settings" style="margin: 4px;">
+			<input type="submit" name="save_slider_settings" id="save_slider_settings" value="Сохранить" class="button" attr="<?=$post->ID?>">
+			<img src="http://wedigital.dev/wp-admin/images/wpspin_light.gif" class="preloader" style="display:none; position: relative; top: 3px; left: 5px;">
+		</div>
+
+	</div>
+	<? } ?>
 	<div id="media-upload-header">
 	<?php the_media_upload_tabs(); ?>
 	</div>

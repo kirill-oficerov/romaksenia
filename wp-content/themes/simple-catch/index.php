@@ -43,13 +43,11 @@ get_header();
 //    }?>
 
 <script type="text/javascript">
-	if($ == undefined) {
-		var $ = jQuery;
-	}
-	(function($) {
+	(function($){
 		$(function() {
-			wdPrettyPhoto();
-		});
+			window.wdSlider = new Wd_Slider();
+			window.wdSlider.init();
+		})
 	})(jQuery);
 </script>
 <? get_footer(); ?>

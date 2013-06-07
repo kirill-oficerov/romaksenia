@@ -30,9 +30,10 @@
 		wp_enqueue_script('jquery');
 		wp_enqueue_script('prettyPhoto', '/Wd/js/prettyPhoto/js/jquery.prettyPhoto.js');
 		wp_enqueue_style('prettyPhoto', '/Wd/js/prettyPhoto/css/prettyPhoto.css');
-//		wp_enqueue_style('wd_layout', '/wp-content/themes/simple-catch/style.css');
+
 		//  post
 //		wp_enqueue_script('post', '/Wd/js/post.js');
+		wp_enqueue_script('post', '/Wd/js/slider.js');
 
 	}
 	add_action( 'wp_enqueue_scripts', 'my_scripts_method' ); // На внешней части сайта (в теме оформления)

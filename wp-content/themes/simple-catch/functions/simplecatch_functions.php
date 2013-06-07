@@ -1062,12 +1062,13 @@ function simplecatch_display_div() {
 				</div>
 
 			</div>
-		</div>
-	<? if($_SERVER['REQUEST_URI'] === '/') { ?>
-	<div class="slider">
+		</div><!-- #header -->
 
-	</div>
-	<? } ?>
+
+
+
+
+	<? Wd_Parts_Slider::get_content(); ?>
 
 	<div class="articles">
 		<div class="header">
