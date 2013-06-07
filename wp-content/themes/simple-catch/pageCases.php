@@ -39,7 +39,7 @@ get_header();
 					<ul>
 						<li class="icons articles"><a href="http://<?=$_SERVER['HTTP_HOST']?>/articles/"><span>Статьи</span></a></li>
 						<li class="icons cases"><a href="http://<?=$_SERVER['HTTP_HOST']?>/cases/"><span>Кейсы</span></a></li>
-						<li class="icons events"><a href="#"><span>События</span></a></li>
+						<li class="icons events"><a href="http://<?=$_SERVER['HTTP_HOST']?>/events/"><span>События</span></a></li>
 					</ul>
 
 				</div>
