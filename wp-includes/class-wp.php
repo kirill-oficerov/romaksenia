@@ -488,7 +488,8 @@ class WP {
 		if ( ! is_paged() ) {
 
 			// Don't 404 for these queries if they matched an object.
-			if ( ( is_tag() || is_category() || is_tax() || is_author() || is_post_type_archive() ) && $wp_query->get_queried_object() ) {
+			// @todo kirill 404
+			if ( Wd_Parts_SendNews::is_page_send_news() || (( is_tag() || is_category() || is_tax() || is_author() || is_post_type_archive() ) && $wp_query->get_queried_object()) ) {
 				status_header( 200 );
 				return;
 			}

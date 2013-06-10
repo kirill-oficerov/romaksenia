@@ -1049,7 +1049,7 @@ function simplecatch_display_div() {
 				</div>
 				<div class="menu_right">
 					<div class="send_news">
-						<a href="#">Прислать новость</a>
+						<a href="javascript:void(0);" class="make_popup">Прислать новость</a>
 					</div>
 					<div class="search">
 						<div class="background">

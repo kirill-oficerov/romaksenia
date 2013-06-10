@@ -34,6 +34,8 @@
 		//  post
 //		wp_enqueue_script('post', '/Wd/js/post.js');
 		wp_enqueue_script('post', '/Wd/js/slider.js');
+		wp_enqueue_script('popup', '/Wd/js/popup.js');
+		wp_enqueue_script('popup_send_news', '/Wd/js/popup_send_news.js');
 
 	}
 	add_action( 'wp_enqueue_scripts', 'my_scripts_method' ); // На внешней части сайта (в теме оформления)

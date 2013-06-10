@@ -26,7 +26,9 @@
 	(function($) {
 		$(function() {
 
-			jQuery('.searchform .search').each(function() {
+			jQuery('.header .search input,' +
+				'.send_news .content input,' +
+				'.send_news .content textarea').each(function() {
 				var default_value = this.value;
 				jQuery(this).focus(function() {
 					if(this.value == default_value) {
@@ -40,34 +42,6 @@
 				});
 			});
 
-			// social fix
-			var intervalSocial = null;
-			var catchSocialLoaded = function() {
-				if($('.yashare-auto-init').length > 0) {
-					clearInterval(intervalSocial);
-					$('.yashare-auto-init').each(function() {
-						var yashareBlock = $(this);
-						var newTitle = encodeURIComponent(yashareBlock.siblings(':eq(0)').find('a').text());
-						var newHref = encodeURIComponent(yashareBlock.siblings(':eq(0)').find('a').attr('href'));
-						yashareBlock.find('a').each(function() {
-							var a = $(this);
-
-							a.attr({'href':
-								a.attr('href').replace(/url=http[^&]*/,'url=' + newHref).replace(/title=.*/, 'title=' + newTitle)
-							});
-						});
-
-
-//						$('.yashare-auto-init').eq(0).find('a').eq(0).attr('href').replace(/url=http[^&]*/,'url=http222222')
-// title
-// $('.yashare-auto-init:eq(0)').siblings(':eq(0)').find('a').text()
-						// href
-						// $('.yashare-auto-init:eq(0)').siblings(':eq(0)').find('a').attr('href')
-						// encodeURIComponent
-					});
-				}
-			};
-			var intervalSocial = setTimeout(catchSocialLoaded, 100);
 
 
 
@@ -87,7 +61,10 @@
 
 
 
-
+			window.wdPopupSendNews = new Wd_Popup_Send_News({
+				urlSendNews: '<?=Wd_Parts_SendNews::SEND_NEWS_URL?>'
+			});
+			window.wdPopupSendNews.init();
 
 		});
 
@@ -107,8 +84,28 @@
 	}
 
 </script>
-<!-- Yandex.Metrika counter --><script type="text/javascript">(function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter19155310 = new Ya.Metrika({id:19155310, webvisor:true, clickmap:true, trackLinks:true, accurateTrackBounce:true}); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script><noscript><div><img src="//mc.yandex.ru/watch/19155310" style="position:absolute; left:-9999px;" alt="" /></div></noscript><!-- /Yandex.Metrika counter -->
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">(function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter19155310 = new Ya.Metrika({id:19155310, webvisor:true, clickmap:true, trackLinks:true, accurateTrackBounce:true}); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script><noscript><div><img src="//mc.yandex.ru/watch/19155310" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
 
+<div class="popup_overlay" style="display: none;">
 
+</div>
+<div class="popup send_news" style="display: none;">
+	<div class="clear">&nbsp;</div>
+	<div class="popup_container">
+		<div class="header">
+			<div class="label">Прислать новость</div>
+			<div class="close"></div>
+		</div>
+		<div class="clear">&nbsp;</div>
+		<div class="content">
+			<input class="header_input" type="text" value="Заголовок">
+			<textarea rows="1" cols="1" class="news_content">Описание</textarea>
+			<div class="send_news">Отправить в редакцию</div>
+			<div class="result"></div>
+		</div>
+	</div>
+</div>
 </body>
 </html>

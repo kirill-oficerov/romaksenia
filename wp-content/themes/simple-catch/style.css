@@ -477,3 +477,98 @@ li.events span {
 	color: #888;
 }
 
+.popup_overlay {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0.75;
+	background-color: #000;
+	z-index: 10;
+}
+
+.popup {
+	z-index: 15;
+	position: fixed;
+	background-color: #fff;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	top: 65px;
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
+}
+.popup.send_news {
+	width: 500px;
+	min-height: 500px;
+}
+.popup .popup_container {
+	overflow: hidden;
+	margin: 23px 21px 0 43px;
+}
+
+.popup .popup_container .header {
+}
+.popup .popup_container .header .label {
+	font-family: ptsansbold;
+	font-size: 26px;
+	float: left;
+	height: 40px;
+}
+.popup .popup_container .header .close {
+	float: right;
+	background: url("images/icons.png") no-repeat 0 -41px;
+	width: 29px;
+	height: 29px;
+	cursor: pointer;
+}
+
+.popup .popup_container .content .header_input {
+	width: 397px;
+	margin: 28px 0 0 0;
+	border: 1px solid #ccc;
+	height: 26px;
+	padding: 2px 0 2px 10px;
+	color: #aaa;
+	font-weight: bold;
+	outline-width: 0px;
+}
+.popup .popup_container .content .news_content {
+	padding: 11px 0 2px 10px;
+	color: #aaa;
+	font-weight: bold;
+	outline-width: 0px;
+	width: 397px;
+	margin: 20px 0 0 0;
+	border: 1px solid #ccc;
+	font-family: ptsans;
+	min-height: 255px;
+}
+.popup .popup_container .send_news {
+	height: 40px;
+	width: 210px;
+	text-align: center;
+	background-color: #2e2a2b;
+	font-size: 16px;
+	margin: 19px 0 0 0;
+	color: #fff;
+	line-height: 42px;
+	cursor: pointer;
+	float: left;
+}
+.popup .popup_container .send_news:hover {
+	background-color: #5b5b5b;
+}
+.popup .popup_container .result {
+	float: left;
+	margin: 31px 0 0 20px;
+	display: none;
+}
+.result.success {
+	color: #40a240;
+}
+.result.fail {
+	color: #a24940;
+}

@@ -42,6 +42,11 @@ if ( defined('WP_USE_THEMES') && WP_USE_THEMES ) :
 	else :
 		$template = get_index_template();
 	endif;
+	// @todo kirill ajax
+	if(Wd_Parts_SendNews::is_page_send_news()) {
+		Wd_Parts_SendNews::save_news($_POST);
+		return;
+	}
 	if ( $template = apply_filters( 'template_include', $template ) )
 		include( $template );
 	return;

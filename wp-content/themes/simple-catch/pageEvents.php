@@ -45,7 +45,7 @@ get_header();
 				</div>
 				<div class="menu_right">
 					<div class="send_news">
-						<a href="#">Прислать новость</a>
+						<a href="#" class="make_popup">Прислать новость</a>
 					</div>
 					<div class="search">
 						<div class="background">
