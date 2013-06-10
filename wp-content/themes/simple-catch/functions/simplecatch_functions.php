@@ -1067,17 +1067,17 @@ function simplecatch_display_div() {
 
 
 
-
-	<? Wd_Parts_Slider::get_content(); ?>
-
+	<? if($_SERVER['REQUEST_URI'] === '/') { ?>
+		<? Wd_Parts_Slider::get_content(); ?>
+	<? } ?>
 	<div class="articles">
-		<div class="header">
-			<div class="label">
-				<a href="http://<?=$_SERVER['HTTP_HOST']?>/articles/">Статьи</a>
-			</div>
-			<div class="hr"></div>
+	<div class="header">
+		<div class="label">
+			<a href="http://<?=$_SERVER['HTTP_HOST']?>/articles/">Статьи</a>
 		</div>
-		<div class="clear">&nbsp;</div>
+		<div class="hr"></div>
+	</div>
+	<div class="clear">&nbsp;</div>
 
 
 	<?
