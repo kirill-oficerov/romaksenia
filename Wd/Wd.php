@@ -24,7 +24,7 @@ class Wd {
 	 */
 	protected static function setConsts() {
 		define('WD_RUN_ALREADY', true);
-		define('DOCUMENT_ROOT', $_SERVER['DOCUMENT_ROOT']); // "../wedigital/www/"
+		define('DOCUMENT_ROOT', $_SERVER['DOCUMENT_ROOT'] . (substr($_SERVER['DOCUMENT_ROOT'], -1, 1) !== '/' ? '/' : '')); // "../wedigital/www/"
 		define('WD_DIR', DOCUMENT_ROOT . '\\Wd\\');
 		define('SIMPLE_CATCH_DIR', DOCUMENT_ROOT . '/wp-content/themes/simple-catch/');
 
