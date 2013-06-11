@@ -17,7 +17,7 @@ INNER JOIN wp_posts ON wp_posts.ID = wp_term_relationships.object_id
 WHERE wp_terms.slug = 'events' AND wp_posts.post_status = 'publish'
 
 ORDER BY post_date DESC
-LIMIT 3";
+LIMIT 4";
 		$terms = $wpdb->get_results($query);
 
 		echo '<ul>';
@@ -27,46 +27,15 @@ LIMIT 3";
 				<div class="flag_wrapper">
 					<div class="icons flag"></div>
 				</div>
+				<a href="' . get_permalink($term->ID) . '">
 				<div class="content">
-					<div class="event_date">24 марта - 26 апреля</div>
+					<div class="event_date">' . Wd::getReadableDate(date('d-m-Y', strtotime($term->post_date))) . '</div>
 					<div class="title">' . $term->post_title . '</div>
 				</div>
+				</a>
 			</li>';
 		}
 		echo '</ul>
 		<div class="clear">&nbsp;</div>';
-
 	}
-
-
-//		<ul>
-//			<li>
-//				<div class="flag_wrapper">
-//					<div class="icons flag"></div>
-//				</div>
-//				<div class="content">
-//					<div class="event_date">24 марта - 26 апреля</div>
-//					<div class="title">Конкурс  в сфере </div>
-//				</div>
-//			</li>
-//			<li>
-//				<div class="flag_wrapper">
-//					<div class="icons flag"></div>
-//				</div>
-//				<div class="content">
-//					<div class="event_date">24 марта - 26 апреля</div>
-//					<div class="title">Конкурс стартапов в сфере мобильных и облачных технологий "SVP TurboHeads Cloud Award"</div>
-//				</div>
-//			</li>
-//			<li>
-//				<div class="flag_wrapper">
-//					<div class="icons flag"></div>
-//				</div>
-//				<div class="content">
-//					<div class="event_date">24 марта - 26 апреля</div>
-//					<div class="title">Конкурс стартапов в сфере мобильных и облачных технологий "SVP TurboHeads Cloud Award"</div>
-//				</div>
-//			</li>
-//		</ul>
-
 }

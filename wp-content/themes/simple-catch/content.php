@@ -47,7 +47,7 @@ get_header();
 										$picture = str_replace($fullSizeImage, '"' . $thumbnailSrc . '"', $picture);
 									}
 									?>
-									<a rel="prettyPhoto" href=<?=$fullSizeImage?> title="<?php the_title_attribute( 'echo=0' ) ?>">
+									<a href=<?=the_permalink()?> title="<?php the_title_attribute( 'echo=0' ) ?>">
 									<?php echo $picture ?>
 									</a>
 									<? } ?>

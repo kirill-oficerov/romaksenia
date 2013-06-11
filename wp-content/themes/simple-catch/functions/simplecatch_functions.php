@@ -847,11 +847,8 @@ function simplecatch_content() {
 function simplecatch_loop() {
 	global $post, $wp_object_cache;
 
-	if( is_page() ): ?>
-	<?php
+	if( is_page() ) { ?>
 
-
-		?>
 		<div <?php post_class(); ?> >
 			<?
 			if(!is_single() && !is_page()) { ?>
@@ -870,62 +867,73 @@ function simplecatch_loop() {
 				) ); ?>
 		</div><!-- .post -->
 
-    <?php elseif( is_single() ): ?>
+    <?php } elseif( is_single() ) { ?>
+		<div class="article_content">
+			<div class="left"></div>
+			<div class="article_container">
+				<div class="breadcrumbs">
+					<a href="<?=HTTP_HOST?>">WeDigital</a><span class="arrow">→</span><a href="<?=HTTP_HOST?>/articles/">Статьи</a>
+				</div>
+				<div class="clear">&nbsp;</div>
+				<div class="title">
+					<?php the_title(); ?>
+				</div>
+				<div class="clear">&nbsp;</div>
+				<div class="public_date"><?=Wd::getReadableDate(date('d-m-Y', strtotime($post->post_date)))?></div>
+				<div class="clear">&nbsp;</div>
+				<div class="content">
+		            <?php
+					$fullContent = get_the_content(null, false);
+					$fullContent = apply_filters('the_content', $fullContent);
+					$fullContent = str_replace(']]>', ']]&gt;', $fullContent);
+					$contentBegin = strpos($fullContent, '<p style="" rel="begin-of-the-excerpt-text">');
+					$content = substr($fullContent, $contentBegin);
+					// deal with optimized images
+					$matches = array();
+					// $matches[1] - image path
+					// $matches[2] - image width
+					// $matches[3] - image height
+					preg_match_all('/<a.+href="([^"]+)"[^<]+<img.+src="([^"]+)".+width="(\d+)".+height="(\d+)"[^>]+>/', $content, $matches);
+					foreach($matches[1] as $key => $httpPath) {
+						$httpPathParts = explode('wp-content/uploads/', $httpPath);
+						if(isset($httpPathParts[1])) {
+							$realpath = HTTP_IMAGES_UPLOAD_DIR . $httpPathParts[1];
+							$pathInfo = Wd::pathinfo_utf($realpath);
+							$newFile = $pathInfo['dirname'] . '/' . $pathInfo['filename'] . '_' . Wd_Parts_Image::$_sizes[Wd_Parts_Image::SIZE_FRONT_CONTENT] .
+								'__' . $matches[3][$key] . 'x' . $matches[4][$key] . '.' . $pathInfo['extension'];
+							$content = str_replace('src="' . $matches[2][$key] . '"', 'src="' . $newFile . '"', $content);
+						}
+					}
+					echo $content ?>
+				</div>
+				<div class="clear">&nbsp;</div>
 
-		<div <?php post_class(); ?>>
-			<h2 class="entry-title post-title"><a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( get_the_title() ); ?>"><?php the_title(); ?></a></h2>
-			<div class="clear" style="height: 1px; width: 1px; "></div>
-            <?php
-			$fullContent = get_the_content(null, false);
-			$fullContent = apply_filters('the_content', $fullContent);
-			$fullContent = str_replace(']]>', ']]&gt;', $fullContent);
-			$contentBegin = strpos($fullContent, '<p style="" rel="begin-of-the-excerpt-text">');
-			$content = substr($fullContent, $contentBegin);
-			// deal with optimized images
-			$matches = array();
-			// $matches[1] - image path
-			// $matches[2] - image width
-			// $matches[3] - image height
-			preg_match_all('/<a.+href="([^"]+)"[^<]+<img.+src="([^"]+)".+width="(\d+)".+height="(\d+)"[^>]+>/', $content, $matches);
-			foreach($matches[1] as $key => $httpPath) {
-				$httpPathParts = explode('wp-content/uploads/', $httpPath);
-				if(isset($httpPathParts[1])) {
-					$realpath = HTTP_IMAGES_UPLOAD_DIR . $httpPathParts[1];
-					$pathInfo = Wd::pathinfo_utf($realpath);
-					$newFile = $pathInfo['dirname'] . '/' . $pathInfo['filename'] . '_' . Wd_Parts_Image::$_sizes[Wd_Parts_Image::SIZE_FRONT_CONTENT] .
-						'__' . $matches[3][$key] . 'x' . $matches[4][$key] . '.' . $pathInfo['extension'];
-//					$content = str_replace($matches[2][$key], $newFile, $content);
-
-
-					$content = str_replace('src="' . $matches[2][$key] . '"', 'src="' . $newFile . '"', $content);
-				}
-			}
-			?>
-			<div class="clear" style="height: 1px; width: 1px; "></div>
-			<?
-			echo $content ?>
-			<div class="clear" style="height: 1px; width: 1px; "></div>
-
-			<?
+				<?
 			$tags = get_the_tags();
 			if($tags !== false) {
 				$tagsAmount = count($tags);
 				$tags_output = '<div class="tags">
-					<div class="label">Теги:</div>
-					<ul>';
+					<div class="label">Теги:</div>';
 				$tagsCounter = 0;
 				foreach($tags as $tag) {
 					$tagsCounter++;
-					$tags_output .= '<li><a href="' . HTTP_HOST . '/tags/' . $tag->slug . '">' . $tag->name . '</a>' . ( $tagsCounter < $tagsAmount ? ',' : '')  . '</li>';
+					$tags_output .= '<div class="tag"><a href="' . HTTP_HOST . '/tags/' . $tag->slug . '">' . $tag->name . '</a>' . ( $tagsCounter < $tagsAmount ? ',' : '')  . '</div>';
 				}
-				$tags_output .= '</ul>
-					<div class="clear" style="height: 1px; width: 1px; "></div>
-				</div>';
-
+				$tags_output .= '</div>';
 				echo $tags_output;
-				?>
-			<? }
+			} ?>
+				<div class="comments">
+					<div class="header">
+						<div class="label">
+							Комментарии
+						</div>
+						<div class="hr"></div>
+					</div>
+					<div class="clear">&nbsp;</div>
+					<?comments_template();?>
 
+				</div>
+				<?
             // copy this <!--nextpage--> and paste at the post content where you want to break the page
 			wp_link_pages(array(
 					'before'			=> '<div class="pagination">Pages: ',
@@ -1011,8 +1019,42 @@ function simplecatch_loop() {
 					});
 				})(jQuery);
 			</script>
-		</div> <!-- .post -->
-	<?php endif;
+			</div> <!-- .article_container -->
+		<div class="clear">&nbsp;</div>
+		</div> <!-- .article_content -->
+		<div class="hr"></div>
+		<div class="cases see_also">
+			<div class="content">
+				<ul class="cases">
+					<li>
+						<div>
+							<img class="featured_image" src="images/orderino_stumb.png">
+							<div class="public_date">19 марта</div>
+							<div class="title"><a href="#">Никита Обухович: Уже более года работаю в Abiatec и ничуть не жалею</a></div>
+
+						</div>
+					</li>
+					<li>
+						<div>
+							<img class="featured_image" src="images/orderino_stumb.png">
+							<div class="public_date">19 марта</div>
+							<div class="title"><a href="#">Никита Обухович: Уже более года работаю в Abiatec и ничуть не жалею</a></div>
+
+						</div>
+					</li>
+					<li>
+						<div>
+							<img class="featured_image" src="images/orderino_stumb.png">
+							<div class="public_date">19 марта</div>
+							<div class="title"><a href="#">Никита Обухович: Уже более года работаю в Abiatec и ничуть не жалею</a></div>
+
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="clear">&nbsp;</div>
+	<?php }
 }
 
 /**

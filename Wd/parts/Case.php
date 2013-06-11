@@ -51,16 +51,11 @@ LIMIT 3";
 					$picture = str_replace($fullSizeImage, '"' . $thumbnailSrc . '"', $picture);
 				}
 			}
-	?>
-<!--	<a rel="prettyPhoto" href=--><?//=$fullSizeImage?><!-- title="--><?php //the_title_attribute( 'echo=0' ) ?><!--">-->
-<!--									--><?php //echo $picture ?>
-<!--									</a>-->
-									<?
 			echo '
 			<div>
-				<a rel="prettyPhoto" href=' . $fullSizeImage . ' title="' . the_title_attribute( 'echo=0' ) . '"><img class="featured_image" src="' . $thumbnailSrc . '"></a>
+				<a href=' . get_permalink($post->ID) . ' title="' . the_title_attribute( 'echo=0' ) . '"><img class="featured_image" src="' . $thumbnailSrc . '"></a>
 				<div class="public_date">' . Wd::getReadableDate(date('d-m-Y', strtotime($post->post_date))) . '</div>
-				<div class="title"><a href="#">' . $post->post_title . '</a></div>
+				<div class="title"><a href="' . get_permalink($post->ID) . '">' . $post->post_title . '</a></div>
 			</div>';
 			echo '</li>';
 		}
