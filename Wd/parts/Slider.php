@@ -16,12 +16,7 @@ class Wd_Parts_Slider {
 					LIMIT 2";
 		$terms = $wpdb->get_results($query);
 		if(count($terms) == 2) {
-			$sortFunction = function($value1, $value2) {
-				$firstPostSettings = unserialize($value1->settings);
-				$secondPostSettings = unserialize($value2->settings);
-				return $firstPostSettings['slider']['order'] > $secondPostSettings['slider']['order'];
-			};
-			usort($terms, $sortFunction);
+			usort($terms, "Wd_Parts_Slider::sortFunction");
 			$firstPost = $terms[0];
 			$secondPost = $terms[1];
 			?>
@@ -41,5 +36,10 @@ class Wd_Parts_Slider {
 			<?
 
 		}
+	}
+	private static function sortFunction($value1, $value2) {
+		$firstPostSettings = unserialize($value1->settings);
+		$secondPostSettings = unserialize($value2->settings);
+		return $firstPostSettings['slider']['order'] > $secondPostSettings['slider']['order'];
 	}
 }
