@@ -295,7 +295,7 @@ function post_custom_settings($post) {
 <!--					<input id="show_at_slider" name="show_at_slider" type="checkbox">-->
 <!--					<label for="show_at_slider" style="position: relative; top: -1px;">Отображать в слайдере</label>-->
 				</div>
-				<a title="Настройки слайдера" href="http://wedigital.dev/wp-admin/media-upload.php?post_id=<?=$post->ID?>&type=image&slider_settings=1&TB_iframe=1&width=826&height=323" class="thickbox" style="display: block; margin: 0 0 0 5px; float: left; height: 20px; width: 40px;">Настройки</a>
+				<a title="Настройки слайдера" href="<?=HTTP_HOST?>/wp-admin/media-upload.php?post_id=<?=$post->ID?>&type=image&slider_settings=1&TB_iframe=1&width=826&height=323" class="thickbox" style="display: block; margin: 0 0 0 5px; float: left; height: 20px; width: 40px;">Настройки</a>
 				<a id="remove_slider_image" href="javascript:void(0);" style="display: <?=$post->show_at_slider ? 'block;' : 'none;'?> float: right; width: 101px; height: 20px; margin: 0 12px 0 0;">Удалить картинку</a>
 				<div style="clear: both; height: 0px;">&nbsp;</div>
 			</div>

@@ -1372,7 +1372,7 @@ function media_upload_header() {
 		</div>
 		<div class="slider_settings" style="margin: 4px;">
 			<input type="submit" name="save_slider_settings" id="save_slider_settings" value="Сохранить" class="button" attr="<?=$post->ID?>">
-			<img src="http://wedigital.dev/wp-admin/images/wpspin_light.gif" class="preloader" style="display:none; position: relative; top: 3px; left: 5px;">
+			<img src="<?=HTTP_HOST?>/wp-admin/images/wpspin_light.gif" class="preloader" style="display:none; position: relative; top: 3px; left: 5px;">
 		</div>
 
 	</div>
