@@ -849,12 +849,12 @@ function simplecatch_loop() {
 
 	if( is_page() ) { ?>
 
-		<div <?php post_class(); ?> >
+		<div>
 			<?
 			if(!is_single() && !is_page()) { ?>
 				<h2 class="entry-title"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
 			<? } else { ?>
-				<div style="height: 20px;"></div>
+				<div class="h20"></div>
        		<? }
 			the_content();
 			 wp_link_pages(array(
@@ -865,7 +865,7 @@ function simplecatch_loop() {
 					'pagelink' 			=> '%',
 					'echo' 				=> 1
 				) ); ?>
-		</div><!-- .post -->
+		</div>
 
     <?php } elseif( is_single() ) { ?>
 		<div class="article_content">
@@ -1072,10 +1072,10 @@ function simplecatch_display_div() {
 				</div>
 				<div class="header_info">
 					<div class="about">
-						<a href="#">О проекте</a>
+						<a href="<?=HTTP_HOST?>/about">О проекте</a>
 					</div>
 					<div class="contacts">
-						<a href="#">Контактная информация</a>
+						<a href="<?=HTTP_HOST?>/contacts">Контактная информация</a>
 					</div>
 				</div>
 			</div>
@@ -1094,35 +1094,38 @@ function simplecatch_display_div() {
 						<a href="javascript:void(0);" class="make_popup">Прислать новость</a>
 					</div>
 					<div class="search">
-						<div class="background">
-							<input type="text" value="Искать тут">
-						</div>
-						<div class="icons button">
-
-						</div>
+						<form method="get" class="search_form" action="<?=HTTP_HOST?>">
+							<div class="background">
+								<input type="text" name="s" value="Искать тут">
+							</div>
+							<input type="submit">
+							<div class="submit_search">
+								<div class="icons button"></div>
+							</div>
+						</form>
 					</div>
 				</div>
 
 			</div>
-		</div><!-- #header -->
-
-
-
-
-	<? if($_SERVER['REQUEST_URI'] === '/') { ?>
-		<? Wd_Parts_Slider::get_content(); ?>
-	<? } ?>
-	<div class="articles">
-	<div class="header">
-		<div class="label">
-			<a href="http://<?=$_SERVER['HTTP_HOST']?>/articles/">Статьи</a>
 		</div>
-		<div class="hr"></div>
-	</div>
-	<div class="clear">&nbsp;</div>
+
+
 
 
 	<?
+	if($_SERVER['REQUEST_URI'] === '/') {
+		Wd_Parts_Slider::get_content();
+	}
+	if(!is_search()) { ?>
+	<div class="articles">
+		<div class="header">
+			<div class="label">
+				<a href="http://<?=$_SERVER['HTTP_HOST']?>/articles/">Статьи</a>
+			</div>
+			<div class="hr"></div>
+		</div>
+		<div class="clear">&nbsp;</div>
+	<? }
 	return 'right-sidebar';
 }
 

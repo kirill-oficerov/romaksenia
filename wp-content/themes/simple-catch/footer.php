@@ -7,6 +7,8 @@
  * @since Simple Catch 1.0
  */
 ?>
+<div class="h140"></div>
+</div> <!-- height 100% main -->
 <div class="footer">
 	<div class="left">
 		<div class="icons logo"></div>
@@ -65,7 +67,9 @@
 				urlSendNews: '<?=Wd_Parts_SendNews::SEND_NEWS_URL?>'
 			});
 			window.wdPopupSendNews.init();
-
+			jQuery('.header .search .submit_search').click(function() {
+				jQuery('.search_form').submit();
+			});
 		});
 
 

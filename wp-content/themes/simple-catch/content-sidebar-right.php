@@ -18,10 +18,10 @@ get_header();
 					</div>
 					<div class="header_info">
 						<div class="about">
-							<a href="#">О проекте</a>
+							<a href="<?=HTTP_HOST?>/about">О проекте</a>
 						</div>
 						<div class="contacts">
-							<a href="#">Контактная информация</a>
+							<a href="<?=HTTP_HOST?>/contacts">Контактная информация</a>
 						</div>
 					</div>
 				</div>
@@ -40,12 +40,15 @@ get_header();
 							<a href="javascript:void(0);" class="make_popup">Прислать новость</a>
 						</div>
 						<div class="search">
-							<div class="background">
-								<input type="text" value="Искать тут">
-							</div>
-							<div class="icons button">
-
-							</div>
+							<form method="get" class="search_form" action="<?=HTTP_HOST?>">
+								<div class="background">
+									<input type="text" name="s" value="Искать тут">
+								</div>
+								<input type="submit">
+								<div class="submit_search">
+									<div class="icons button"></div>
+								</div>
+							</form>
 						</div>
 					</div>
 

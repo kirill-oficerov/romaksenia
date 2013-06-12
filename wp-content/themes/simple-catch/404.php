@@ -7,13 +7,12 @@
  * @since Simple Catch 1.0
  */
 get_header(); ?>
-		<div id="main" class="layout-978">
-        	<div id="content" class="col8">
-            	<div class="post error404" style="min-height: 100%">
-		            <div style="font-size: 70px; position: absolute; top: 50%; left: 50%;height: 200px; width: 500px; text-align: center; margin-left: -250px; margin-top: -100px;  ">
+		<div class="main">
+            	<div class="error404">
+		            <div class="content" style="">
 			            404<br>
 			            <div>Такой страницы нет, но есть другие :-)</div>
-			            <div class="clear"></div>
+			            <div class="clear">&nbsp;</div>
 
 			            <?
 			            $map = array();
@@ -28,43 +27,30 @@ get_header(); ?>
 			                $map[$value->post_title] = $value->post_name;
 			            }
 						?>
-			            <div style="margin: 10px 0px 0px 81px; ">
+			            <div class="links">
 				            <div>
-					            <div style="float: left; margin: 0px 3px;">
-						            <a href="<?=HTTP_HOST?>" style="text-decoration: underline;">Главная</a>
-					            </div>
+					            <a href="<?=HTTP_HOST?>">Главная</a>
 				            </div>
 				            <div>
-					            <div style="float: left; margin: 0px 3px;">
-						            <a href="<?=HTTP_HOST?>/<?=$map['Статьи']?>"  style="text-decoration: underline;">Статьи</a>
-					            </div>
+					            <a href="<?=HTTP_HOST?>/<?=$map['Статьи']?>" >Статьи</a>
 				            </div>
 				            <div>
-					            <div style="float: left; margin: 0px 3px;">
-						            <a href="<?=HTTP_HOST?>/<?=$map['Кейсы']?>"  style="text-decoration: underline;">Кейсы</a>
-					            </div>
+					            <a href="<?=HTTP_HOST?>/<?=$map['Кейсы']?>" >Кейсы</a>
 				            </div>
 				            <div>
-					            <div style="float: left; margin: 0px 3px;">
-						            <a href="<?=HTTP_HOST?>/<?=$map['Ивенты']?>"  style="text-decoration: underline;">Ивенты</a>
-					            </div>
+					            <a href="<?=HTTP_HOST?>/<?=$map['Ивенты']?>" >События</a>
 				            </div>
 				            <div>
-					            <div style="float: left; margin: 0px 3px;">
-						            <a href="<?=HTTP_HOST?>/<?=$map['О нас']?>"  style="text-decoration: underline;">О нас</a>
-					            </div>
+					            <a href="<?=HTTP_HOST?>/<?=$map['О нас']?>" >О нас</a>
 				            </div>
 				            <div>
-					            <div style="float: left; margin: 0px 3px;">
-						            <a href="<?=HTTP_HOST?>/<?=$map['Контакты']?>"  style="text-decoration: underline;">Контакты</a>
-					            </div>
+					            <a href="<?=HTTP_HOST?>/<?=$map['Контакты']?>" >Контакты</a>
 				            </div>
-				            <div class="clear"></div>
+				            <div class="clear">&nbsp;</div>
 
 			            </div>
-			            <div class="clear"></div>
 		            </div>
-              	</div>
-       		</div><!-- #content-->
-        </div><!--#main-->
+	            </div>
+	<div class="clear">&nbsp;</div>
+</div>
 <?php get_footer(); ?>
